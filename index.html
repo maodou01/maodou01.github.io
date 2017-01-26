@@ -161,7 +161,6 @@ body {
         </div>
     </div>
 
-    <script src="//cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script>
 var clock = document.querySelector('#utility-clock');
 utilityClock(clock);
@@ -220,13 +219,7 @@ function utilityClock(container) {
     }
     for (var i = 1; i <= 60; i ++) minute(i);
     for (var i = 1; i <= 12; i ++) hour(i);
-    $.post('https://ning668.wicp.net/curl/index.php',{
-            url: 'http://www.114time.com/api/time.php'
-        },function(d){
-        animate(Number(d.body));
-    }).error(function(){
-        animate(new Date().getTime());
-    });
+    animate();
 }
 
 function autoResize(element, nativeSize) {
