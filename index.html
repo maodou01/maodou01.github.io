@@ -163,10 +163,10 @@ body {
 
     <script src="//cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script>
-var clock = document.querySelector('#utility-clock')
-utilityClock(clock)
+var clock = document.querySelector('#utility-clock');
+utilityClock(clock);
 
-if (clock.parentNode.classList.contains('fill')) autoResize(clock, 295 + 32)
+if (clock.parentNode.classList.contains('fill')) autoResize(clock, 295 + 32);
 
 function utilityClock(container) {
     var dynamic = container.querySelector('.dynamic')
@@ -207,34 +207,28 @@ function utilityClock(container) {
     var rotate = function(element, second) {
         element.style.transform = element.style.webkitTransform = 'rotate(' + (second * 6) + 'deg)'
     }
-    var animate = function() {
-        $.post('https://ning668.wicp.net/curl/index.php',{
-                url: 'http://www.114time.com/api/time.php'
-            },function(d){
-            var now = new Date(Number(d.body));
-            var time = now.getHours() * 3600 +
-                        now.getMinutes() * 60 +
-                        now.getSeconds() * 1 +
-                        now.getMilliseconds() / 1000;
-            rotate(secondElement, time);
-            rotate(minuteElement, time / 60);
-            rotate(hourElement, time / 60 / 12);
-            requestAnimationFrame(animate);
-        }).error(function(){
-            var now = new Date();
-            var time = now.getHours() * 3600 +
-                        now.getMinutes() * 60 +
-                        now.getSeconds() * 1 +
-                        now.getMilliseconds() / 1000;
-            rotate(secondElement, time);
-            rotate(minuteElement, time / 60);
-            rotate(hourElement, time / 60 / 12);
-            requestAnimationFrame(animate);
+    var animate = function(timestamp) {
+        var now = new Date(Number(timestamp));
+        var time = now.getHours() * 3600 +
+                    now.getMinutes() * 60 +
+                    now.getSeconds() * 1 +
+                    now.getMilliseconds() / 1000;
+        rotate(secondElement, time);
+        rotate(minuteElement, time / 60);
+        rotate(hourElement, time / 60 / 12);
+        requestAnimationFrame(function(){
+            animate(timestamp);
         });
     }
     for (var i = 1; i <= 60; i ++) minute(i);
     for (var i = 1; i <= 12; i ++) hour(i);
-    animate();
+    $.post('https://ning668.wicp.net/curl/index.php',{
+            url: 'http://www.114time.com/api/time.php'
+        },function(d){
+        animate(Number(d.body));
+    }).error(function(){
+        animate(new Date().getTime());
+    });
 }
 
 function autoResize(element, nativeSize) {
