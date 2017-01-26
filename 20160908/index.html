@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>海宁水务查询</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/weui/0.4.3/style/weui.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/jquery-weui/0.8.0/css/jquery-weui.min.css">
+    <style>
+        #login .weui_cells_form .weui_cell_primary span{
+            position: absolute;
+            right: 5px;
+            top: 8px;
+            z-index: 2;
+            font-size: 14px;
+            padding: 5px 0;
+            width: 80px;
+            text-align: center;
+            background-color: #ef4f4f;
+            color: #ffffff;
+        }
+        #result{
+            display: none;
+        }
+        #result .weui_cells{
+            font-size: 14px;
+        }
+        #result .bill{
+            margin: 25px 0;
+        }
+        #result .bill .weui_cells{
+            margin-top: 5px;
+            display: none;
+        }
+        #result .bill .weui_media_title{
+            display: block;
+        }
+        #result .bill .weui_media_title:active{
+            background-color: #ECECEC;
+        }
+    </style>
+    <script type="text/javascript">
+        function plusReady(){
+            plus.key.addEventListener( "backbutton", function(){
+                plus.nativeUI.confirm( "确认退出小帮手？", function(e){
+                    if(e.index==0){
+                        plus.runtime.quit();
+                    }else{
+                        var w=plus.webview.all();
+                        for(var i=1;i<w.length;i++){
+                            //alert(w[i].getURL());
+                            plus.webview.close(w[i]);
+                        }
+                    }
+                }, "提示", ["确认","返回功能大全"] );
+            }, false );
+        }
+        if(window.plus){
+            plusReady();
+        }else{
+            document.addEventListener("plusready",plusReady,false);
+        }
+    </script>
+</head>
+<body style="background-color: #fbf9fe;">
+    <div id="login">
+        <h2 style="color: #2a7ae2; text-align: center; margin: 15px 0;">海宁水费查询</h2>
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">用户号</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                  <input id="input-username" class="weui_input" type="tel" placeholder="请输入水表户号">
+                  <span id="login-username-select" style="background-color: transparent; color: #2a7ae2;">选择</span>
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">查询密码</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                  <input id="input-password" class="weui_input" type="password" placeholder="请输入查询密码">
+                  <span onclick="login(1)">发送短信</span>
+                </div>
+            </div>
+        </div>
+        <div style="padding: 25px 20px;">
+            <a href="javascript:login(0);" class="weui_btn weui_btn_primary">登录</a>
+            <a href="javascript:query();" class="weui_btn weui_btn_warn">免登录</a>
+        </div>
+    </div>
+    <div id="result">
+        <div style="padding: 15px 20px;">
+            <a href="javascript:$('#login').show(0);$('#result').hide(0);" class="weui_btn weui_btn_plain_primary">重新登录</a>
+        </div>
+        <div class="weui_cells base"></div>
+        <div class="weui_panel weui_panel_access bill">
+            <div class="weui_panel_bd"></div>
+        </div>
+    </div>
+    <script src="//cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jquery-weui/0.8.0/js/jquery-weui.min.js"></script>
+    <script>
+        window.str_cookie='';
+        var server_url='https://ning668.wicp.net/curl/';
+        //localStorage.setItem('water_cookie','ASP.NET_SessionId=kkdugtbmumb5s4mvl55tzsin; path=/; HttpOnly');
+        if(window.localStorage){
+            var value=window.localStorage.getItem('water_cookie');
+            if(value){
+                window.str_cookie=value;
+            }else{
+                $('#login .weui_btn_warn').hide(0);
+            }
+        }
+
+        function login(type){
+            /*type:{0:登录,1:获取密码}*/
+            $.post(server_url,{
+                url: 'http://60.190.128.134:9013/Home/Login?iType='+type,
+                method: 'post',
+                postdata: 'userID=' + $.trim($('#input-username').val()) + '&password=' + $.trim($('#input-password').val())
+            },function(d){
+                console.log(d);
+                if(d.httpstatus===200){
+                    var str_body=getBody(d.body);
+                    //console.log(str_body);
+                    console.debug('——————————————————————————');
+                    console.info($('.alert',str_body).text().trim());
+                    $.alert($('.alert',str_body).text(), "");
+                }else{
+                    var reg=/Set-Cookie:(.*);/i,cookie='';
+                    d.responseHeaders.map(function(value){
+                        if(value.match(reg)){
+                            cookie+=value.match(reg)[1]+';';
+                        }
+                    });
+                    window.str_cookie=cookie;
+                    query();
+                    localStorage.setItem('water_cookie',str_cookie);
+                }
+            });
+        }
+
+        function query(){
+            $('#result .weui_cells.base').html('');
+            $('#result .weui_panel.bill .weui_panel_bd').html('');
+            $.showLoading("查询中");
+            $('#login').slideUp('400',function(){
+                $('#result').slideDown('400');
+            });
+            $.post(server_url,{
+                url: 'http://60.190.128.134:9013/',
+                cookie: window.str_cookie
+            },function(d){
+                $.hideLoading();
+                console.log(d);
+                if(d.httpstatus===200){
+                var str_body=getBody(d.body);
+                var $resume=$('#resume-tab',str_body),
+                    $dtable=$('#dtable',str_body),
+                    tmp_html='<div class="weui_cell"><div class="weui_cell_bd weui_cell_primary"><p></p></div><div class="weui_cell_ft"></div></div>';
+                $resume.find('h4.my-activity').each(function(index){
+                    var str_r=$(this).next().find('span').text(),
+                        $tmp_html=$(tmp_html);
+                    $(this).next().find('span').text('/' + str_r);
+                    $tmp_html.find('.weui_cell_bd p').html($(this).text());
+                    $tmp_html.find('.weui_cell_ft').html($(this).next().text().replace(',','<br />'));
+                    $('#result .weui_cells.base').append($tmp_html);
+                    console.info($(this).text().replace(/\s/g,'')+':'+$(this).next().text().replace(/\s/g,''));
+                });
+                console.debug('——————————————————————————');
+
+                var tmp_html_bill='<div class="weui_media_box"><a class="weui_media_title"></a><div class="weui_cells"></div></div>';
+                $dtable.find('tbody>tr').each(function(){
+                    var $tbody_tr=$(this),
+                        $tmp_bill=$(tmp_html_bill),
+                        tmp_html_bill_table='<div class="weui_cell"><div class="weui_cell_bd weui_cell_primary"><p></p></div><div class="weui_cell_ft"></div></div>';
+                    $dtable.find('thead th').each(function(index){
+                        if(index===0){
+                            $tmp_bill.find('.weui_media_title').html($tbody_tr.find('td').eq(index).text()+'<点我详情>');
+                        }else{
+                            var $tmp_table=$(tmp_html_bill_table);
+                            $tmp_table.find('.weui_cell_bd p').html($(this).text());
+                            $tmp_table.find('.weui_cell_ft').html($tbody_tr.find('td').eq(index).text());
+                            $tmp_bill.find('.weui_cells').append($tmp_table);
+                        }
+                        console.info($(this).text()+':'+$tbody_tr.find('td').eq(index).text());
+                    });
+                    $('#result .weui_panel.bill .weui_panel_bd').append($tmp_bill);
+                })
+                }else{
+                    localStorage.removeItem('water_cookie');
+                    $('#result').hide(0);
+                    $('#login').show(0);
+                    $.alert('会话失效，请重新登录。');
+                }
+            },'json').error(function(err){
+                console.log(err);
+                $.hideLoading();
+                $.alert("连接失败或处理异常", "查询失败",function(){
+                    $('#result').hide(0);
+                    $('#login').show(0);
+                });
+            });
+        }
+
+        $('#login-username-select').select({
+            title: '选择户号',
+            items: [
+                {
+                    title: '【204室】11112903',
+                    value: '11112903'
+                },
+                {
+                    title: '【306室】11112943',
+                    value: '11112943'
+                }
+            ],
+            onChange: function(obj){
+                $('#input-username').val(obj.values);
+            }
+        });
+
+        $('#result').on('click','.bill .weui_media_title',function(){
+            var $this=$(this),
+                $next=$this.next();
+            if($next.css('display')==='none'){
+                $next.slideDown('400');
+            }else{
+                $next.slideUp('fast');
+            }
+        });
+
+        function getBody(content){
+            var REG_BODY = /<body[^>]*>([\s\S]*)<\/body>/;
+            var result = REG_BODY.exec(content);
+            if(result && result.length === 2)
+                return result[1];
+            return content;
+        }
+    </script>
+</body>
+</html>

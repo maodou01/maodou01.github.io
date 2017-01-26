@@ -1,0 +1,66 @@
+<section id="manage-business-select">
+    <div class="wrapper-title">
+        <span>选择客户</span>
+        <div class="tool-group">
+            <div class="closed main-closed" title="关闭" onclick="closeWindows('select-business')"></div>
+        </div>
+    </div>
+    <div class="wrapper-content">
+        <!-- 选择客户【start】 -->
+        <div class="search-box">
+            <input type="text" />
+            <a class="btn-query" href="javascript:;">智能查询</a>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="text-center">客户名称</th>
+                    <th class="text-center">联系电话</th>
+                    <th class="text-center">登记日期</th>
+                    <th class="text-center">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">李达</td>
+                    <td class="text-center">15823569456</td>
+                    <td class="text-center">2015-06-22</td>
+                    <td class="text-center"><a href="javascript:m_b_s_add('李达')">加入</a></td>
+                </tr>
+                <tr>
+                    <td class="text-center">小五</td>
+                    <td class="text-center">15823569456</td>
+                    <td class="text-center">2015-06-22</td>
+                    <td class="text-center"><a href="javascript:m_b_s_add('小五')">加入</a></td>
+                </tr>
+                <tr>
+                    <td class="text-center">小李</td>
+                    <td class="text-center">15823569456</td>
+                    <td class="text-center">2015-06-22</td>
+                    <td class="text-center"><a href="javascript:m_b_s_add('小李')">加入</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="btm-page">
+            <span>共32条 每页显示
+                <select>
+                    <option value="">9</option>
+                </select>
+                条记录</span>
+            <span class="pull-right">首页 
+                <span class="blue">2</span>/4 尾页 跳转到
+                <select>
+                    <option value="">3</option>
+                </select>
+            </span>
+        </div>
+        <!-- 选择客户【end】 -->
+    </div>
+</section>
+
+<script>
+function m_b_s_add(name){
+    $('#manage-business .input-add-select').val(name);
+    closeWindows('select-business');
+}
+</script>

@@ -1,0 +1,408 @@
+<section id="manage-cus">
+    <div class="wrapper-left">
+        <a href="javascript:openApp('add-user', '添加客户', '添加贷款.html', 'fa-cogs', 600, 558, false);" class="add-link">新增客户</a>
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active" role="presentation"><a href="#info-perfect" aria-controls="info-perfect" role="tab" data-toggle="tab" data-title="资料待完善客户"><i class="icon icon1"></i>资料完善</a></li>
+            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" data-title="客户管理"><i class="icon icon2"></i>客户管理</a></li>
+            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab" data-title="授信管理"><i class="icon icon3"></i>授信管理</a></li>
+        </ul>
+    </div>
+    <div class="wrapper-title">
+        <span>资料待完善客户</span>
+        <div class="tool-group">
+            <div class="min" onclick="minWindows('users')"></div>
+            <div class="max" onclick="maxWindows('users')"></div>
+            <div class="closed main-closed" title="关闭" onclick="closeWindows('users')"></div>
+        </div>
+    </div>
+    <div class="wrapper-right">
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="info-perfect">
+                <div class="content2">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">客户名称</th>
+                                <th class="text-center">联系电话</th>
+                                <th class="text-center">客户来源</th>
+                                <th class="text-center">所在地区</th>
+                                <th class="text-center">登记日期</th>
+                                <th class="text-center">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center">李达</td>
+                                <td class="text-center">15823569456</td>
+                                <td class="text-center">扫街</td>
+                                <td class="text-center">李严厉</td>
+                                <td class="text-center">2017-03-05</td>
+                                <td class="text-center"><a class="info-xq" href="javascript:openApp('info-user', '个人信息', '个人信息.html', 'fa-cogs', 780, 558, false);;">完善资料</a> <a href="">打印申请表</a></td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">&nbsp;</td>
+                                <td class="text-center">&nbsp;</td>
+                                <td class="text-center">&nbsp;</td>
+                                <td class="text-center">&nbsp;</td>
+                                <td class="text-center">&nbsp;</td>
+                                <td class="text-center">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">&nbsp;</td>
+                                <td class="text-center">&nbsp;</td>
+                                <td class="text-center">&nbsp;</td>
+                                <td class="text-center">&nbsp;</td>
+                                <td class="text-center">&nbsp;</td>
+                                <td class="text-center">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">&nbsp;</td>
+                                <td class="text-center">&nbsp;</td>
+                                <td class="text-center">&nbsp;</td>
+                                <td class="text-center">&nbsp;</td>
+                                <td class="text-center">&nbsp;</td>
+                                <td class="text-center">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">&nbsp;</td>
+                                <td class="text-center">&nbsp;</td>
+                                <td class="text-center">&nbsp;</td>
+                                <td class="text-center">&nbsp;</td>
+                                <td class="text-center">&nbsp;</td>
+                                <td class="text-center">&nbsp;</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="btm-page">
+                    <span>共32条 每页显示
+                        <select>
+                            <option value="">9</option>
+                        </select>
+                        条记录</span>
+                    <span class="pull-right">首页 
+                        <span class="blue">2</span>/4 尾页 跳转到
+                        <select>
+                            <option value="">3</option>
+                        </select>
+                    </span>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="messages">
+                <div class="content3">
+                    <div class="top-title" role="tablist">
+                        <a href="#sx1" class="check active" aria-controls="sx1" role="tab" data-toggle="tab">审核中</a>
+                        <a href="#sx2" class="refuse" aria-controls="sx2" role="tab" data-toggle="tab">已拒绝</a>
+                        <a href="#sx3" class="complete" aria-controls="sx3" role="tab" data-toggle="tab">已完成</a>
+                        <a href="javascript:openApp('credit-user', '添加授信', '添加授信.html', 'fa-cogs', 580, 530, false);;" class="btn-addsx pull-right" >添加授信</a>
+                    </div>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active contenta2" id="sx1">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">客户名称</th>
+                                        <th class="text-center">客户类型</th>
+                                        <th class="text-center">授信开始日期</th>
+                                        <th class="text-center">授信结束日期</th>
+                                        <th class="text-center">授信金额(元)</th>
+                                        <th class="text-center">操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center"><a href="javascript:openApp('info-user', '个人信息', '个人信息.html', 'fa-cogs', 780, 558, false);;">李达</a></td>
+                                        <td class="text-center">个人客户</td>
+                                        <td class="text-center">2016-05-05</td>
+                                        <td class="text-center">2017-03-05</td>
+                                        <td class="text-center">300,000.00</td>
+                                        <td class="text-center"><a href="">编辑</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="btm-page">
+                                <span>共32条 每页显示
+                                    <select>
+                                        <option value="">9</option>
+                                    </select>
+                                    条记录</span>
+                                <span class="pull-right">首页 
+                                    <span class="blue">2</span>/4 尾页 跳转到
+                                    <select>
+                                        <option value="">3</option>
+                                    </select>
+                                </span>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade contenta2" id="sx2">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">客户名称</th>
+                                        <th class="text-center">客户类型</th>
+                                        <th class="text-center">授信开始日期</th>
+                                        <th class="text-center">授信结束日期</th>
+                                        <th class="text-center">授信金额(元)</th>
+                                        <th class="text-center">操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center"><a href="javascript:openApp('info-user', '个人信息', '个人信息.html', 'fa-cogs', 780, 558, false);;">李达</a></td>
+                                        <td class="text-center">个人客户</td>
+                                        <td class="text-center">2016-05-05</td>
+                                        <td class="text-center">2017-03-05</td>
+                                        <td class="text-center">300,000.00</td>
+                                        <td class="text-center"><a href="">编辑</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="btm-page">
+                                <span>共22条 每页显示
+                                    <select>
+                                        <option value="">9</option>
+                                    </select>
+                                    条记录</span>
+                                <span class="pull-right">首页 
+                                    <span class="blue">2</span>/4 尾页 跳转到
+                                    <select>
+                                        <option value="">3</option>
+                                    </select>
+                                </span>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade contenta2" id="sx3">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">客户名称</th>
+                                        <th class="text-center">客户类型</th>
+                                        <th class="text-center">授信开始日期</th>
+                                        <th class="text-center">授信结束日期</th>
+                                        <th class="text-center">授信金额(元)</th>
+                                        <th class="text-center">操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center"><a href="javascript:openApp('info-user', '个人信息', '个人信息.html', 'fa-cogs', 780, 558, false);;">李达</a></td>
+                                        <td class="text-center">个人客户</td>
+                                        <td class="text-center">2016-05-05</td>
+                                        <td class="text-center">2017-03-05</td>
+                                        <td class="text-center">300,000.00</td>
+                                        <td class="text-center"><a href="">编辑</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="btm-page">
+                                <span>共12条 每页显示
+                                    <select>
+                                        <option value="">9</option>
+                                    </select>
+                                    条记录</span>
+                                <span class="pull-right">首页 
+                                    <span class="blue">2</span>/4 尾页 跳转到
+                                    <select>
+                                        <option value="">3</option>
+                                    </select>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div role="tabpanel" class="tab-pane" id="profile">
+                <div class="content2">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">客户名称</th>
+                                <th class="text-center">联系电话</th>
+                                <th class="text-center">资金用途</th>
+                                <th class="text-center">贷款类型</th>
+                                <th class="text-center">登记人</th>
+                                <th class="text-center">登记日期</th>
+                                <th class="text-center">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center">李达</td>
+                                <td class="text-center">15823569456</td>
+                                <td class="text-center">买车</td>
+                                <td class="text-center">信用贷款</td>
+                                <td class="text-center">王敦科</td>
+                                <td class="text-center">2017-03-05</td>
+                                <td class="text-center"><a class="info-xq" href="javascript:openApp('info-user', '个人信息', '个人信息.html', 'fa-cogs', 780, 558, false);;">详情</a></td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">李达</td>
+                                <td class="text-center">15823569456</td>
+                                <td class="text-center">买车</td>
+                                <td class="text-center">信用贷款</td>
+                                <td class="text-center">王敦科</td>
+                                <td class="text-center">2017-03-05</td>
+                                <td class="text-center"><a class="info-xq" href="javascript:openApp('info-user', '个人信息', '个人信息.html', 'fa-cogs', 780, 558, false);;">详情</a></td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">李达</td>
+                                <td class="text-center">15823569456</td>
+                                <td class="text-center">买车</td>
+                                <td class="text-center">信用贷款</td>
+                                <td class="text-center">王敦科</td>
+                                <td class="text-center">2017-03-05</td>
+                                <td class="text-center"><a class="info-xq" href="javascript:openApp('info-user', '个人信息', '个人信息.html', 'fa-cogs', 780, 558, false);;">详情</a></td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">李达</td>
+                                <td class="text-center">15823569456</td>
+                                <td class="text-center">买车</td>
+                                <td class="text-center">信用贷款</td>
+                                <td class="text-center">王敦科</td>
+                                <td class="text-center">2017-03-05</td>
+                                <td class="text-center"><a class="info-xq" href="javascript:openApp('info-user', '个人信息', '个人信息.html', 'fa-cogs', 780, 558, false);;">详情</a></td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">李达</td>
+                                <td class="text-center">15823569456</td>
+                                <td class="text-center">买车</td>
+                                <td class="text-center">信用贷款</td>
+                                <td class="text-center">王敦科</td>
+                                <td class="text-center">2017-03-05</td>
+                                <td class="text-center"><a class="info-xq" href="javascript:openApp('info-user', '个人信息', '个人信息.html', 'fa-cogs', 780, 558, false);;">详情</a></td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <div class="btm-page">
+                    <span>共32条 每页显示
+                        <select>
+                            <option value="">9</option>
+                        </select>
+                        条记录</span>
+                    <span class="pull-right">首页 
+                        <span class="blue">2</span>/4 尾页 跳转到
+                        <select>
+                            <option value="">3</option>
+                        </select>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    /*客户管理标签页*/
+    $('#manage-cus .wrapper-left').on('click','.nav>li>a',function (e) {
+        var $this=$(this),
+            $title=$('#manage-cus .wrapper-title').find('span');
+        $title.html($this.attr('data-title'));
+    });
+
+    /*授信管理标签页*/
+    $('#manage-cus .wrapper-right').on('click','.content3 .top-title>a',function (e) {
+        var $this=$(this);
+        if(!$this.hasClass('pull-right')){
+            $this.addClass('active').siblings().removeClass('active');
+        } 
+    });
+</script>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        a{
+            text-decoration: none;
+            font-size: 16px;
+            color: #555555;
+            -webkit-transition: all 0.4s;
+        }
+        a:hover{
+            text-decoration: underline;
+            color: #0000FF;
+        }
+        li{
+            line-height: 26px;
+        }
+        .typhoon-detail-table{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <table class="table table-hover table-striped text-center typhoon-list-table">
+        <caption><h3 class="text-center">正在获取中</h3></caption>
+        <thead>
+            <tr>
+                <th class="text-center">台风代号</th>
+                <th class="text-center">台风英文名</th>
+                <th class="text-center">台风中文名</th>
+                <th class="text-center">序号</th>
+                <th class="text-center">台风来源</th>
+                <th class="text-center">状态</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="6">数据正在获取中，请稍等。</td>
+            </tr>
+        </tbody>
+    </table>
+    <hr />
+    <table class="table table-hover table-striped text-center typhoon-detail-table">
+        <caption><h3 class="text-center"></h3></caption>
+        <thead>
+            <tr>
+                <th class="text-center">时间</th>
+                <th class="text-center">中心位置</th>
+                <th class="text-center">最大风速</th>
+                <th class="text-center">中心气压</th>
+                <th class="text-center">移动方向</th>
+                <th class="text-center">移动速度</th>
+                <th class="text-center">风圈半径</th>
+                <th class="text-center">东北</th>
+                <th class="text-center">东南</th>
+                <th class="text-center">西南</th>
+                <th class="text-center">西北</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script src="//cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        /*获取网址参数*/
+        function getQueryString(name){
+            var reg = new RegExp("(^|&)"+name+"=([^&]*)(&|$)","i"),
+                r=window.location.search.substr(1).match(reg);
+            if(r != null) return unescape(r[2]); return null;    
+        }
+
+        /*初始*/
+        if(getQueryString('year')){
+            typhoonList(getQueryString('year'));
+        }else{
+            typhoonList(new Date().getFullYear());
+        }
+        /*获取台风情况*/
+        function typhoonList(year){
+            $.ajax({
+                url : 'https://ning668.wicp.net/curl/?url=http://typhoon.nmc.cn/weatherservice/typhoon/jsons/list_'+year,
+                jsonpCallback: 'typhoon_jsons_list_'+year,
+                dataType: 'json',
+                error: function(obj){
+                    console.log(obj);
+                    if(obj.status==0){
+                        if(confirm('搬运君睡过头了,是否重新呼叫？')){
+                            typhoonList(year);
+                        }
+                    }else if(obj.status>299 && obj.status<400){
+                        alert('搬运君有事回家了,再过时间会回来的！');
+                    }else{
+                        alert('搬运君得病危了,医生们紧急抢救中！');
+                    }
+                },
+                success: function(d){
+                    var d=eval(d.body.replace('typhoon_jsons_list_'+year,''));
+                    console.log('获取台风列表');
+                    console.log(d);
+                    var str_html='';
+                    $.map(d.typhoonList, function(arr){
+                        str_html+='<tr onclick="typhoonDetail('+arr[0]+')">';
+                        str_html+='<td>'+arr[0]+'</td>';
+                        str_html+='<td>'+arr[1]+'</td>';
+                        str_html+='<td>'+arr[2]+'</td>';
+                        str_html+='<td>'+arr[3]+'</td>';
+                        str_html+='<td>'+arr[6]+'</td>';
+                        str_html+='<td>'+arr[7]+'</td>';
+                        str_html+='</tr>';
+                    });
+                    $('.typhoon-list-table tbody').html(str_html);
+                    $('.typhoon-list-table caption h3').html(year+'年台风列表');
+                }
+            });
+        }
+
+        /*获取台风明细*/
+        function typhoonDetail(no){
+            $.ajax({
+                url : 'https://ning668.wicp.net/curl/?url=http://typhoon.nmc.cn/weatherservice/typhoon/jsons/view_'+no,
+                jsonpCallback: 'typhoon_jsons_view_'+no,
+                dataType: 'json',
+                error: function(obj){
+                    console.log(obj);
+                    if(obj.status==0){
+                        if(confirm('搬运君睡过头了,是否重新呼叫？')){
+                            typhoonList(year);
+                        }
+                    }else if(obj.status>299 && obj.status<400){
+                        alert('搬运君有事回家了,再过时间会回来的！');
+                    }else{
+                        alert('搬运君得病危了,医生们紧急抢救中！');
+                    }
+                },
+                success: function(d){
+                    var d=eval(d.body.replace('typhoon_jsons_view_'+no,''));
+                    console.log('获取台风明细信息');
+                    console.log(d);
+                    var str_html='';
+                    $.map(d.typhoon[8], function(arr){
+                        str_html+='<tr>';
+                        if(arr[12]){
+                            str_html+='<td>'+arr[12][3]+'</td>';
+                        }else{
+                            str_html+='<td>'+arr[1]+'</td>';
+                        }
+                        str_html+='<td>'+arr[5]+'N/'+arr[4]+'E</td>';
+                        str_html+='<td>'+arr[7]+'米/秒</td>';
+                        str_html+='<td>'+arr[6]+'百帕</td>';
+                        str_html+='<td>'+direction(arr[8])+'</td>';
+                        str_html+='<td>'+arr[9]+'公里/小时</td>';
+                        if(arr[10].length>0){
+                            var t1='',t2='',t3='',t4='',t5='';
+                            $.map(arr[10],function(arr1,index){
+                                if(index>0){
+                                    t1+=('<br />'+arr1[0]+' ('+queryWind(arr1[0])+')');
+                                    t2+=('<br />'+arr1[1]+'千米');
+                                    t3+=('<br />'+arr1[2]+'千米');
+                                    t4+=('<br />'+arr1[3]+'千米');
+                                    t5+=('<br />'+arr1[4]+'千米');
+                                }else{
+                                    t1=arr1[0]+' ('+queryWind(arr1[0])+')';
+                                    t2=arr1[1]+'千米';
+                                    t3=arr1[2]+'千米';
+                                    t4=arr1[3]+'千米';
+                                    t5=arr1[4]+'千米';
+                                }
+                            });
+                            str_html+='<td>'+t1+'</td>';
+                            str_html+='<td>'+t2+'</td>';
+                            str_html+='<td>'+t3+'</td>';
+                            str_html+='<td>'+t4+'</td>';
+                            str_html+='<td>'+t5+'</td>';
+                        }else{
+                            str_html+='<td></td>';
+                            str_html+='<td></td>';
+                            str_html+='<td></td>';
+                            str_html+='<td></td>';
+                            str_html+='<td></td>';
+                        }
+                        str_html+='</tr>';
+                    });
+                    $('.typhoon-detail-table').fadeIn(400).find('tbody').html(str_html);
+                    $('.typhoon-detail-table caption h3').html(d.typhoon[2]+d.typhoon[1]);
+                }
+            });
+        }
+
+        /*东南西北方向转换*/
+        function direction(string){
+            var arr=string.split(''),
+                str='';
+            arr.map(function(v){
+                if('E'==v.toUpperCase()){
+                    str+='东'
+                }else if('S'==v.toUpperCase()){
+                    str+='南'
+                }else if('W'==v.toUpperCase()){
+                    str+='西'
+                }else if('N'==v.toUpperCase()){
+                    str+='北'
+                }
+            });
+            return str;  
+        }
+
+        /*风力表*/
+        function queryWind(kts){
+            var m=parseInt(kts)/2;
+            if(m>=0.0 && m<=0.2){
+                return '零级-无风';
+            }else if(m>=0.3 && m<=1.5){
+                return '一级-软风';
+            }else if(m>=1.6 && m<=3.3){
+                return '二级-轻风';
+            }else if(m>=3.4 && m<=5.4){
+                return '三级-微风';
+            }else if(m>=5.5 && m<=7.9){
+                return '四级-和风';
+            }else if(m>=8.0 && m<=10.7){
+                return '五级-轻劲风';
+            }else if(m>=10.8 && m<=13.8){
+                return '六级-强风';
+            }else if(m>=13.9 && m<=17.1){
+                return '七级-疾风';
+            }else if(m>=17.2 && m<=20.7){
+                return '八级-大风';
+            }else if(m>=20.8 && m<=24.4){
+                return '九级-烈风';
+            }else if(m>=24.5 && m<=28.4){
+                return '十级-狂风';
+            }else if(m>=28.5 && m<=32.6){
+                return '十一级-暴风';
+            }else if(m>=32.7 && m<=36.9){
+                return '十二级-飓风';
+            }else if(m>=37.0 && m<=41.4){
+                return '十三级-轻微龙卷风';
+            }else if(m>=41.5 && m<=46.1){
+                return '十四级-中等龙卷风';
+            }else if(m>=46.2 && m<=50.9){
+                return '十五级-超大龙卷风';
+            }else if(m>=51.0 && m<=56.0){
+                return '十六级-极大龙卷风';
+            }else if(m>=56.1 && m<=61.2){
+                return '十七级-强台龙卷风';
+            }else if(m>=61.3){
+                return '十八级-龙卷风之王';
+            }else{
+                return '逆天-无法评估';
+            }
+        }
+    </script>
+</body>
+</html>

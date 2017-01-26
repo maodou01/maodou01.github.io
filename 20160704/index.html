@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">   
+    <title>摄像头</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        video,canvas{
+            margin: 15px auto;
+            display: block;
+        }
+        canvas{
+            width: 100%;
+        }
+        .fixed{
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            top: 0;
+            left: 0;
+            display: none;
+        }
+        .fixed video{
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            margin-top: -270px;
+            background-color: #f2f2f2;
+            width: 80%;
+        }
+        .fixed a{
+            display: block;
+            width: 20%;
+            background-color: #0D4B94;
+            color: #ffffff;
+            border-radius: 5px;
+            text-align: center;
+            height: 30px;
+            line-height: 30px;
+            font-size: 14px;
+            text-decoration: none;
+            position: absolute;
+            left: 40%;
+            top: 20px;
+            z-index: 5;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="640" height="540"></canvas>
+    <div class="fixed">
+        <video id="video" width="640" height="540" autoplay></video>
+        <a href="javascript:;">拍照</a>
+    </div>
+    <script>
+        /*载入图像*/
+        var canvas_img=document.getElementById('canvas'),
+            context_img=canvas_img.getContext('2d'),
+            myimage= new Image();
+        myimage.src='http://hbimg.b0.upaiyun.com/87d0cacb6949fc9c6765594e9c917fde88a66e7b2a8e3-AoegZz_fw658';
+        myimage.onload=function(){
+            context_img.drawImage(myimage,0,0, 640, 540);
+        };
+
+        /*点击canvas，弹屏启动摄像*/
+        document.getElementById("canvas").addEventListener("click", function(){
+            document.querySelector('.fixed').style.display="block";
+            //startVideo();
+        },false);
+
+        /*关闭弹屏*/
+        document.querySelector('.fixed').addEventListener("click", function(){
+            document.querySelector('.fixed').style.display="none";
+        },false);
+
+        /*禁止气泡传播*/
+        document.querySelector('.fixed a').addEventListener("click", function(e){
+            e.stopPropagation();
+            document.querySelector('.fixed').style.display="none";
+            var canvas = document.getElementById("canvas"),
+                context = canvas.getContext("2d"),
+                video = document.getElementById("video");
+            context.drawImage(video, 0, 0, 640, 540);
+        },false);
+
+        document.querySelector('.fixed a').addEventListener("click", function(e){
+            e.stopPropagation();
+        },false);
+
+        // Put event listeners into place
+        window.addEventListener('DOMContentLoaded', function() {
+            // Grab elements, create settings, etc.
+            var canvas = document.getElementById("canvas"),
+                context = canvas.getContext("2d"),
+                video = document.getElementById("video"),
+                videoObj = { "video": true },
+                errBack = function(error) {
+                    console.log("Video capture error: ", error.code); 
+                };
+
+            // Put video listeners into place
+            if(navigator.getUserMedia) { // Standard
+                navigator.getUserMedia(videoObj, function(stream) {
+                    video.src = stream;
+                    video.play();
+                }, errBack);
+            } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+                navigator.webkitGetUserMedia(videoObj, function(stream){
+                    video.src = window.webkitURL.createObjectURL(stream);
+                    video.play();
+                }, errBack);
+            }
+            else if(navigator.mozGetUserMedia) { // Firefox-prefixed
+                navigator.mozGetUserMedia(videoObj, function(stream){
+                    video.src = window.URL.createObjectURL(stream);
+                    video.play();
+                }, errBack);
+            }
+        }, false);
+    </script>
+</body>
+</html>

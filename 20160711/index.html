@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>壹度合同签订系统</title>
+    <link rel="stylesheet" href="css/sign.css">
+</head>
+<body>
+    <div class="nav-top">
+        <div class="w1200">
+            <span>您好，欢迎光临XXXX</span>
+            <span class="pull-right">
+                <a href="">在线客服</a>
+                资讯热线：400-888-8888
+            </span>
+        </div>
+    </div>
+    <div class="w1200 info-box">
+        <h1 class="title">壹度合同签订系统</h1>
+        <form class="info-form">
+            <h2 class="info-title">用户信息</h2>
+            <div class="info-input">
+                <div class="info-left">
+                    <div class="input-group">
+                        <label>贷款人</label>
+                        <input class="input" type="text" name="" placeholder="请输入贷款人姓名" />
+                    </div>
+                    <div class="input-group">
+                        <label>所在地区</label>
+                        <div class="input">
+                            <select class="no-select" name="" id="">
+                                <option value="">省份</option>
+                                <option value="浙江省">浙江省</option>
+                            </select>
+                            <select class="no-select" name="" id="">
+                                <option value="">市级</option>
+                                <option value="杭州市">杭州市</option>
+                            </select>
+                            <select class="no-select" name="" id="">
+                                <option value="">县级</option>
+                                <option value="江干区">江干区</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>联系电话</label>
+                        <input class="input" type="text" name="" placeholder="请输入手机号" />
+                    </div>
+                </div>
+                <div class="info-right">
+                    <div class="input-group">
+                        <label>身份证号码</label>
+                        <input class="input" type="text" name="" placeholder="请输入身份证号码" />
+                    </div>
+                    <div class="input-group">
+                        <label>详细地址</label>
+                        <input class="input" type="text" name="" placeholder="请输入详细地址" />
+                    </div>
+                </div>
+            </div>
+            <h2 class="info-title">贷款信息</h2>
+            <div class="info-input">
+                <div class="info-left">
+                    <div class="input-group">
+                        <label>贷款类型</label>
+                        <select class="input no-select" name="" id="">
+                            <option value="">请选择贷款类型</option>
+                            <option value="1">测试类型</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>贷款利率</label>
+                        <input class="input" type="text" name="" placeholder="请输入利率" />
+                    </div>
+                    <div class="input-group">
+                        <label>合同签订日</label>
+                        <input class="input" type="text" name="" placeholder="请输入签订日" />
+                    </div>
+                    <div class="input-group">
+                        <label>合同结束日</label>
+                        <input class="input" type="text" name="" placeholder="请输入结束日" />
+                    </div>
+                </div>
+                <div class="info-right">
+                    <div class="input-group">
+                        <label>贷款金额</label>
+                        <input class="input" type="text" name="" placeholder="请输入贷款金额" />
+                    </div>
+                    <div class="input-group">
+                        <label>贷款期限</label>
+                        <input class="input" type="text" name="" placeholder="请输入贷款期限" />
+                    </div>
+                    <div class="input-group">
+                        <label>逾期罚息</label>
+                        <input class="input" type="text" name="" placeholder="请输入罚息" />
+                    </div>
+                    <div class="input-group">
+                        <label>合同模板</label>
+                        <select class="input no-select" name="" id="">
+                            <option value="">请选择合同模板</option>
+                            <option value="1">测试模板</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <a href="javascript:;" class="btn-red">确认签署</a>
+            <a href="javascript:;" class="txt-green">预览合同</a>
+        </form>
+    </div>
+    <div class="fixed-wrapper-video">
+        <div class="black-bj"></div>
+        <div class="collect-box">
+            <div class="c-header">采集视频照<i class="close"></i></div>
+            <div class="c-main">
+                <video class="c-video" autoplay></video>
+                <canvas class="c-canvas" width="480" height="380"></canvas>
+                <p class="c-tip">抱歉，摄像头未安装，无法正常启动并采集。</p>
+            </div>
+            <div class="c-footer">
+                <a href="javascript:;" class="btn-collect">采集</a>
+                <a href="javascript:;" class="btn-sure">确定</a>
+            </div>
+        </div>
+    </div>
+    <div class="fixed-wrapper">
+        <div class="black-bj"></div>
+        <div class="collect-box">
+            <div class="c-header">采集个人生物信息<i class="close"></i></div>
+            <div class="c-main">
+                <h3 class="c-title">身份信息</h3>
+                <div class="c-group">
+                    <div class="c-col">
+                        <div class="pic1"></div>
+                        <p>上传身份证</p>
+                        <input class="input-file" type="file" name="" />
+                        <img class="c-img-sfz" src="" />
+                    </div>
+                    <div class="c-col pull-right" onclick="funVideo(true);">
+                        <div class="pic2"></div>
+                        <p>采集视频照</p>
+                        <img class="c-img-headpic" src="" />
+                    </div>
+                </div>
+                <h3 class="c-title">采集指纹信息</h3>
+                <div class="c-group">
+                    <div class="c-col">
+                        <div class="pic3"></div>
+                        <p>采集指纹1</p>
+                    </div>
+                    <div class="c-col pull-right">
+                        <div class="pic3"></div>
+                        <p>采集指纹2</p>
+                    </div>
+                </div>
+            </div>
+            <div class="c-footer">
+                <a href="javascript:;" class="btn-cancel">取消</a>
+                <a href="javascript:;" class="btn-sure">确定</a>
+            </div>
+        </div>
+    </div>
+    <div class="fixed-login">
+        <div class="black-bj"></div>
+        <div class="login-box">
+            <div class="l-title">登录</div>
+            <input type="text" class="l-input" placeholder="请输入手机号" />
+            <input type="password" class="l-input" placeholder="请输入密码" />
+            <a href="javascript:;" class="btn-red">立即登录</a>
+            <a href="" class="txt-green">忘记密码</a>
+        </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script>
+        /*点击确认签署*/
+        $('.info-box').on('click','.btn-red',function(){
+            $('.fixed-wrapper').fadeIn('400');
+        });
+
+        /*主界面表单处理*/
+        $('select').on('change',function(){
+            var $this=$(this);
+            if($this.val()){
+                $this.removeClass('no-select');
+            }else{
+                $this.addClass('no-select');
+            }
+        });
+
+        /*采集视频信息弹屏*/
+        function funVideo(isshow){
+            if(isshow){
+                $('.fixed-wrapper-video').fadeIn('400');
+                initVideo();
+            }else{
+                $('.fixed-wrapper-video').fadeOut('400');
+            }
+        }
+        function initVideo(){
+            /*摄像头初始化*/
+            var video = $('.fixed-wrapper-video .c-video')[0],
+                videoObj = { "video": true },
+                errBack = function(error) {
+                    console.log("Video capture error: ", error.code);
+                     $('.fixed-wrapper-video .c-tip').show(0);
+                };
+
+            // Put video listeners into place
+            if(navigator.getUserMedia) { // Standard
+                navigator.getUserMedia(videoObj, function(stream) {
+                    video.src = stream;
+                    video.play();
+                }, errBack);
+            } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+                navigator.webkitGetUserMedia(videoObj, function(stream){
+                    video.src = window.webkitURL.createObjectURL(stream);
+                    video.play();
+                }, errBack);
+            }
+            else if(navigator.mozGetUserMedia) { // Firefox-prefixed
+                navigator.mozGetUserMedia(videoObj, function(stream){
+                    video.src = window.URL.createObjectURL(stream);
+                    video.play();
+                }, errBack);
+            }
+        }
+        $('.fixed-wrapper-video').on('click','.close',function(){
+            funVideo(false);
+        });
+        $('.fixed-wrapper-video').on('click','.btn-collect',function(){
+            /*采集*/
+            var $this=$(this),
+                canvas = $('.fixed-wrapper-video .c-canvas')[0],
+                context = canvas.getContext("2d"),
+                video = $('.fixed-wrapper-video .c-video')[0];
+            if($this.html()=='采集'){
+                context.drawImage(video, 0, 0, 480, 380);
+                $('.fixed-wrapper-video .c-canvas').show(0);
+                $this.html('重新采集');
+            }else{
+                $('.fixed-wrapper-video .c-canvas').hide(0);
+                $this.html('采集');
+            }
+        });
+        $('.fixed-wrapper-video').on('click','.btn-sure',function(){
+            /*确定*/
+            var canvas = $('.fixed-wrapper-video .c-canvas')[0],
+                head_pic=$('.fixed-wrapper .c-img-headpic')[0];
+            head_pic.src=canvas.toDataURL('image/png');
+            $('.fixed-wrapper .c-img-headpic').show(0);
+            funVideo(false);
+        });
+
+        /*采集个人生物信息弹屏*/
+        $('.fixed-wrapper').on('change','.input-file',function(){
+            /*上传身份证*/
+            var that=this;
+            if(that.files.length){
+                var file=that.files[0],
+                    reader = new FileReader();
+                reader.readAsDataURL(file);    
+                reader.onload=function(){
+                    $('.fixed-wrapper .c-img-sfz').show(0).attr({
+                        'src': this.result
+                    });
+                }    
+
+            }
+        });
+        $('.fixed-wrapper').on('click','.close',function(){
+            $('.fixed-wrapper').fadeOut('400');
+        });
+        $('.fixed-wrapper').on('click','.btn-cancel',function(){
+            /*取消*/
+            $('.fixed-wrapper').fadeOut('400');
+        });
+        $('.fixed-wrapper').on('click','.btn-sure',function(){
+            /*确定*/
+            
+        });
+
+        /*登录*/
+        $('.fixed-login').on('click','.btn-red',function(){
+            $('.fixed-login').fadeOut('400');
+        });
+    </script>
+</body>
+</html>
