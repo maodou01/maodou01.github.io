@@ -208,7 +208,7 @@ function utilityClock(container) {
         element.style.transform = element.style.webkitTransform = 'rotate(' + (second * 6) + 'deg)'
     }
     var animate = function() {
-        $.post('curl/index.php',{
+        $.post('https://ning668.wicp.net/curl/index.php',{
                 url: 'http://www.114time.com/api/time.php'
             },function(d){
             var now = new Date(Number(d.body));
