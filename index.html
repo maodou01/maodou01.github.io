@@ -208,7 +208,7 @@ function utilityClock(container) {
         element.style.transform = element.style.webkitTransform = 'rotate(' + (second * 6) + 'deg)'
     }
     var animate = function(timestamp) {
-        var now = new Date(Number(timestamp));
+        var now = new Date();
         var time = now.getHours() * 3600 +
                     now.getMinutes() * 60 +
                     now.getSeconds() * 1 +
@@ -216,11 +216,7 @@ function utilityClock(container) {
         rotate(secondElement, time);
         rotate(minuteElement, time / 60);
         rotate(hourElement, time / 60 / 12);
-        setTimeout(function(){
-            requestAnimationFrame(function(){
-                animate(timestamp+1000);
-            });
-        },1000);
+        requestAnimationFrame(timestamp);
     }
     for (var i = 1; i <= 60; i ++) minute(i);
     for (var i = 1; i <= 12; i ++) hour(i);
