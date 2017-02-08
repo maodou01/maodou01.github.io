@@ -270,10 +270,10 @@
         </div>
     </div>
     <script src="lib/sea.js"></script>
+    <script src="lib/jquery.min.js"></script>
     <script>
         seajs.config({
             alias: {
-                'jquery': './lib/jquery.min.js',
                 'dialog': '../lib/dialog-min.js',
                 'nprogress': '../lib/nprogress.js',
                 'excelExporter': '../lib/excelExporter.js',
@@ -281,7 +281,7 @@
                 'zb_yeb': './js/zb_mxz.js'
             }
         });
-        seajs.use(['jquery','zb_yeb'],function($,mxz){
+        seajs.use(['zb_yeb'],function($,mxz){
             $('.fixed-tool').css('top',(($('.fixed-tool').height()+55)*-1)+'px');
             mxz.init();
         });

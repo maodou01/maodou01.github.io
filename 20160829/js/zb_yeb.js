@@ -18,7 +18,7 @@ var yebWFun=function(){
     $.post(server_url,{
         how: 'query',
         zth: 'system',
-        sql: 'select iYear from UA_HoldAuth where cAcc_Id=\''+p_zth+'\' order by iYear desc'
+        sql: 'select distinct iYear from UA_HoldAuth where cAcc_Id=\''+p_zth+'\' order by iYear desc'
     },function(d){
         if(d.count>0){
             var str_html='';
@@ -609,6 +609,7 @@ var yebWFun=function(){
 
     /*点击打印*/
     $('.btn-print').on('click',function(){
+        $('.fixed-tool').removeClass('show');
         window.print();
     });
 
