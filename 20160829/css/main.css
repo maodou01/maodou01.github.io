@@ -198,11 +198,11 @@ section{
     background-image: url('../images/login_bj.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    -webkit-filter: blur(3px) grayscale(65%) brightness(85%);
+    /*-webkit-filter: blur(3px) grayscale(65%) brightness(85%);
     -moz-filter: blur(3px) grayscale(65%) brightness(85%);
     -o-filter: blur(3px) grayscale(65%) brightness(85%);
     -ms-filter: blur(3px) grayscale(65%) brightness(85%);
-    filter: blur(3px) grayscale(65%) brightness(85%);
+    filter: blur(3px) grayscale(65%) brightness(85%);*/
 }
 #main .wrapper-login{
     position: absolute;
