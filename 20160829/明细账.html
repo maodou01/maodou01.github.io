@@ -93,7 +93,7 @@
     <div class="yeb-table-wrap">
         <div class="row">
             <div class="col-33">核算单位：<span class="txt-company">读取中</span></div>
-            <div class="col-33 text-center">查询日期：<span class="txt-query-time">2016年6月-8月</span></div>
+            <div class="col-33 text-center">查询日期：<span class="txt-query-time" onclick="$('.fixed-tool').toggleClass('show');">请选择查询日期</span></div>
             <div class="col-33 text-right">本币单位：人民币</div>
         </div>
         <div class="row">
@@ -276,6 +276,7 @@
                 'jquery': './lib/jquery.min.js',
                 'dialog': '../lib/dialog-min.js',
                 'nprogress': '../lib/nprogress.js',
+                'excelExporter': '../lib/excelExporter.js',
                 'common': '../js/common.js',
                 'zb_yeb': './js/zb_mxz.js'
             }

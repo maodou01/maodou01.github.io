@@ -18,7 +18,7 @@ var yebWFun=function(){
     $.post(server_url,{
         how: 'query',
         zth: 'system',
-        sql: 'select iYear from UA_Account_sub where cAcc_Id=\''+p_zth+'\' and iModiPeri>0 order by iYear desc'
+        sql: 'select iYear from UA_HoldAuth where cAcc_Id=\''+p_zth+'\' order by iYear desc'
     },function(d){
         if(d.count>0){
             var str_html='';
@@ -606,6 +606,20 @@ var yebWFun=function(){
             }
         });
     }
+
+    /*点击打印*/
+    $('.btn-print').on('click',function(){
+        window.print();
+    });
+
+    /*点击导出XLSX*/
+    $('.btn-xlsx').on('click',function(){
+        dialog({
+            title: '提示',
+            content: '功能正在开发'
+        }).width(120).showModal();
+        //excelExporter.fromTable('output-table','余额表'+convertDate()+'.xls',convertDate('date'));
+    });
 }    
 
 if (typeof define === "function" && define.cmd) {
@@ -615,6 +629,7 @@ if (typeof define === "function" && define.cmd) {
         require('common');
         require('jwerty');
         require('jstree');
+        require('excelExporter');
         exports.init=yebWFun;
     });
 }else{

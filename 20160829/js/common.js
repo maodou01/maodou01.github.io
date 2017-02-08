@@ -84,3 +84,22 @@ var stopDefault=function(e){
         window.event.returnValue=false;
     }
 }
+
+/*转换时间YYYYMMDDHHIISS*/
+function convertDate(string){
+    var myDate=new Date(),
+        myyear=myDate.getFullYear(),
+        mymonth=myDate.getMonth()+1,
+        mydate=myDate.getDate(),
+        myhour=myDate.getHours(),
+        mymin=myDate.getMinutes(),
+        mysec=myDate.getSeconds();
+        mymonth=mymonth>9?mymonth:'0'+mymonth;
+        mydate=mydate>9?mydate:'0'+mydate;
+        myhour=myhour>9?myhour:'0'+myhour;
+        mymin=mymin>9?mymin:'0'+mymin;
+        mysec=mysec>9?mysec:'0'+mysec;
+    if(string==='date')
+        return myyear+'-'+mymonth+'-'+mydate;
+    return myyear+mymonth+mydate+myhour+mymin+mysec;  
+}
