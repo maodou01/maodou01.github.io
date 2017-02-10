@@ -354,8 +354,44 @@ var yebWFun=function(){
                 success: function(d){
                     //console.log(d);
                     if(d.status===1){
-                        if(d.count!=='0'){
+                        var int_count=parseInt(d.count);
+                        if(int_count===1){
                             qc_arr=d.data[0];
+                        }else if(int_count===2){
+                            var diff_mb=0.00,
+                                diff_mb_f=0.00,
+                                diff_nb_s=0.00;
+                            diff_mb=Number(d.data[0].mb)-Number(d.data[1].mb);
+                            diff_mb_f=Number(d.data[0].mb_f)-Number(d.data[1].mb_f);
+                            diff_nb_s=Number(d.data[0].nb_s)-Number(d.data[1].nb_s);
+                            qc_arr={
+                                mb: Math.abs(diff_mb),
+                                mb_f: Math.abs(diff_mb_f),
+                                nb_s: Math.abs(diff_nb_s)
+                            };
+                            if(d.data[0].cbegind_c==='借'){
+                                if(diff_mb>0){
+                                    qc_arr.cbegind_c='借';
+                                }else if(diff_mb<0){
+                                    qc_arr.cbegind_c='贷';
+                                }else{
+                                    qc_arr.cbegind_c='平';
+                                    qc_arr.mb='';
+                                    qc_arr.mb_f='';
+                                    qc_arr.nb_s='';
+                                }
+                            }else if(d.data[0].cbegind_c==='贷'){
+                                if(diff_mb>0){
+                                    qc_arr.cbegind_c='贷';
+                                }else if(diff_mb<0){
+                                    qc_arr.cbegind_c='借';
+                                }else{
+                                    qc_arr.cbegind_c='平';
+                                    qc_arr.mb='';
+                                    qc_arr.mb_f='';
+                                    qc_arr.nb_s='';
+                                }
+                            }
                         }
                     }
                 }
