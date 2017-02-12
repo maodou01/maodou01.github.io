@@ -615,7 +615,7 @@ var yebWFun=function(){
                 how: 'query',
                 zth: p_zth,
                 year: p_year,
-                sql: 'select cclass,ccode,ccode_name,bend from code where (ccode between '+code1+' and '+code2+'9999999999) and ccode_name like \'%'+str_codename+'%\''+ str_sql_lastcode +' order by ccode'
+                sql: 'select cclass,ccode,ccode_name,bend from code where (ccode >= \''+code1+'\' and ccode < \''+code2+'\' or ccode like \'' + code2 + '%\') and ccode_name like \'%'+str_codename+'%\''+ str_sql_lastcode +' order by ccode'
             },
             success: function(d){
                 console.log(d);
