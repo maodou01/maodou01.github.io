@@ -25,7 +25,7 @@ function current(num){
         var num=Number(num).toFixed(2);
     }
 
-    if((num+"").trim()==""){
+    if((num+"").trim()=="" || Number(num)===0){
 
       return"";
 

@@ -24,6 +24,11 @@
     </style>
 </head>
 <body>
+    <div class="container">
+        <select id="input-year" class="form-control">
+            <option value="">正在设置年份</option>
+        </select>
+    </div>        
     <table class="table table-hover table-striped text-center typhoon-list-table">
         <caption><h3 class="text-center">正在获取中</h3></caption>
         <thead>
@@ -73,13 +78,30 @@
         }
 
         /*初始*/
+        var p_year_max=new Date().getFullYear(),
+            p_year_min=1949;
         if(getQueryString('year')){
             typhoonList(getQueryString('year'));
         }else{
-            typhoonList(new Date().getFullYear());
+            typhoonList(p_year_max);
         }
+        var year_str_html='';
+        for(var year_i=p_year_max; year_i>=p_year_min; year_i--){
+            if(parseInt(getQueryString('year'))===year_i){
+                year_str_html+='<option value="'+year_i+'" selected="selected">'+year_i+'年</option>';
+            }else{
+                year_str_html+='<option value="'+year_i+'">'+year_i+'年</option>';
+            }
+        }
+        $('#input-year').on('change',function(){
+            var str_year=$('#input-year :selected').val();
+            if(parseInt(str_year) <= p_year_max && parseInt(str_year) >= p_year_min){
+                typhoonList(str_year);
+            }
+        }).html(year_str_html);
         /*获取台风情况*/
         function typhoonList(year){
+            $('.typhoon-detail-table').fadeOut(400);
             $.ajax({
                 url : 'https://ning668.wicp.net/curl/?url=http://typhoon.nmc.cn/weatherservice/typhoon/jsons/list_'+year,
                 jsonpCallback: 'typhoon_jsons_list_'+year,
@@ -97,22 +119,26 @@
                     }
                 },
                 success: function(d){
-                    var d=eval(d.body.replace('typhoon_jsons_list_'+year,''));
-                    console.log('获取台风列表');
                     console.log(d);
-                    var str_html='';
-                    $.map(d.typhoonList, function(arr){
-                        str_html+='<tr onclick="typhoonDetail('+arr[0]+')">';
-                        str_html+='<td>'+arr[0]+'</td>';
-                        str_html+='<td>'+arr[1]+'</td>';
-                        str_html+='<td>'+arr[2]+'</td>';
-                        str_html+='<td>'+arr[3]+'</td>';
-                        str_html+='<td>'+arr[6]+'</td>';
-                        str_html+='<td>'+arr[7]+'</td>';
-                        str_html+='</tr>';
-                    });
-                    $('.typhoon-list-table tbody').html(str_html);
-                    $('.typhoon-list-table caption h3').html(year+'年台风列表');
+                    if(d.httpstatus===200){
+                        var d=eval(d.body.replace('typhoon_jsons_list_'+year,''));
+                        var str_html='';
+                        $.map(d.typhoonList, function(arr){
+                            str_html+='<tr onclick="typhoonDetail('+arr[0]+')">';
+                            str_html+='<td>'+arr[0]+'</td>';
+                            str_html+='<td>'+arr[1]+'</td>';
+                            str_html+='<td>'+arr[2]+'</td>';
+                            str_html+='<td>'+arr[3]+'</td>';
+                            str_html+='<td>'+arr[6]+'</td>';
+                            str_html+='<td>'+arr[7]+'</td>';
+                            str_html+='</tr>';
+                        });
+                        $('.typhoon-list-table tbody').html(str_html);
+                        $('.typhoon-list-table caption h3').html(year+'年台风列表');
+                    }else{
+                        $('.typhoon-list-table tbody').html('<tr><td colspan="6">暂无数据</td></tr>');
+                        $('.typhoon-list-table caption h3').html(year+'年台风列表');
+                    }
                 }
             });
         }

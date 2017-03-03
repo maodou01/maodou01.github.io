@@ -178,6 +178,27 @@ section{
     -moz-transform: rotate(-45deg);
     transform: rotate(-45deg);
 }
+.qucik-login{
+    display: block;
+    line-height: 28px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #444444;
+}
+.qucik-login:first-child{
+    margin-bottom: 12px;
+}
+.qucik-login span{
+    display: inline-block;
+    width: 60px;
+    text-align: right;
+}
+.qucik-login input{
+    border: 1px solid #ccc;
+    font-size: 14px;
+    padding: 0 0 0 8px;
+    border-radius: 4px;
+}
 
 /* 科目弹窗 */
 #code-list{
@@ -408,12 +429,6 @@ h2.table-title{
     min-width: 800px;
     margin: 0 auto;
 }
-.yeb-table-wrap .table .t_add_up{
-    display: none;
-}
-.yeb-table-wrap .table.has_add_up .t_add_up{
-    display: table-cell;
-}
 .yeb-table-wrap .table th{
     border: 1px solid #cccccc;
     text-align: center;
@@ -433,4 +448,11 @@ h2.table-title{
 .yeb-table-wrap .table td.price{
     text-align: right;
     min-width: 80px;
+}
+.yeb-table-wrap .t_amount,
+.yeb-table-wrap .bt_quantity_foreign,
+.yeb-table-wrap .t_quantity_foreign,
+.yeb-table-wrap .t_quantity,
+.yeb-table-wrap .t_foreign{
+    display: none;
 }

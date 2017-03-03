@@ -106,26 +106,52 @@
             <div class="col-33 text-center">发生日期：<span class="txt-query-time" onclick="$('.fixed-tool').toggleClass('show');">请选择查询日期</span></div>
             <div class="col-33 text-right">本币单位：人民币</div>
         </div>
-        <table class="table table_amount">
+        <table id="yeb-table" class="table">
             <thead>
                 <tr>
                     <th rowspan="2">序号</th>
                     <th rowspan="2">科目编码</th>
                     <th rowspan="2">科目名称</th>
-                    <th colspan="2">期初余额</th>
-                    <th colspan="2">本期余额</th>
-                    <th class="t_add_up" colspan="2">累计余额</th>
-                    <th colspan="2">期末余额</th>
+                    <th class="t_amount" colspan="2">期初余额</th>
+                    <th class="bt_quantity_foreign" colspan="4" data-col-1="3" data-col-2="4">期初</th>
+                    <th class="t_amount" colspan="2">本期余额</th>
+                    <th class="bt_quantity_foreign" colspan="3" data-col-1="2" data-col-2="3">本期借方</th>
+                    <th class="bt_quantity_foreign" colspan="3" data-col-1="2" data-col-2="3">本期贷方</th>
+                    <th class="t_add_up t_amount" colspan="2">累计余额</th>
+                    <th class="t_add_up bt_quantity_foreign" colspan="3" data-col-1="2" data-col-2="3">累计借方</th>
+                    <th class="t_add_up bt_quantity_foreign" colspan="3" data-col-1="2" data-col-2="3">累计贷方</th>
+                    <th class="t_amount" colspan="2">期末余额</th>
+                    <th class="bt_quantity_foreign" colspan="4" data-col-1="3" data-col-2="4">期末</th>
                 </tr>
                 <tr>
-                    <th>借方</th>
-                    <th>贷方</th>
-                    <th>借方</th>
-                    <th>贷方</th>
-                    <th class="t_add_up">借方</th>
-                    <th class="t_add_up">贷方</th>
-                    <th>借方</th>
-                    <th>贷方</th>
+                    <th class="t_amount">借方</th>
+                    <th class="t_amount">贷方</th>
+                    <th class="t_quantity_foreign">方向</th>
+                    <th class="t_quantity">数量</th>
+                    <th class="t_foreign">外币</th>
+                    <th class="t_quantity_foreign">金额</th>
+                    <th class="t_amount">借方</th>
+                    <th class="t_amount">贷方</th>
+                    <th class="t_quantity">数量</th>
+                    <th class="t_foreign">外币</th>
+                    <th class="t_quantity_foreign">金额</th>
+                    <th class="t_quantity">数量</th>
+                    <th class="t_foreign">外币</th>
+                    <th class="t_quantity_foreign">金额</th>
+                    <th class="t_amount t_add_up">借方</th>
+                    <th class="t_amount t_add_up">贷方</th>
+                    <th class="t_quantity t_add_up">数量</th>
+                    <th class="t_foreign t_add_up">外币</th>
+                    <th class="t_quantity_foreign t_add_up">金额</th>
+                    <th class="t_quantity t_add_up">数量</th>
+                    <th class="t_foreign t_add_up">外币</th>
+                    <th class="t_quantity_foreign t_add_up">金额</th>
+                    <th class="t_amount">借方</th>
+                    <th class="t_amount">贷方</th>
+                    <th class="t_quantity_foreign">方向</th>
+                    <th class="t_quantity">数量</th>
+                    <th class="t_foreign">外币</th>
+                    <th class="t_quantity_foreign">金额</th>
                 </tr>
             </thead>
             <tbody>
@@ -133,182 +159,45 @@
                     <td class="text-center">1</td>
                     <td>1001</td>
                     <td>现金</td>
+                    <!--序号、科目编码、科目名称-->
                     <td class="price">123.00</td>
                     <td class="price"></td>
-                    <td class="price">12,345.56</td>
-                    <td class="price">41,542.12</td>
-                    <td class="price t_add_up">12,345.56</td>
-                    <td class="price t_add_up">41,542.12</td>
-                    <td class="price"></td>
-                    <td class="price">29,073.56</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table_quantity_amount">
-            <thead>
-                <tr>
-                    <th rowspan="2">序号</th>
-                    <th rowspan="2">科目编码</th>
-                    <th rowspan="2">科目名称</th>
-                    <th colspan="3">期初</th>
-                    <th colspan="2">本期借方</th>
-                    <th colspan="2">本期贷方</th>
-                    <th class="t_add_up" colspan="2">累计借方</th>
-                    <th class="t_add_up" colspan="2">累计贷方</th>
-                    <th colspan="3">期末</th>
-                </tr>
-                <tr>
-                    <th>方向</th>
-                    <th>数量</th>
-                    <th>金额</th>
-                    <th>数量</th>
-                    <th>金额</th>
-                    <th>数量</th>
-                    <th>金额</th>
-                    <th class="t_add_up">数量</th>
-                    <th class="t_add_up">金额</th>
-                    <th class="t_add_up">数量</th>
-                    <th class="t_add_up">金额</th>
-                    <th>方向</th>
-                    <th>数量</th>
-                    <th>金额</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="text-center">1</td>
-                    <td>1001</td>
-                    <td>现金</td>
+                    <!--期初余额（借方和贷方）-->
                     <td class="text-center">借</td>
-                    <td class="text-center"></td>
-                    <td class="price">123.40</td>
-                    <td class="text-center">12345</td>
-                    <td class="price">12,345.56</td>
-                    <td class="text-center">12345</td>
-                    <td class="price">41,542.12</td>
-                    <td class="text-center t_add_up">12345</td>
-                    <td class="price t_add_up">12,345.56</td>
-                    <td class="text-center t_add_up">12345</td>
-                    <td class="price t_add_up">41,542.12</td>
-                    <td class="text-center">借</td>
-                    <td class="text-center"></td>
-                    <td class="price">29,073.56</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table_foreign_amount">
-            <thead>
-                <tr>
-                    <th rowspan="2">序号</th>
-                    <th rowspan="2">科目编码</th>
-                    <th rowspan="2">科目名称</th>
-                    <th colspan="3">期初</th>
-                    <th colspan="2">本期借方</th>
-                    <th colspan="2">本期贷方</th>
-                    <th class="t_add_up" colspan="2">累计借方</th>
-                    <th class="t_add_up" colspan="2">累计贷方</th>
-                    <th colspan="3">期末</th>
-                </tr>
-                <tr>
-                    <th>方向</th>
-                    <th>外币</th>
-                    <th>金额</th>
-                    <th>外币</th>
-                    <th>金额</th>
-                    <th>外币</th>
-                    <th>金额</th>
-                    <th class="t_add_up">外币</th>
-                    <th class="t_add_up">金额</th>
-                    <th class="t_add_up">外币</th>
-                    <th class="t_add_up">金额</th>
-                    <th>方向</th>
-                    <th>外币</th>
-                    <th>金额</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="text-center">1</td>
-                    <td>1001</td>
-                    <td>现金</td>
-                    <td class="text-center">借</td>
-                    <td class="price"></td>
-                    <td class="price">123.40</td>
-                    <td class="price">12,345.00</td>
-                    <td class="price">12,345.56</td>
-                    <td class="price">12,345.00</td>
-                    <td class="price">41,542.12</td>
-                    <td class="price t_add_up">12,345.00</td>
-                    <td class="price t_add_up">12,345.56</td>
-                    <td class="price t_add_up">12,345.00</td>
-                    <td class="price t_add_up">41,542.12</td>
-                    <td class="text-center">借</td>
-                    <td class="price"></td>
-                    <td class="price">29,073.56</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table_quantity_foreign">
-            <thead>
-                <tr>
-                    <th rowspan="2">序号</th>
-                    <th rowspan="2">科目编码</th>
-                    <th rowspan="2">科目名称</th>
-                    <th colspan="4">期初</th>
-                    <th colspan="3">本期借方</th>
-                    <th colspan="3">本期贷方</th>
-                    <th class="t_add_up" colspan="3">累计借方</th>
-                    <th class="t_add_up" colspan="3">累计贷方</th>
-                    <th colspan="4">期末</th>
-                </tr>
-                <tr>
-                    <th>方向</th>
-                    <th>数量</th>
-                    <th>外币</th>
-                    <th>金额</th>
-                    <th>数量</th>
-                    <th>外币</th>
-                    <th>金额</th>
-                    <th>数量</th>
-                    <th>外币</th>
-                    <th>金额</th>
-                    <th class="t_add_up">数量</th>
-                    <th class="t_add_up">外币</th>
-                    <th class="t_add_up">金额</th>
-                    <th class="t_add_up">数量</th>
-                    <th class="t_add_up">外币</th>
-                    <th class="t_add_up">金额</th>
-                    <th>方向</th>
-                    <th>数量</th>
-                    <th>外币</th>
-                    <th>金额</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="text-center">1</td>
-                    <td>1001</td>
-                    <td>现金</td>
-                    <td class="text-center">借</td>
-                    <td class="text-center"></td>
-                    <td class="price"></td>
-                    <td class="price">123.40</td>
                     <td class="text-center">123</td>
-                    <td class="price">12,345.00</td>
+                    <td class="price">123.00</td>
+                    <td class="price">12321.00</td>
+                    <!--期初（方向、数量、外币和余额）-->
                     <td class="price">12,345.56</td>
-                    <td class="text-center">123</td>
-                    <td class="price">12,345.00</td>
                     <td class="price">41,542.12</td>
-                    <td class="t_add_up text-center">123</td>
-                    <td class="price t_add_up">12,345.00</td>
+                    <!--本期余额（借方和贷方）-->
+                    <td class="text-center">123</td>
+                    <td class="price">123.00</td>
+                    <td class="price">12321.00</td>
+                    <!--本期借方（数量、外币和余额）-->
+                    <td class="text-center">123</td>
+                    <td class="price">123.00</td>
+                    <td class="price">12321.00</td>
+                    <!--本期贷方（数量、外币和余额）-->
                     <td class="price t_add_up">12,345.56</td>
-                    <td class="t_add_up text-center">123</td>
-                    <td class="price t_add_up">12,345.00</td>
                     <td class="price t_add_up">41,542.12</td>
-                    <td class="text-center">借</td>
-                    <td class="text-center"></td>
+                    <!--累计余额（借方和贷方）-->
+                    <td class="text-center">123</td>
+                    <td class="price">123.00</td>
+                    <td class="price">12321.00</td>
+                    <!--累计借方（数量、外币和余额）-->
+                    <td class="text-center">123</td>
+                    <td class="price">123.00</td>
+                    <td class="price">12321.00</td>
+                    <!--累计贷方（数量、外币和余额）-->
                     <td class="price"></td>
                     <td class="price">29,073.56</td>
+                    <!--期末余额（借方和贷方）-->
+                    <td class="text-center">借</td>
+                    <td class="text-center">123</td>
+                    <td class="price">123.00</td>
+                    <td class="price">29,073.56</td>
+                    <!--期末（方向、数量、外币和余额）-->
                 </tr>
             </tbody>
         </table>
