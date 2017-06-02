@@ -1,5 +1,5 @@
-##圣杯布局\<br>
-html代码参考如下：\<br>
+##圣杯布局
+html代码参考如下：<br>
 ```html
 <div class="container">
     <div class="middle"></div>
@@ -7,7 +7,7 @@ html代码参考如下：\<br>
     <div class="right"></div>
 </div>
 ```
-css代码参考如下：\<br>
+css代码参考如下：<br>
 ```css
 .container{
     height: 400px;
@@ -39,9 +39,9 @@ css代码参考如下：\<br>
 }
 ```
 [预览](https://skyninger.github.io/20170602/test1.html)
-\<br>
-##双翼飞布局\<br>
-html代码参考如下：\<br>
+<br>
+##双翼飞布局
+html代码参考如下：<br>
 ```html
 <div class="container">
     <div class="middle">
@@ -51,7 +51,7 @@ html代码参考如下：\<br>
     <div class="right"></div>
 </div>
 ```
-css代码参考如下：\<br>
+css代码参考如下：<br>
 ```css
 .container{
     overflow: hidden;
@@ -84,9 +84,9 @@ css代码参考如下：\<br>
 }
 ```
 [预览](https://skyninger.github.io/20170602/test2.html)
-\<br>
-##flex布局\<br>
-html代码参考如下：\<br>
+<br>
+##flex布局
+html代码参考如下：<br>
 ```html
 <div class="grid">
     <div class="left"></div>
@@ -94,7 +94,7 @@ html代码参考如下：\<br>
     <div class="right"></div>
 </div>
 ```
-css代码参考如下：\<br>
+css代码参考如下：<br>
 ```css
 .grid{
     display: -webkit-flex;
@@ -119,9 +119,9 @@ css代码参考如下：\<br>
 }
 ```
 [预览](https://skyninger.github.io/20170602/test3.html)
-\<br>
-##浮动布局\<br>
-html代码参考如下：\<br>
+<br>
+##浮动布局
+html代码参考如下：<br>
 ```html
 <div class="container">
     <div class="left"></div>
@@ -129,7 +129,7 @@ html代码参考如下：\<br>
     <div class="right"></div>
 </div>
 ```
-css代码参考如下：\<br>
+css代码参考如下：<br>
 ```css
 .container{
     width: 100%;
@@ -160,9 +160,9 @@ css代码参考如下：\<br>
 }
 ```
 [预览](https://skyninger.github.io/20170602/test4.html)
-\<br>
-##表格布局\<br>
-html代码参考如下：\<br>
+<br>
+##表格布局
+html代码参考如下：<br>
 ```html
 <table class="container">
     <tr>
@@ -172,7 +172,7 @@ html代码参考如下：\<br>
     </tr>
 </table>
 ```
-css代码参考如下：\<br>
+css代码参考如下：<br>
 ```css
 .container{
     width: 100%;
@@ -195,4 +195,4 @@ css代码参考如下：\<br>
 }
 ```
 [预览](https://skyninger.github.io/20170602/test5.html)
-\<br>
+<br>
