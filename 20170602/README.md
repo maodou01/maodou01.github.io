@@ -1,4 +1,5 @@
-##圣杯布局  
+圣杯布局
+-----------------------------------
 html代码参考如下：<br>
 ```html
 <div class="container">
@@ -39,8 +40,10 @@ css代码参考如下：<br>
 }
 ```
 [预览](https://skyninger.github.io/20170602/test1.html)
-<br>
-##双翼飞布局 
+<br><br>
+
+双翼飞布局
+-----------------------------------
 html代码参考如下：<br>
 ```html
 <div class="container">
@@ -84,8 +87,10 @@ css代码参考如下：<br>
 }
 ```
 [预览](https://skyninger.github.io/20170602/test2.html)
-<br>
-##flex布局    
+<br><br>
+
+flex布局
+-----------------------------------
 html代码参考如下：<br>
 ```html
 <div class="grid">
@@ -119,8 +124,10 @@ css代码参考如下：<br>
 }
 ```
 [预览](https://skyninger.github.io/20170602/test3.html)
-<br>
-##浮动布局  
+<br><br>
+
+浮动布局
+-----------------------------------
 html代码参考如下：<br>
 ```html
 <div class="container">
@@ -160,8 +167,10 @@ css代码参考如下：<br>
 }
 ```
 [预览](https://skyninger.github.io/20170602/test4.html)
-<br>
-##表格布局  
+<br><br>
+
+表格布局
+-----------------------------------
 html代码参考如下：<br>
 ```html
 <table class="container">
@@ -195,4 +204,5 @@ css代码参考如下：<br>
 }
 ```
 [预览](https://skyninger.github.io/20170602/test5.html)
-<br>
+<br><br>
+
