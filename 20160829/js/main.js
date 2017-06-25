@@ -11,6 +11,11 @@
                 ],
                 select: [
                     {
+                        link: '联查凭证.html',
+                        image: 'images/touxiang.jpg',
+                        name: '联查凭证'
+                    },
+                    {
                         link: '明细账.html',
                         image: 'images/touxiang.jpg',
                         name: '明细账'

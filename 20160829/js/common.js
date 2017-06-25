@@ -86,8 +86,10 @@ var stopDefault=function(e){
 }
 
 /*转换时间YYYYMMDDHHIISS*/
-function convertDate(string){
-    var myDate=new Date(),
+function convertDate(string,value,sign){
+    var value=value || '',
+        sign=sign || '-';
+    var myDate=new Date(value),
         myyear=myDate.getFullYear(),
         mymonth=myDate.getMonth()+1,
         mydate=myDate.getDate(),
@@ -100,6 +102,6 @@ function convertDate(string){
         mymin=mymin>9?mymin:'0'+mymin;
         mysec=mysec>9?mysec:'0'+mysec;
     if(string==='date')
-        return myyear+'-'+mymonth+'-'+mydate;
+        return myyear+sign+mymonth+sign+mydate;
     return myyear+mymonth+mydate+myhour+mymin+mysec;  
 }
