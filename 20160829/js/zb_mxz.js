@@ -33,6 +33,9 @@ var mxzWFun=function(){
                 }
             });
             $('.select-year').html(str_html);
+            if(getQueryString('how')==='query'){
+                $('.btn-query').trigger('click');
+            }
         }else{
             $('.select-year').html('<option value="">获取失败</option>');
         }
@@ -68,7 +71,7 @@ var mxzWFun=function(){
         }
         p_month1=str_month1;
         p_month2=str_month2;
-        $('.toggle-arrow').trigger('click');
+        $('.toggle-arrow').removeClass('show');
         $('.yeb-table-wrap .txt-query-time').html(p_year+'年'+p_month1+'月-'+p_month2+'月');
         $('.yeb-table-wrap .'+str_tableformat).fadeIn(400).find('tbody').html('');
         $('.yeb-table-wrap .table').hide(0);
@@ -284,7 +287,7 @@ var mxzWFun=function(){
             $tbody.append(tableTemplate(class_table,'',
                 (new Date(arr_qm[num].dbill_date).getMonth()+1),
                 (new Date(arr_qm[num].dbill_date).getDate()),
-                arr_qm[num].csign+'-'+arr_qm[num].ino_id,
+                '<a href="'+'联查凭证.html?zth='+p_zth+'&month='+arr_qm[num].iperiod+'&year='+p_year+'&no='+arr_qm[num].ino_id+'" target="_blank" title="查凭证">'+arr_qm[num].csign+'-'+arr_qm[num].ino_id+'</a>',
                 arr_qm[num].cdigest,
                 (parseFloat(arr_qm[num].md)>0?current(arr_qm[num].md):''),
                 (parseFloat(arr_qm[num].mc)>0?current(arr_qm[num].mc):''),

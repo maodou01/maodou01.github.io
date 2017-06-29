@@ -133,14 +133,20 @@ var jzpzWFun=function(){
                 return false;
             }
             if(d.data.length>0){
+                $('.pz-wrap').find('thead tr>td:eq(0)').attr('width','210');
+                $('.pz-wrap').find('thead tr>td:eq(1)').attr('width','190');
+                $('.pz-wrap').find('thead tr>td:eq(2)').attr('width','120').show();
+                $('.pz-wrap').find('td.r2').show();
+                $('.pz-wrap').find('tfoot td.td-left').attr('colspan','3');
                 $('.pz-wrap').find('.pz-csign').text(d.data[0].csign);
                 $('.pz-wrap').find('.pz-inoid').text(d.data[0].ino_id);
                 $('.pz-wrap').find('.pz-dbilldate').text(convertDate('date',d.data[0].dbill_date,'.'));
                 $('.pz-wrap').find('.pz-idoc').text(d.data[0].idoc);
-                var str_html='<tr><td class="text-left"><div class="box-txt"></div></td><td class="text-left"><div class="box-txt"></div></td><td class="text-right pz-price"></td><td class="text-right pz-price"></td></tr>',$outer=$('<div></div>'), total_md=0, total_mc=0;
+                var str_html='<tr><td class="text-left"><div class="box-txt"></div></td><td class="text-left"><div class="box-txt"></div></td><td class="text-left r2"><div class="box-r2">&nbsp;</div><div class="box-r2 text-right">&nbsp;</div></td><td class="text-right pz-price"></td><td class="text-right pz-price"></td></tr>',$outer=$('<div></div>'), total_md=0, total_mc=0;
                 $.each(d.data,function(i,obj){
                     var $element=$(str_html),
-                        arr_code=funCodeName(obj.ccode);
+                        arr_code=funCodeName(obj.ccode),
+                        float_f=0.00;
                     $element.attr({
                         'data-cnid': obj.cn_id,
                         'data-dtdate': obj.dt_date,
@@ -149,16 +155,36 @@ var jzpzWFun=function(){
                         'data-cexchname': arr_code[2],
                         'data-cmeasure': arr_code[1]
                     });
+                    float_f=Number(obj.md_f)!==0?Number(obj.md_f):Number(obj.mc_f);
                     $element.find('.box-txt').eq(0).text(obj.cdigest);
-                    $element.find('.box-txt').eq(1).html(arr_code[0]+' <small>('+obj.ccode+')</small>');
+                    $element.find('.box-txt').eq(1).html(arr_code[0]+' <small>(<a href="明细账.html?zth='+p_zth+'&month1=1&month2='+p_month+'&year='+p_year+'&code='+obj.ccode+'&how=query" target="_blank" title="查明细">'+obj.ccode+'</a>)</small>');
                     $element.find('.pz-price').eq(0).attr('data-price',obj.md).text(current(obj.md));
                     $element.find('.pz-price').eq(1).attr('data-price',obj.mc).text(current(obj.mc));
+                    $element.find('.box-r2').eq(0).attr('data-nfrat',obj.nfrat).html(Number(obj.nfrat)!==0?'汇率'+obj.nfrat:'&nbsp;');
+                    $element.find('.box-r2').eq(1).attr({
+                        'data-price-j':obj.md_f,
+                        'data-price-d':obj.mc_f
+                    }).html(float_f!==0?current(float_f)+obj.cexch_name:'&nbsp;');
                     $outer.append($element);
                     total_md+=Number(obj.md);
                     total_mc+=Number(obj.mc);
                 });
                 while($outer.find('tr').length<4){
                     $outer.append($(str_html));
+                }
+                var no_f=false;
+                $outer.find('.box-r2').each(function(){
+                    if(!!$.trim($(this).text())){
+                        no_f=true;
+                        return false;
+                    }
+                });
+                if(!no_f){
+                    $('.pz-wrap').find('thead tr>td:eq(0)').attr('width','270');
+                    $('.pz-wrap').find('thead tr>td:eq(1)').attr('width','250');
+                    $('.pz-wrap').find('thead tr>td:eq(2)').attr('width','0').hide();
+                    $outer.find('td.r2').hide();
+                    $('.pz-wrap').find('tfoot td.td-left').attr('colspan','2');
                 }
                 $('.pz-wrap').find('tbody').html($outer.html());
                 $('.pz-wrap').find('tfoot .pz-price').eq(0).text(current(total_md));

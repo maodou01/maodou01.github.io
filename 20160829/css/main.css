@@ -556,6 +556,17 @@ h2.table-title{
 .pz-wrap .table tbody .box-txt{
     min-height: 40px;
 }
+.pz-wrap .table tbody td.r2{
+    padding: 0;
+}
+.pz-wrap .table tbody .box-r2{
+    min-height: 20px;
+    height: 50%;
+    padding: 8px;
+}
+.pz-wrap .table tbody .box-r2:first-child{
+    border-bottom: 1px solid #555;
+}
 .pz-wrap .table tfoot td{
     vertical-align: middle;
 }

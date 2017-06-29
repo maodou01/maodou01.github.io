@@ -529,7 +529,7 @@ var yebWFun=function(){
             if(!isEmptyObject(yeb_obj)){
                 obj_data={
                     no: index++,
-                    code: code_arr[num].ccode,
+                    code: '<a href="明细账.html?zth='+p_zth+'&month1='+p_month1+'&month2='+p_month2+'&year='+p_year+'&code='+code_arr[num].ccode+'&how=query" target="_blank" title="查明细">'+code_arr[num].ccode+'</a>',
                     code_name: code_arr[num].ccode_name,
                     qc: yeb_obj.qc,
                     bq: yeb_obj.bq,
