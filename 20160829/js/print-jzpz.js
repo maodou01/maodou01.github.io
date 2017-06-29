@@ -204,55 +204,8 @@ var jzpzWFun=function(){
 
     var funCodeName=function(code){
         var str_code=code,
-            arr_code=[];
-        $.ajax({
-            url: server_url,
-            async: false,
-            type: 'post',
-            dataType: 'json',
-            data: {
-                how: 'query',
-                zth: p_zth,
-                year: p_year,
-                sql: 'select ccode_name, ccode, igrade, bend, cexch_name, cmeasure, cValue from code,AccInformation where ccode like \''+str_code.substr(0,4)+'%\' and cName=\'cGradeLevel\' order by ccode'
-            },
-            success: function(d){
-                if(d.status!==1) return;
-                if(d.data.length>0){
-                    var arr_igrade=d.data[0].cValue.split(','),
-                        str_lastcode='';
-                    $.each(d.data,function(i,obj){
-                        if(obj.igrade=='1'){
-                            str_lastcode=obj.ccode;
-                            arr_code[0]=obj.ccode_name
-                        }else{
-                            var tmp_int_i=4;
-                            for(var i=1;i<arr_igrade.length;i++){
-                                tmp_int_i+=parseInt(arr_igrade[i]);
-                                if(tmp_int_i>str_code.length) break;
-                                var tmp_str_code=str_code.substr(0,tmp_int_i);
-                                //console.log(tmp_int_i+' '+tmp_str_code+' '+obj.ccode);
-                                if(tmp_str_code==obj.ccode){
-                                    arr_code[0]+=('/'+obj.ccode_name);
-                                    if(str_code==obj.ccode || obj.bend==='True'){
-                                        str_lastcode=obj.ccode;
-                                        arr_code[1]=obj.cmeasure;
-                                        arr_code[2]=obj.cexch_name;
-                                        return false;
-                                    }
-                                    break;
-                                }
-                            }
-                        }
-                    });
-                    if(str_lastcode!=str_code) arr_code[0]=str_code+'科目编码没找到';
-                }else{
-                    arr_code[0]=str_code+'科目编码没找到';
-                }
-            }
-        });
-        //console.log('最终：'+str_name);
-        return arr_code;
+            arr_code=convertCodeArr(str_code,p_zth,p_year);
+        return [arr_code[1],arr_code[2],arr_code[3]];
     }
     funRefreshTotal();
     funQuery();

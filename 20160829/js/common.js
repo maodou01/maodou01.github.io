@@ -105,3 +105,65 @@ function convertDate(string,value,sign){
         return myyear+sign+mymonth+sign+mydate;
     return myyear+mymonth+mydate+myhour+mymin+mysec;  
 }
+
+/* 科目编码一一转换科目名称-返回数组 */
+function convertCodeArr(code,str_zth,ztr_year){
+    var str_code=code,
+        arr_outcode=[];
+    arr_outcode[0]=str_code;
+    $.ajax({
+        url: server_url,
+        async: false,
+        type: 'post',
+        dataType: 'json',
+        data: {
+            how: 'query',
+            zth: str_zth,
+            year: ztr_year,
+            sql: 'select ccode_name, ccode, igrade, bend, cexch_name, cmeasure, cValue from code,AccInformation where ccode like \''+str_code.substr(0,4)+'%\' and cName=\'cGradeLevel\' order by ccode'
+        },
+        success: function(d){
+            if(d.status!==1) return;
+            if(d.data.length>0){
+                var arr_igrade=d.data[0].cValue.split(','),
+                    str_lastcode='';
+                $.each(d.data,function(i,obj){
+                    if(obj.igrade=='1'){
+                        str_lastcode=obj.ccode;
+                        arr_outcode[1]=obj.ccode_name
+                    }else{
+                        var tmp_int_i=4;
+                        for(var i=1;i<arr_igrade.length;i++){
+                            tmp_int_i+=parseInt(arr_igrade[i]);
+                            if(tmp_int_i>str_code.length) break;
+                            var tmp_str_code=str_code.substr(0,tmp_int_i);
+                            //console.log(tmp_int_i+' '+tmp_str_code+' '+obj.ccode);
+                            var tmp_code=obj.ccode;
+                            if(tmp_str_code==obj.ccode){
+                                arr_outcode[1]+=('/'+obj.ccode_name);
+                                if(str_code==obj.ccode || obj.bend==='True'){
+                                    str_lastcode=obj.ccode;
+                                    arr_outcode[2]=obj.cmeasure;
+                                    arr_outcode[3]=obj.cexch_name;
+                                    arr_outcode[4]=obj.ccode_name;
+                                    return false;
+                                }
+                                break;
+                            }
+                        }
+                    }
+                });
+                if(str_lastcode!=str_code){
+                    arr_outcode[1]=str_code+'科目编码没找到';
+                    arr_outcode[2]='';
+                    arr_outcode[3]='';
+                    arr_outcode[4]='';
+                }
+            }else{
+                arr_outcode[1]=str_code+'科目编码没找到';
+            }
+        }
+    });
+    //console.log(arr_outcode);
+    return arr_outcode;
+}

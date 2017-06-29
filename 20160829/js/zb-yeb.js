@@ -536,7 +536,7 @@ var yebWFun=function(){
                     qm: yeb_obj.qm,
                     total: yeb_obj.total
                 };
-                console.log(yeb_obj);
+                //console.log(yeb_obj);
                 $tbody.append(tableTemplate(
                     class_table,
                     '',

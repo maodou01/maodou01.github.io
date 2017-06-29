@@ -443,30 +443,11 @@ var mxzWFun=function(){
         all_jtotal=0.00;all_dtotal=0.00;
         all_jtotal_sl=0.00;all_dtotal_sl=0.00;
         all_jtotal_wb=0.00;all_dtotal_wb=0.00;
-        $.post(server_url,{
-            how: 'query',
-            zth: p_zth,
-            year: p_year,
-            sql: 'select ccode,ccode_name,cmeasure,cexch_name from code where ccode = \''+code+'\''
-        },function(d){
-            console.log(d);
-            if(d.status<0){
-                dialog({
-                    title: '查询失败',
-                    content: d.err
-                }).showModal();
-                return;
-            }else{
-                if(d.count!=='0'){
-                    $('.txt-code').html(d.data[0].ccode_name+'-'+d.data[0].ccode);
-                    $('.txt-danwei').html('数量单位：'+(d.data[0].cmeasure?d.data[0].cmeasure:'无')+'，外币名称：'+(d.data[0].cexch_name?d.data[0].cexch_name:'无'));
-                    $('h2.table-title').html(d.data[0].ccode_name+'明细账');
-                    codeMxzFun(tableformat);
-                }else{
-                    $('.txt-code').html('找不到相关科目，请重新查询');
-                }
-            }
-        },'json');
+        var arr_code=convertCodeArr(code,p_zth,p_year);
+        $('.txt-code').html(arr_code[1]+'-'+arr_code[0]);
+        $('.txt-danwei').html('数量单位：'+(arr_code[2]?arr_code[2]:'无')+'，外币名称：'+(arr_code[3]?arr_code[3]:'无'));
+        $('h2.table-title').html(arr_code[4]+'明细账');
+        codeMxzFun(tableformat);
     }
 
     /*点击打印*/
