@@ -7,3 +7,15 @@
     opacity: 0;
     filter: alpha(opacity=0);
 }
+.yes-print-block{
+    display: block;
+}
+.yes-print-inlineblock{
+    display: inline-block;
+}
+a{
+    color: inherit;
+}
+a[href]:after {
+    content: none !important;
+}

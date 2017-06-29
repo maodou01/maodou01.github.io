@@ -48,9 +48,9 @@ var jzpzWFun=function(){
         if($(this).hasClass('first')){
             p_inoid=1;
         }else if($(this).hasClass('up')){
-            p_inoid--;
+            if(p_inoid>1) p_inoid--;
         }else if($(this).hasClass('down')){
-            p_inoid++;
+            if(p_max_inoid>p_inoid) p_inoid++;
         }else if($(this).hasClass('last')){
             p_inoid=p_max_inoid;
         }
@@ -146,7 +146,7 @@ var jzpzWFun=function(){
                 $.each(d.data,function(i,obj){
                     var $element=$(str_html),
                         arr_code=funCodeName(obj.ccode),
-                        float_f=0.00;
+                        float_f=0.00,float_s=0.00;
                     $element.attr({
                         'data-cnid': obj.cn_id,
                         'data-dtdate': obj.dt_date,
@@ -155,8 +155,10 @@ var jzpzWFun=function(){
                         'data-cexchname': arr_code[2],
                         'data-cmeasure': arr_code[1]
                     });
+                    if(Number(obj.nd_s)!==0) float_s=Number(obj.nd_s);
+                    if(Number(obj.nc_s)!==0) float_s=Number(obj.nc_s);
                     float_f=Number(obj.md_f)!==0?Number(obj.md_f):Number(obj.mc_f);
-                    $element.find('.box-txt').eq(0).text(obj.cdigest);
+                    $element.find('.box-txt').eq(0).html(obj.cdigest+' <small class="yes-print-inlineblock">'+(obj.dt_date?convertDate('date',obj.dt_date,'/'):'')+'</small><small class="yes-print-inlineblock">'+(float_s!==0?float_s+arr_code[1]:'')+'</small>');
                     $element.find('.box-txt').eq(1).html(arr_code[0]+' <small>(<a href="明细账.html?zth='+p_zth+'&month1=1&month2='+p_month+'&year='+p_year+'&code='+obj.ccode+'&how=query" target="_blank" title="查明细">'+obj.ccode+'</a>)</small>');
                     $element.find('.pz-price').eq(0).attr('data-price',obj.md).text(current(obj.md));
                     $element.find('.pz-price').eq(1).attr('data-price',obj.mc).text(current(obj.mc));

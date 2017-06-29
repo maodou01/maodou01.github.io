@@ -17,6 +17,10 @@ section{
     font-family: "Microsoft Yahei",Arial;
     overflow: hidden;
 }
+.yes-print-block,
+.yes-print-inlineblock{
+    display: none;
+}
 .wrapper-coor{
     position: absolute;
     width: 15px;
