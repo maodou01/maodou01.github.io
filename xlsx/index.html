@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <link href="css/handsontable.full.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body{
@@ -19,6 +20,12 @@
             text-decoration: underline;
             color: #0000FF;
         }
+		#btn{
+			padding: 0 25px;
+		}
+		#filecontent{
+			margin: 25px;
+		}
     </style>
 </head>
 <body>
@@ -33,11 +40,13 @@
       </div>
     </form>
     <div id="format-table"></div> 
+    <div id="btn"></div> 
     <div id="filecontent"></div> 
     <script src="//cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/jszip.js"></script>
-    <script src="js/xlsx.js"></script>
+    <script src="js/xlsx.full.min.js"></script>
+    <script src="js/handsontable.full.js"></script>
     <script>
+		var p_obj_data={},p_hot;
         function  handleFiles(files){  
             if(files.length)  
             {  
@@ -47,7 +56,9 @@
                    var data= e.target.result;
                    var obj=XLSX.read(data, {type: 'binary'});
                    console.log(obj);
-                   toHTML(obj);
+				   p_obj_data=obj;
+                   loadBtn();
+                   //toHTML(obj);
                };   
                reader.readAsBinaryString(file); 
             }  
@@ -55,29 +66,52 @@
 
         
         function ajaxData(url){
-          if(!url) return false;
-          $('#file').val('');
-          var url=location.protocol+'//ning668.wicp.net'+(location.protocol=='http:'?':85':'')+'/curl/?how=body&url='+escape(url);
-          var oReq = new XMLHttpRequest();
-          oReq.open("GET", url, true);
-          oReq.responseType = "arraybuffer";
+			if(!url) return false;
+			$('#file').val('');
+			var url=location.protocol+'//ning668.wicp.net'+(location.protocol=='http:'?':85':'')+'/curl/?how=body&url='+escape(url);
+			var oReq = new XMLHttpRequest();
+			oReq.open("GET", url, true);
+			oReq.responseType = "arraybuffer";
 
-          oReq.onload = function(e) {
-            var arraybuffer = oReq.response;
+			oReq.onload = function(e) {
+				var arraybuffer = oReq.response;
 
-            /* convert data to binary string */
-            var data = new Uint8Array(arraybuffer);
-            var arr = new Array();
-            for(var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
-            var bstr = arr.join("");
+				/* convert data to binary string */
+				var data = new Uint8Array(arraybuffer);
+				var arr = new Array();
+				for(var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+				var bstr = arr.join("");
 
-            /* Call XLSX */
-            var workbook = XLSX.read(bstr, {type:"binary"});
-            console.log(workbook);
-            toHTML(workbook);
-          }
+				/* Call XLSX */
+				var workbook = XLSX.read(bstr, {type:"binary"});
+				console.log(workbook);
+				p_obj_data=workbook;
+				loadBtn();
+				//toHTML(workbook);
 
-          oReq.send();
+			}
+
+			oReq.send();
+        }
+
+		function loadBtn(){
+            var arr_name=p_obj_data.SheetNames,
+                str_html='';
+            $.each(arr_name,function(i,v){
+                if(i===0) outTable(v);
+                str_html+='<a class="btn btn-primary" href="javascript:;" onclick="outTable(\''+v+'\')">'+v+'</a>&nbsp;&nbsp;'
+            });
+            $('#btn').html(str_html);
+        }
+        function outTable(name){
+			var json=XLSX.utils.sheet_to_json(p_obj_data.Sheets[name], {header:1});
+			p_hot = new Handsontable($("#filecontent")[0], {
+				data: json,
+				rowHeaders: true,
+                colHeaders: true,
+				width: $(window).width()-50,
+				height: $(window).height()-$('form').height()-100
+			});
         }
 
         function toHTML(obj){
