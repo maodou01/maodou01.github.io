@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>金融桥</title>
+    <link rel="stylesheet" href="css/zui.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <!--[if lte IE 8]><link rel="stylesheet" href="css/ie_hack.css"><![endif]-->
+    <!--[if lte IE 8]><script src="js/excanvas.compiled.js"></script><![endif]-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/unslider.js"></script>
+    <script src="js/countUp.min.js"></script>
+    <script src="js/jquery.knob.js"></script>
+    <script>
+        function outTime(time,id,borrowid){
+            var outinter=window.setInterval(function(){
+                time -- ;
+                var hour = parseInt(time / 3600);
+                var min = parseInt((time % 3600) / 60);
+                var sec = parseInt(time % 60);
+                hour=hour>9?hour:('0'+hour);
+                min=min>9?min:('0'+min);
+                sec=sec>9?sec:('0'+sec);
+                if($('#'+id).length<1){
+                    clearInterval(outinter);
+                    return;
+                }
+                if(time<=0){
+                    var $will=$('#'+id).parents('.will');
+                    $will.removeClass('will').addClass('doing');
+                    $('#'+id).attr('href','/tinvest/'+borrowid+'.html')
+                            .text('立即投资');
+                    $will.find('.time').html('投标进度：<span>0%</span>');
+                    clearInterval(outinter);
+                }else{
+                    $('#'+id).parents('.will').find('.time').find('span').html(hour + ':'+min + ':'+sec);
+                }
+            },1000);
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <div class="topbar">
+            <div class="container">
+                <div class="pull-left">            
+                    <span>客服热线：400-6668-888</span>
+                    <a class="dropdown-toggle app" href="javascript:;">手机APP</a>
+                    <a class="dropdown-toggle wx" href="javascript:;">微信端</a>
+                    <div class="dropdown-menu wx" style="text-align: center;">
+                        <img src="images/qrcode_wx.png" alt="微信二维码"/>
+                    </div>
+                    <div class="dropdown-menu app" style="text-align: center;">
+                        <img src="images/qrcode_app.png" alt="app二维码"/>
+                        <a href="" class="download android">Android版下载</a>
+                        <a href="" class="download apple">IOS版下载</a>
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <ul class="nav nav-topbar">
+                        <li><a href="">邀请返利</a></li>
+                        <li><a href="">新手指引</a></li>
+                        <li><a href="">平台活动</a></li>
+                        <li><a href="help.html">帮助</a></li>
+                        <li><a href="register.html" title="我要注册">免费注册</a></li>
+                        <li><a href="login.html" title="我要登录">立即登录</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--工具条-->
+        <div class="navbar">
+            <div class="container animated flipInX">
+                <div class="logo pull-left">
+                    <img src="images/logo.jpg" onclick="location.href='/'" alt="" height="100%" />
+                </div>
+                <div class="nav pull-right">
+                    <ul class="nav nav-pills">
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="list.html">我要投资</a></li>
+                        <li><a href="">安全保障</a></li>
+                        <li><a href="finanz.html">数据公示</a></li>
+                        <li><a href="">关于我们</a></li>
+                        <li><a href="">我的帐户</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--导航-->
+    </div>
+    <!--头部导航-->
+    <div class="page">
+        <div class="banner-box">
+            <div class="banner">
+                <ul>
+                    <li style="background-image:url('images/banner1.jpg');">
+                         <a href="" title=""></a>
+                    </li>
+                    <li style="background-image:url('images/banner1.jpg');">
+                         <a href="" title=""></a>
+                    </li>
+                </ul>
+            </div>
+            <script type="text/javascript">
+                $(function() {
+                    $('.page .banner').unslider({
+                        speed: 500,
+                        delay: 10000,
+                        dots: true,
+                        fluid: true
+                    });
+                });
+            </script>
+            <!--END banner图 -->
+            <div class="container">   
+                <div class="status-box animated flipInX">
+                    <div class="black-bj"></div>
+                    <div class="content-bj">
+                        <div class="black-bj-add"><!--叠加黑屏--></div>
+                        <ul class="tab-nav">
+                            <li class="active" data-class="register">
+                                <div class="black-bj-tab"></div>
+                                <span>免费注册</span>
+                            </li>
+                            <li data-class="login-box">
+                                <div class="black-bj-tab"></div>
+                                <span>快速登录</span>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="register">
+                                <div class="input-txt">
+                                   <input class="phone gray" type="text" data-value="手机号码" value="手机号码" />
+                                   <i class="icon icon1"></i> 
+                                </div>
+                                <div class="input-txt">
+                                    <input class="pass gray" type="text" data-value="设置密码" value="设置密码" />
+                                    <i class="icon icon2"></i> 
+                                </div>
+                                <div class="input-txt no-img">
+                                    <input class="vpcode gray" type="text" value="短信验证码" data-value="短信验证码" />
+                                    <a href="javascript:void(0)" class="tip" title="发送验证码">发送验证码</a>
+                                </div>
+                                <div class="input-txt no-img pops">
+                                    <input class="vcode gray" type="text" value="图形验证码" data-value="图形验证码" />
+                                    <img class="img" onclick="this.src=this.src+'?t='+Math.random()" src="" data-src="/Member/common/verify" style="cursor: pointer;" title="点击更换验证码" />
+
+                                </div>
+                                <label class="isread">
+                                    <input type="checkbox" checked />
+                                    <span>我已经阅读并同意<a href="" target="_blank" title="查看金融桥使用协议">《金融桥使用协议》</a></span>
+                                </label>
+                                <a href="javascript:void(0)" class="link">立即注册</a>
+                            </div>
+                            <div class="login-box" style="display: none;">
+                                <div class="input-txt">
+                                   <input class="phone gray" type="text" value="用户名" data-value="用户名" />
+                                   <i class="icon icon1"></i> 
+                                </div>
+                                <div class="input-txt">
+                                    <input class="pass gray" type="text"  value="密码" data-value="密码" />
+                                    <i class="icon icon2"></i> 
+                                </div>
+                                <div class="input-txt">
+                                    <input class="vcode gray" type="text" value="验证码" data-value="验证码" />
+                                    <img class="img" onclick="this.src=this.src+'?t='+Math.random()" alt="点击换一个校验码" src="http://demo.3dai.com/Member/common/verify" title="点击更换验证码">
+                                    <i class="icon icon2"></i> 
+                                </div>
+                                <div class="div-box">
+                                    <a href="javascript:getPassWord()" class="pull-left" title="忘记密码">忘记密码？</a>
+                                    <a href="/member/oauth/qq/" class="pull-right" title="QQ快捷登录"><i class="qq"></i>快速登录</a>
+                                </div>
+                                <a href="javascript:void(0)" class="link">快速登录</a>
+                            </div>
+                        </div>
+                    </div>                
+                </div>
+            </div>
+            <!--END 登录方框 -->
+        </div>    
+        <!--焦点图-->
+
+        <div class="about-box">
+            <div class="container">
+                <div class="pull-left"><a href=""><i class="icon"></i>中国耀盛原旭霖：经济“换挡”，小微金融要先行于小微经济</a></div>
+                <div class="pull-right"><a class="btn-link">更多动态</a><a class="pull-left" href="" title="">【07月25日】</a></div>
+            </div>
+        </div>
+        <!-- 头条公告 -->
+        <div class="data-box">
+            <div class="container">
+                <div class="col-sm-4 col-md-4">
+                    <i class="icon icon1"></i>
+                    <h2 data-box-count="2031534808">加载中</h2>
+                    <p>总交易额（元）</p>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <i class="icon icon2"></i>
+                    <h2 data-box-count="34808">加载中</h2>
+                    <p>注册用户数（人）</p>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <i class="icon icon3"></i>
+                    <h2 data-box-count="2031534808">加载中</h2>
+                    <p>风险准备金（元）</p>
+                </div>
+            </div>
+        </div>
+        <script>
+            var bool_data_box=true,
+                scroll_data_box=function(){
+                var view_area=$(window).scrollTop()+$(window).height(),
+                    data_top=$('.page .data-box').offset().top;
+                if(view_area>data_top && bool_data_box){
+                    bool_data_box=false;
+                    $('.page .data-box [data-box-count]').each(function(i,that){
+                        new CountUp(that, 0, Number($(that).attr('data-box-count')), 0, 4, {
+                            useEasing : true, 
+                            useGrouping : true, 
+                            separator : ',', 
+                            decimal : '.', 
+                            prefix : '', 
+                            suffix : '' 
+                        }).start();
+                    });
+                }
+            };
+            scroll_data_box();
+            $(window).on('scroll',scroll_data_box);
+        </script>
+        <!-- 数据区块 -->
+
+        <div class="container">
+            <h1 class="index-title">信用贷</h1>
+            <div class="credit-box">
+                <div class="col-sm-3">
+                    <div class="wrap-box will">
+                        <a class="title" href=""><span class="borrowtitle-pic" style="background:url('images/6.jpg') no-repeat center center;"></span>车辆质押贷款102期</a>
+                        <div class="curr-num">16.8%</div>
+                        <p class="tip">预期年化收益</p>
+                        <div class="xq-group">
+                            <div class="col-sm-6 col-md-6">
+                                <div class="curr-num">6</div>
+                                <p class="tip">借款期限(个月)</p>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="curr-num">10</div>
+                                <p class="tip">借款总额(万元)</p>
+                            </div>
+                        </div>
+                        <div class="process-group">
+                            <div class="process"></div>
+                        </div>
+                        <p class="tip time">倒计时：<span>加载中</span></p>
+                        <a id="btn123" href="view.html" class="btn-invest">即将开始</a>
+                        <script>outTime(70,'btn123','123');</script>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="wrap-box doing">
+                        <a class="title" href=""><span class="borrowtitle-pic" style="background:url('images/6.jpg') no-repeat center center;"></span>车辆质押贷款102期</a>
+                        <div class="curr-num">16.8%</div>
+                        <p class="tip">预期年化收益</p>
+                        <div class="xq-group">
+                            <div class="col-sm-6 col-md-6">
+                                <div class="curr-num">6</div>
+                                <p class="tip">借款期限(个月)</p>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="curr-num">10</div>
+                                <p class="tip">借款总额(万元)</p>
+                            </div>
+                        </div>
+                        <div class="process-group">
+                            <div class="process" credit-box-num="50"></div>
+                        </div>
+                        <p class="tip">投标进度：<span>50%</span></p>
+                        <a href="view.html" class="btn-invest">正在投资</a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="wrap-box done">
+                        <a class="title" href=""><span class="borrowtitle-pic" style="background:url('images/6.jpg') no-repeat center center;"></span>车辆质押贷款102期</a>
+                        <div class="curr-num">16.8%</div>
+                        <p class="tip">预期年化收益</p>
+                        <div class="xq-group">
+                            <div class="col-sm-6 col-md-6">
+                                <div class="curr-num">6</div>
+                                <p class="tip">借款期限(个月)</p>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="curr-num">10</div>
+                                <p class="tip">借款总额(万元)</p>
+                            </div>
+                        </div>
+                        <div class="process-group">
+                            <div class="process"></div>
+                        </div>
+                        <p class="tip">投标进度：<span>100%</span></p>
+                        <a href="view.html" class="btn-invest">正在还款</a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="wrap-box done">
+                        <a class="title" href=""><span class="borrowtitle-pic" style="background:url('images/6.jpg') no-repeat center center;"></span>车辆质押贷款102期</a>
+                        <div class="curr-num">16.8%</div>
+                        <p class="tip">预期年化收益</p>
+                        <div class="xq-group">
+                            <div class="col-sm-6 col-md-6">
+                                <div class="curr-num">6</div>
+                                <p class="tip">借款期限(个月)</p>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="curr-num">10</div>
+                                <p class="tip">借款总额(万元)</p>
+                            </div>
+                        </div>
+                        <div class="process-group">
+                            <div class="process"></div>
+                        </div>
+                        <p class="tip">投标进度：<span>100%</span></p>
+                        <a href="view.html" class="btn-invest">已经完成</a>
+                    </div>
+                </div>
+            </div>
+            <script>
+                var bool_credit_box=true,
+                    scroll_credit_box=function(){
+                    var view_area=$(window).scrollTop()+$(window).height(),
+                        data_top=$('.page .credit-box').offset().top+250;
+                    if(view_area>data_top && bool_credit_box){
+                        bool_credit_box=false;
+                        $('.credit-box .wrap-box.doing [credit-box-num]').each(function(i,that){
+                            var num=$(that).attr('credit-box-num');
+                            $(that).css('width',num+'%');
+                        });
+                    }
+                };
+                scroll_credit_box();
+                $(window).on('scroll',scroll_credit_box);
+            </script>
+            <!-- 信用贷 -->
+
+            <h1 class="index-title">汽车质押贷</h1>
+            <div class="car-box">
+                <div class="col-sm-3">
+                    <div class="wrap-box will">
+                        <a class="title" href=""><span class="borrowtitle-pic" style="background:url('images/6.jpg') no-repeat center center;"></span>车辆质押贷款102期</a>
+                        <p class="tip">杭州市余杭区房屋租凭权债项目</p>
+                        <div class="pic" style="background-image: url('images/pic03.jpg')"><div car-box-num="0"><input type="text" value="0" /></div></div>
+                        <p class="tip text-center">上线时间：2016年8月5日 10:14:00</p>
+                        <div class="car-list first">
+                            项目总额：￥<span class="curr-num">1,000,000</span>
+                        </div>
+                        <div class="car-list">
+                            年化收益：<span class="curr-num">16.8%</span>
+                        </div>
+                        <div class="car-list">
+                            借款期限：<span class="curr-num">6</span><span class="red">月</span>
+                        </div>
+                        <a href="view.html" class="btn-invest">即将开始</a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="wrap-box doing">
+                        <a class="title" href=""><span class="borrowtitle-pic" style="background:url('images/6.jpg') no-repeat center center;"></span>车辆质押贷款102期</a>
+                        <p class="tip">杭州市余杭区房屋租凭权债项目</p>
+                        <div class="pic" style="background-image: url('images/pic03.jpg')"><div car-box-num="50"><input type="text" value="0" /></div></div>
+                        <p class="tip text-center">当前进度：50%</p>
+                        <div class="car-list first">
+                            项目总额：￥<span class="curr-num">1,000,000</span>
+                        </div>
+                        <div class="car-list">
+                            年化收益：<span class="curr-num">16.8%</span>
+                        </div>
+                        <div class="car-list">
+                            借款期限：<span class="curr-num">6</span><span class="red">月</span>
+                        </div>
+                        <a href="view.html" class="btn-invest">立即投资</a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="wrap-box done">
+                        <a class="title" href=""><span class="borrowtitle-pic" style="background:url('images/6.jpg') no-repeat center center;"></span>车辆质押贷款102期</a>
+                        <p class="tip">杭州市余杭区房屋租凭权债项目</p>
+                        <div class="pic" style="background-image: url('images/pic03.jpg')"><div car-box-num="100"><input type="text" value="0" /></div></div>
+                        <p class="tip text-center">当前进度：100%</p>
+                        <div class="car-list first">
+                            项目总额：￥<span class="curr-num">1,000,000</span>
+                        </div>
+                        <div class="car-list">
+                            年化收益：<span class="curr-num">16.8%</span>
+                        </div>
+                        <div class="car-list">
+                            借款期限：<span class="curr-num">6</span><span class="red">月</span>
+                        </div>
+                        <a href="view.html" class="btn-invest">正在还款</a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="wrap-box done">
+                        <a class="title" href=""><span class="borrowtitle-pic" style="background:url('images/6.jpg') no-repeat center center;"></span>车辆质押贷款102期</a>
+                        <p class="tip">杭州市余杭区房屋租凭权债项目</p>
+                        <div class="pic" style="background-image: url('images/pic03.jpg')"><div car-box-num="100"><input type="text" value="0" /></div></div>
+                        <p class="tip text-center">当前进度：100%</p>
+                        <div class="car-list first">
+                            项目总额：￥<span class="curr-num">1,000,000</span>
+                        </div>
+                        <div class="car-list">
+                            年化收益：<span class="curr-num">16.8%</span>
+                        </div>
+                        <div class="car-list">
+                            借款期限：<span class="curr-num">6</span><span class="red">月</span>
+                        </div>
+                        <a href="view.html" class="btn-invest">已经完成</a>
+                    </div>
+                </div>
+            </div>
+            <script>
+                var bool_car_box=true,
+                    process_credit_box=function($input,value){
+                        var knob_process=setInterval(function(){
+                            var num=parseInt($input.val());
+                            if(num<value){
+                                num=num+1;
+                                $input.val(num).trigger('change');
+                            }else{
+                                clearInterval(knob_process);
+                            }
+                        },10);
+                    },
+                    scroll_credit_box=function(){
+                        var view_area=$(window).scrollTop()+$(window).height(),
+                            data_top=$('.page .car-box').offset().top+150;
+                        if(view_area>data_top && bool_car_box){
+                            bool_car_box=false;
+                            $('.car-box .wrap-box [car-box-num]').each(function(i,that){
+                                var $input=$(that).find('input');
+                                process_credit_box($input,parseInt($(that).attr('car-box-num')));
+                            });
+                        }
+                    };
+                $(function(){
+                    $('.car-box .wrap-box [car-box-num]').each(function(i,that){
+                        var $input=$(that).find('input');
+                        if($(that).parents('.wrap-box').hasClass('done')){
+                            var str_color='#bfbfbf';
+                        }else{
+                            var str_color='#e33f4a';
+                        }
+                        $input.knob({
+                            readOnly: true,
+                            displayInput: false,
+                            min: 0,
+                            max: 100.01,
+                            width: 125,
+                            height: 125,
+                            fgColor: str_color,
+                            bgColor: '#dcdcdc',
+                            thickness: 0.06
+                        });
+                    });
+                });
+                scroll_credit_box();
+                $(window).on('scroll',scroll_credit_box);
+            </script>
+            <!-- 汽车质押贷 -->
+
+            <div class="h1-group">
+                <h1 class="index-title"><a href="news.html">官方公告</a></h1><h1 class="index-title"><a href="news.html">媒体报道</a></h1>
+            </div>
+        </div>    
+
+        <div class="news-box">
+            <div class="container">
+                <ul class="news-list">
+                    <li>
+                        <div class="pic" style="background-image: url('images/pic01.jpg')"></div>
+                        <div class="txt-box">
+                            <a href="info.html">你我贷亮相金交会 短平快服务模式受瞩目</a>
+                            <p>为了感谢广大新新贷会员长久以来的支持，现隆重启动“牛郎织女会，我来搭鹊桥”！活动期间每投资100元新元...</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pic" style="background-image: url('images/pic01.jpg')"></div>
+                        <div class="txt-box">
+                            <a href="info.html">关于债权转让规则调整的公告</a>
+                            <p>即日起债权转让将取消溢价转让机制（即加价转让功能取消），转让方式只保留平价转让或折价转让。转让人可根据所购...</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pic" style="background-image: url('images/pic01.jpg')"></div>
+                        <div class="txt-box">
+                            <a href="info.html">7月27日“欢乐星期三”活动中奖名单公告及领奖</a>
+                            <p>7月27日欢乐星期三”活动已于2016年7月27日圆满结束，感谢广大新新贷用户的热情参与。活动中奖名...</p>
+                        </div>
+                    </li>
+                </ul><ul class="news-list">
+                    <li>
+                        <div class="pic" style="background-image: url('images/pic01.jpg')"></div>
+                        <div class="txt-box">
+                            <a href="info.html">你我贷亮相金交会 短平快服务模式受瞩目</a>
+                            <p>为了感谢广大新新贷会员长久以来的支持，现隆重启动“牛郎织女会，我来搭鹊桥”！活动期间每投资100元新元...</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pic" style="background-image: url('images/pic01.jpg')"></div>
+                        <div class="txt-box">
+                            <a href="info.html">关于债权转让规则调整的公告</a>
+                            <p>即日起债权转让将取消溢价转让机制（即加价转让功能取消），转让方式只保留平价转让或折价转让。转让人可根据所购...</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pic" style="background-image: url('images/pic01.jpg')"></div>
+                        <div class="txt-box">
+                            <a href="info.html">7月27日“欢乐星期三”活动中奖名单公告及领奖</a>
+                            <p>7月27日欢乐星期三”活动已于2016年7月27日圆满结束，感谢广大新新贷用户的热情参与。活动中奖名...</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>    
+        <!-- 官方公告 -->
+        
+        <div class="container">
+            <h1 class="index-title">合作单位</h1>
+            <div class="cooperation-box">
+                <a class="pic pic1" href=""></a>
+                <a class="pic pic2" href=""></a>
+                <a class="pic pic3" href=""></a>
+                <a class="pic pic4" href=""></a>
+                <a class="pic pic5" href=""></a>
+                <a class="pic pic6" href=""></a>
+                <a class="pic pic7" href=""></a>
+                <a class="pic pic8" href=""></a>
+                <a class="pic pic9" href=""></a>
+                <a class="pic pic10" href=""></a>
+            </div>
+            <!-- 合作单位 -->
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container about">
+            <div class="pull-left part1" style="background:url('http://www.3dai.com/statics/images/xszn.png') 35px 15px no-repeat;">
+                <p>新手指南</p>
+                <ul>
+                    <li><a href="/guide/index/">新人理财</a></li>
+                    <li><a href="javascript:void(0)">网站地图</a></li>
+                    <li><a href="/help/index.html">帮助中心</a></li>
+                    <li><a href="javascript:window.open('http:\/\/crm2.qq.com\/page\/portalpage\/wpa.php?uin=4008558266&aty=0&a=0&curl=&ty=1')">在线客服</a></li>
+                </ul>
+            </div>
+            <div class="pull-left part2" style="background:url('http://www.3dai.com/statics/images/ptfw.png') 35px 15px no-repeat;">
+                <p>平台服务</p>
+                <ul>
+                    <li><a href="/tinvest/index.html">在线理财</a></li>
+                    <li><a href="/tinvest/index.html?type=search&&cid=jz">债权市场</a></li>
+                    <li><a href="/tool/finanz.html">平台数据</a></li>
+                    <li><a href="/safe/index/">安全保障</a></li>
+                </ul>
+            </div>
+            <div class="pull-left part3" style="background:url('http://www.3dai.com/statics/images/gywm.png') 35px 15px no-repeat;">
+                <p>关于我们</p>
+                <ul>
+                    <li><a href="/about/index/">关于我们</a></li>
+                    <li><a href="/about/index/">公司介绍</a></li>
+                    <li><a href="javascript:void(0)">友情链接</a></li>
+                    <li><a href="/about/contact.html">联系我们</a></li>
+                </ul>
+            </div>
+            <div class="pull-left part4 text-center">
+                <h3>400-6848-555</h3>
+                <div class="works">
+                    工作时间&nbsp;(周末全体休息)<br />
+                    08:30-11:30 13:00-17:30
+                </div>
+                <div class="sns">
+                    <a href="javascript:window.open('http:\/\/weibo.com\/3fendai')"><img src="http://www.3dai.com/statics/images/wb.png" alt="关注新浪微博"></a>
+                    <a href="javascript:void(0)"><img src="http://www.3dai.com/statics/images/wx.png" alt="关注微信"></a>
+                    <a href="javascript:window.open('http:\/\/crm2.qq.com\/page\/portalpage\/wpa.php?uin=4008558266&aty=0&a=0&curl=&ty=1')" title="有问题请联系Q"><img src="http://www.3dai.com/statics/images/qq.png" alt="联系QQ"></a>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="container">
+            <div class="links">
+                <a href="" target="_blank">网贷天地</a><a href="" target="_blank">盈钻网贷</a><a href="" target="_blank">网贷之家</a><a href="" target="_blank">网贷联盟</a><a href="" target="_blank">网贷天眼</a><a href="" target="_blank">网贷帝国</a><a href="" target="_blank">网贷中心</a>
+            </div>
+            <div class="address text-center">
+                <p>公司地址：湖南省长沙市湘江中路万达广场C2栋2605</p>
+                <p>湘ICP备16006377号-1 湖南建信互联网科技股份有限公司 Copyright © 2014-2016 3dai.com, All Rights Reserved</p>
+                <p class="hidden tongji"></p>
+            </div>
+            <div class="aq text-center">
+                <a href="javascript:window.open('http:\/\/si.trustutn.org\/info?sn=187160509000427155309')" title="行业认证"><img src="http://www.3dai.com/dist/images/6.jpg" alt="行业认证"></a>
+                <a href="https://credit.szfw.org/CX20160506015065360130.html" target='_blank' title="诚信网站"><img src='http://www.3dai.com/dist/images/3.jpg' alt="诚信网站" /></a>
+                <a href="javascript:window.open('http:\/\/www.anquan.org\/authenticate\/cert\/?site=www.3dai.com&at=business')" title="品牌认证"><img src="http://www.3dai.com/dist/images/4.jpg" alt="品牌认证"></a>
+                <a href="javascript:window.open('http:\/\/webscan.360.cn\/index\/checkwebsite?url=www.3dai.com')" title="360安全认证"><img src="http://www.3dai.com/dist/images/5.jpg" alt="360安全认证"></a>
+            </div>
+        </div>
+    </div>
+    <!--网站尾部-->
+
+    <script src="js/zui.min.js"></script>
+    <script src="js/layer.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

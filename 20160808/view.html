@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>罗女士单独所有商品房（住宅）抵押短期借款</title>
+    <link rel="stylesheet" href="css/zui.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <!--[if lte IE 8]><link rel="stylesheet" href="css/ie_hack.css"><![endif]-->
+    <script src="js/jquery.min.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="topbar">
+            <div class="container">
+                <div class="pull-left">            
+                    <span>客服热线：400-6668-888</span>
+                    <a class="dropdown-toggle app" href="javascript:;">手机APP</a>
+                    <a class="dropdown-toggle wx" href="javascript:;">微信端</a>
+                    <div class="dropdown-menu wx" style="text-align: center;">
+                        <img src="images/qrcode_wx.png" alt="微信二维码"/>
+                    </div>
+                    <div class="dropdown-menu app" style="text-align: center;">
+                        <img src="images/qrcode_app.png" alt="app二维码"/>
+                        <a href="" class="download android">Android版下载</a>
+                        <a href="" class="download apple">IOS版下载</a>
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <ul class="nav nav-topbar">
+                        <li><a href="">邀请返利</a></li>
+                        <li><a href="">新手指引</a></li>
+                        <li><a href="">平台活动</a></li>
+                        <li><a href="help.html">帮助</a></li>
+                        <li><a href="register.html" title="我要注册">免费注册</a></li>
+                        <li><a href="login.html" title="我要登录">立即登录</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--工具条-->
+        <div class="navbar">
+            <div class="container animated flipInX">
+                <div class="logo pull-left">
+                    <img src="images/logo.jpg" onclick="location.href='/'" alt="" height="100%" />
+                </div>
+                <div class="nav pull-right">
+                    <ul class="nav nav-pills">
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="list.html">我要投资</a></li>
+                        <li><a href="">安全保障</a></li>
+                        <li><a href="finanz.html">数据公示</a></li>
+                        <li><a href="">关于我们</a></li>
+                        <li><a href="">我的帐户</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--导航-->
+    </div>
+    <!--头部导航-->
+    <div class="page invest-page">
+        <div class="container">
+            <div class="panel">
+                <div class="left-box">
+                    <h1 class="title">罗女士单独所有商品房（住宅）抵押短期借款</h1>
+                    <div class="head-about">
+                        <div class="col-md-3">
+                            <div class="curr-num">1,000,000</div>
+                            <p class="tip">借款总额(元)</p>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="curr-num">16.8% <span>+ 8%</span></div>
+                            <p class="tip">年化利率</p>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="curr-num">1</div>
+                            <p class="tip">借款期限(个月)</p>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="curr-num">500,000</div>
+                            <p class="tip">剩余金额(元)</p>
+                        </div>
+                    </div>
+                    <div class="head-detail">
+                        <div class="col-md-6">
+                            <p class="tip">保障范围：本息保障</p>
+                            <p class="tip">投标进度：<span class="process-wrap"><span class="process" head-detail-pro="50"></span></span> 50%</p>
+                            <p class="tip">发标日期：2016-08-08 17:00:00</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="tip">还款方式：按月付息，到期还本</p>
+                            <p class="tip">投资人数：52人</p>
+                            <p class="tip time">剩余时间：<span head-detail-time="254120">加载中</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-box">
+                    <h1 class="title">我要投资</h1>
+                    <div class="head-invest">
+                        <p class="tip price">可用余额：<a href="">请登录</a></p>
+                        <p class="tip">投资余额：<input class="input" type="text"></p>
+                        <p class="tip">支付密码：<input class="input" type="password"></p>
+                        <p class="tip protocol">借款协议：<label><input class="input-check" type="checkbox" checked="checked" /> 同意<a href="">《金融桥投资服务协议》</a></label></p>
+                        <a href="" class="btn-invest doing">正在投资</a>
+                        <p class="tip text-center tip-income">每投资一万可获得收益 <span class="red">144.44</span> 元</p>
+                    </div>
+                </div>
+            </div>
+            <script>
+                /*加载进度*/
+                $('.head-detail [head-detail-pro]').css({
+                    'width': $('.head-detail [head-detail-pro]').attr('head-detail-pro')+'%'
+                });
+
+                /*加载剩余时间*/
+                var outTime=function(time,element){
+                    var outinter=window.setInterval(function(){
+                        time -- ;
+                        var day = parseInt(time / 86400);
+                        var hour = parseInt((time % 86400) / 3600);
+                        var min = parseInt((time % 3600) / 60);
+                        var sec = parseInt(time % 60);
+                        hour=hour>9?hour:('0'+hour);
+                        min=min>9?min:('0'+min);
+                        sec=sec>9?sec:('0'+sec);
+                        if($(element).length<1){
+                            clearInterval(outinter);
+                            return;
+                        }
+                        if(time<=0){
+                            var $will=$(element).parents('.panel');
+                            $(element).html('不限期');
+                            clearInterval(outinter);
+                        }else{
+                            $(element).html(day + '天' + hour + '时'+min + '分'+sec+'秒');
+                        }
+                    },1000);
+                }
+                outTime(Number($('.head-detail [head-detail-time]').attr('head-detail-time')),'.head-detail [head-detail-time]');
+            </script>
+            <!-- 内容页头 -->
+
+            <div class="panel">
+                <div class="left-box">
+                    <h1 class="title">项目介绍</h1>
+                    <p class="about-content">本项目借款主要用于借款人资金周转。借款人为桐乡市辕**汽车销售有限公司，主要经营汽车、汽车配件的销售等业务，注册资金500万元整，信用良好，该公司的法定代表人资产丰厚；借款人的还款来源为公司经营收入，有充足的偿还能力，而且该公司以其正在销售的大众凌渡330TSI DSG豪华版汽车的汽车合格证作质押，该汽车厂家指导价为人民币21.39万元整出借额度为人民币14.1万元整，同时该公司法定代表人承诺若借款人逾期还款的，法定代表人自愿以全部资产承担连带责任。另外，出借人为杭州市拱墅区户籍居民，信用良好，资产丰厚，出借人对项目债权承诺逾期赎回。（若质押期间客户有意愿购买该车辆，借款人将用不低于该车辆价值的其他车辆对应的汽车合格证置换）</p>
+                    <h1 class="about-title">借款人信息</h1>
+                    <p class="about-content">本项目借款主要用于借款人资金周转。借款人为桐乡市辕**汽车销售有限公司，主要经营汽车、汽车配件的销售等业务，注册资金500万元整，信用良好，该公司的法定代表人资产丰厚；</p>
+                    <h1 class="about-title">资金用途</h1>
+                    <p class="about-content">本项目借款主要用于借款人资金周转。借款人为桐乡市辕**汽车销售有限公司，主要经营汽车、汽车配件的销售等业务，注册资金500万元整，信用良好，该公司的法定代表人资产丰厚；</p>
+                    <h1 class="about-title">还款来源</h1>
+                    <p class="about-content">第一还款来源为承包工程所得。第二还款来源为质押宝马轿车。</p>
+                </div>
+                <div class="right-box">
+                    <h1 class="title">审核资料</h1>
+                    <div class="about-check-data">
+                        <div class="about-check-wrap">
+                        <ul>
+                            <li>
+                                <div class="pic pic1 select"></div>
+                                <p>身份证</p>
+                            </li>
+                            <li>
+                                <div class="pic pic2 select"></div>
+                                <p>手持身份证</p>
+                            </li>
+                            <li>
+                                <div class="pic pic3"></div>
+                                <p>行驶证</p>
+                            </li>
+                            <li>
+                                <div class="pic pic4"></div>
+                                <p>征信报告</p>
+                            </li>
+                            <li>
+                                <div class="pic pic5"></div>
+                                <p>借款合同</p>
+                            </li>
+                            <li>
+                                <div class="pic pic6"></div>
+                                <p>车辆照片</p>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <div class="pic pic1"></div>
+                                <p>身份证</p>
+                            </li>
+                            <li>
+                                <div class="pic pic2"></div>
+                                <p>手持身份证</p>
+                            </li>
+                            <li>
+                                <div class="pic pic3"></div>
+                                <p>行驶证</p>
+                            </li>
+                            <li>
+                                <div class="pic pic4"></div>
+                                <p>征信报告</p>
+                            </li>
+                            <li>
+                                <div class="pic pic5"></div>
+                                <p>借款合同</p>
+                            </li>
+                            <li>
+                                <div class="pic pic6"></div>
+                                <p>车辆照片</p>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <div class="pic pic1"></div>
+                                <p>身份证</p>
+                            </li>
+                            <li>
+                                <div class="pic pic2"></div>
+                                <p>手持身份证</p>
+                            </li>
+                            <li>
+                                <div class="pic pic3"></div>
+                                <p>行驶证</p>
+                            </li>
+                            <li>
+                                <div class="pic pic4"></div>
+                                <p>征信报告</p>
+                            </li>
+                            <li>
+                                <div class="pic pic5"></div>
+                                <p>借款合同</p>
+                            </li>
+                            <li>
+                                <div class="pic pic6"></div>
+                                <p>车辆照片</p>
+                            </li>
+                        </ul>
+                        </div>
+                        <div class="about-check-dh">
+                            <a class="active" href="javascript:;"></a>
+                            <a href="javascript:;"></a>
+                            <a href="javascript:;"></a>
+                        </div>
+                    </div>
+                    <h1 class="title">投标奖励</h1>
+                    <ul class="about-reward">
+                        <li>
+                            <div class="pic pic1"></div>
+                            <h2>一马当先</h2>
+                            <p>首位投资金额满5000元者，奖励现金红包5元。<a href="">了解详情 &gt;</a></p>
+                        </li>
+                        <li>
+                            <div class="pic pic2"></div>
+                            <h2>一马当先</h2>
+                            <p>项目单个投资金额最高者，可获得现金奖励8元。<a href="">了解详情 &gt;</a></p>
+                        </li>
+                        <li>
+                            <div class="pic pic3"></div>
+                            <h2>一锤定音</h2>
+                            <p>项目满标者，可获得奖励8元(不限金额大小)。<a href="">了解详情 &gt;</a></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <script>
+                /*审核资料*/
+                $('.about-check-dh').on('mouseover','a',function(){
+                    var $this=$(this),
+                        index=$this.prevAll('a').length,
+                        $wrap=$('.about-check-wrap');
+                    $wrap.animate({
+                        'margin-left' : (index * -310) + 'px'
+                    },400);
+                    $this.addClass('active').siblings().removeClass('active');
+                });
+            </script>
+            <!-- 标简介 -->
+
+            <div class="panel">
+                <h1 class="title">图片资料</h1>
+                <div class="picture-data">
+                    <div class="picture-data-wrap">
+                        <a href="http://zui.sexy/docs/img/img1.jpg" data-toggle="lightbox" data-caption="图片1" data-group="image-group" style="background-image: url('http://zui.sexy/docs/img/img1.jpg');"></a>
+                        <a href="http://zui.sexy/docs/img/img2.jpg" data-toggle="lightbox" data-caption="图片2" data-group="image-group" style="background-image: url('http://zui.sexy/docs/img/img2.jpg');"></a>
+                        <a href="http://zui.sexy/docs/img/img1.jpg" data-toggle="lightbox" data-caption="图片3" data-group="image-group" style="background-image: url('http://zui.sexy/docs/img/img1.jpg');"></a>
+                        <a href="http://zui.sexy/docs/img/img1.jpg" data-toggle="lightbox" data-caption="图片4" data-group="image-group" style="background-image: url('http://zui.sexy/docs/img/img1.jpg');"></a>
+                        <a href="http://zui.sexy/docs/img/img1.jpg" data-toggle="lightbox" data-caption="图片5" data-group="image-group" style="background-image: url('http://zui.sexy/docs/img/img1.jpg');"></a>
+                        <a href="http://zui.sexy/docs/img/img1.jpg" data-toggle="lightbox" data-caption="图片6" data-group="image-group" style="background-image: url('http://zui.sexy/docs/img/img1.jpg');"></a>
+                        <a href="http://zui.sexy/docs/img/img1.jpg" data-toggle="lightbox" data-caption="图片6" data-group="image-group" style="background-image: url('http://zui.sexy/docs/img/img1.jpg');"></a>
+                        <a href="http://zui.sexy/docs/img/img1.jpg" data-toggle="lightbox" data-caption="图片6" data-group="image-group" style="background-image: url('http://zui.sexy/docs/img/img1.jpg');"></a>
+                        <a href="http://zui.sexy/docs/img/img1.jpg" data-toggle="lightbox" data-caption="图片6" data-group="image-group" style="background-image: url('http://zui.sexy/docs/img/img1.jpg');"></a>
+                    </div>
+                    <div class="picture-data-dh"></div>
+                </div>
+            </div>
+            <script>
+                /*图片资料*/
+                var picture_dh_num=Math.ceil($('.picture-data-wrap>a').length / 5),
+                    picture_dh_str='<a class="active" href="javascript:;"></a>';
+                for(var i=2; i<=picture_dh_num; i++){
+                    picture_dh_str+='<a href="javascript:;"></a>'
+                }
+                $('.picture-data-dh').html(picture_dh_str);
+
+                $('.picture-data-dh').on('mouseover','a',function(){
+                    var $this=$(this),
+                        index=$this.prevAll('a').length,
+                        $wrap=$('.picture-data-wrap');
+                    $wrap.animate({
+                        'margin-left' : (index * -1100) + 'px'
+                    },400);
+                    $this.addClass('active').siblings().removeClass('active');
+                });
+            </script>
+            <!-- 图片资料 -->
+
+            <div class="panel record-box">
+                <ul class="nav">
+                    <li class="active"><a href="#record" data-toggle="tab">投资记录</a></li>
+                    <li><a href="#plan" data-toggle="tab">还款计划</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="record" class="tab-pane fade active in">
+                        <table class="table text-center">
+                          <thead>
+                            <tr>
+                              <th class="text-center">投资用户</th>
+                              <th class="text-center">投资金额</th>
+                              <th class="text-center">预期收益</th>
+                              <th class="text-center">标的奖励</th>
+                              <th class="text-center">投标端</th>
+                              <th class="text-center">投资时间</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>r...q</td>
+                              <td>20,000</td>
+                              <td>16.8%</td>
+                              <td>100</td>
+                              <td><i class="icon-windows" title="电脑端"></i></td>
+                              <td>2016-08-09 11:28:53</td>
+                            </tr>
+                            <tr>
+                              <td>r...q</td>
+                              <td>20,000</td>
+                              <td>16.8%</td>
+                              <td>100</td>
+                              <td><i class="icon-wechat" title="微信端"></i></td>
+                              <td>2016-08-09 11:28:53</td>
+                            </tr>
+                            <tr>
+                              <td>r...q</td>
+                              <td>20,000</td>
+                              <td>16.8%</td>
+                              <td>100</td>
+                              <td><i class="icon-android" title="安卓端"></i></td>
+                              <td>2016-08-09 11:28:53</td>
+                            </tr>
+                            <tr>
+                              <td>r...q</td>
+                              <td>20,000</td>
+                              <td>16.8%</td>
+                              <td>100</td>
+                              <td><i class="icon-apple" title="苹果端"></i></td>
+                              <td>2016-08-09 11:28:53</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                    </div>
+                    <div id="plan" class="tab-pane fade">
+                        <table class="table text-center">
+                          <thead>
+                            <tr>
+                              <th class="text-center">期数</th>
+                              <th class="text-center">还款日期</th>
+                              <th class="text-center">应还本息</th>
+                              <th class="text-center">还款状态</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                              <volist name="repayment" id="repay">
+                            <tr>
+                              <td>第{$repay.sort_order}期</td>
+                              <if condition="$vo.repayment_time gt 0">
+                                <td>{$repay.repayment_time|date="Y-m-d",###}</td>
+                            <else/>
+                                <td>{$repay.deadline|date="Y-m-d",###}</td>
+                            </if>
+                              <td>{$repay['capital'] + $repay['interest']}</td>
+                            <if condition="$repay.status eq 1">
+                                <td>已还</td>
+                                <else />
+                                <td>未还</td>
+                            </if>
+                            </tr>
+                                </volist>
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- 投资记录 -->
+        </div>
+    </div>
+    <!-- 投资内容页 -->
+
+    <div class="footer">
+        <div class="container about">
+            <div class="pull-left part1" style="background:url('http://www.3dai.com/statics/images/xszn.png') 35px 15px no-repeat;">
+                <p>新手指南</p>
+                <ul>
+                    <li><a href="/guide/index/">新人理财</a></li>
+                    <li><a href="javascript:void(0)">网站地图</a></li>
+                    <li><a href="/help/index.html">帮助中心</a></li>
+                    <li><a href="javascript:window.open('http:\/\/crm2.qq.com\/page\/portalpage\/wpa.php?uin=4008558266&aty=0&a=0&curl=&ty=1')">在线客服</a></li>
+                </ul>
+            </div>
+            <div class="pull-left part2" style="background:url('http://www.3dai.com/statics/images/ptfw.png') 35px 15px no-repeat;">
+                <p>平台服务</p>
+                <ul>
+                    <li><a href="/tinvest/index.html">在线理财</a></li>
+                    <li><a href="/tinvest/index.html?type=search&&cid=jz">债权市场</a></li>
+                    <li><a href="/tool/finanz.html">平台数据</a></li>
+                    <li><a href="/safe/index/">安全保障</a></li>
+                </ul>
+            </div>
+            <div class="pull-left part3" style="background:url('http://www.3dai.com/statics/images/gywm.png') 35px 15px no-repeat;">
+                <p>关于我们</p>
+                <ul>
+                    <li><a href="/about/index/">关于我们</a></li>
+                    <li><a href="/about/index/">公司介绍</a></li>
+                    <li><a href="javascript:void(0)">友情链接</a></li>
+                    <li><a href="/about/contact.html">联系我们</a></li>
+                </ul>
+            </div>
+            <div class="pull-left part4 text-center">
+                <h3>400-6848-555</h3>
+                <div class="works">
+                    工作时间&nbsp;(周末全体休息)<br />
+                    08:30-11:30 13:00-17:30
+                </div>
+                <div class="sns">
+                    <a href="javascript:window.open('http:\/\/weibo.com\/3fendai')"><img src="http://www.3dai.com/statics/images/wb.png" alt="关注新浪微博"></a>
+                    <a href="javascript:void(0)"><img src="http://www.3dai.com/statics/images/wx.png" alt="关注微信"></a>
+                    <a href="javascript:window.open('http:\/\/crm2.qq.com\/page\/portalpage\/wpa.php?uin=4008558266&aty=0&a=0&curl=&ty=1')" title="有问题请联系Q"><img src="http://www.3dai.com/statics/images/qq.png" alt="联系QQ"></a>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="container">
+            <div class="links">
+                <a href="" target="_blank">网贷天地</a><a href="" target="_blank">盈钻网贷</a><a href="" target="_blank">网贷之家</a><a href="" target="_blank">网贷联盟</a><a href="" target="_blank">网贷天眼</a><a href="" target="_blank">网贷帝国</a><a href="" target="_blank">网贷中心</a>
+            </div>
+            <div class="address text-center">
+                <p>公司地址：湖南省长沙市湘江中路万达广场C2栋2605</p>
+                <p>湘ICP备16006377号-1 湖南建信互联网科技股份有限公司 Copyright © 2014-2016 3dai.com, All Rights Reserved</p>
+                <p class="hidden tongji"></p>
+            </div>
+            <div class="aq text-center">
+                <a href="javascript:window.open('http:\/\/si.trustutn.org\/info?sn=187160509000427155309')" title="行业认证"><img src="http://www.3dai.com/dist/images/6.jpg" alt="行业认证"></a>
+                <a href="https://credit.szfw.org/CX20160506015065360130.html" target='_blank' title="诚信网站"><img src='http://www.3dai.com/dist/images/3.jpg' alt="诚信网站" /></a>
+                <a href="javascript:window.open('http:\/\/www.anquan.org\/authenticate\/cert\/?site=www.3dai.com&at=business')" title="品牌认证"><img src="http://www.3dai.com/dist/images/4.jpg" alt="品牌认证"></a>
+                <a href="javascript:window.open('http:\/\/webscan.360.cn\/index\/checkwebsite?url=www.3dai.com')" title="360安全认证"><img src="http://www.3dai.com/dist/images/5.jpg" alt="360安全认证"></a>
+            </div>
+        </div>
+    </div>
+    <!--网站尾部-->
+
+    <script src="js/zui.min.js"></script>
+    <script src="js/layer.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
