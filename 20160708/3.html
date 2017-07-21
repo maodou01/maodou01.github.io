@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>壹度大数据展示中心</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <section id="s1">
+        <div class="wrapper-title">
+            <div class="logo"></div>
+            <div class="search-box">
+                <input type="text" name="" id="">
+                <div class="btn-icon" title="搜索"></div>
+            </div>
+            <div class="head-img" style="background-image: url('images/headimg.jpg');"></div>
+        </div>
+        <div class="wrapper-left hide">
+            <ul class="nav">
+                <li><a href="2.html"><i class="pic pic1"></i>展示中心首页</a></li>
+                <li><a href="1.html"><i class="pic pic2"></i>全国网点分布</a></li>
+                <li class="active"><a href="3.html"><i class="pic pic3"></i>实时交易数据</a></li>
+            </ul>
+            <div class="btn-show-hide" onclick="$('.wrapper-left').toggleClass('hide');$('.wrapper-right').toggleClass('lw');" title="显示/隐藏"></div>
+        </div>
+        <div class="wrapper-right lw">
+            <div class="r-main">
+                <div class="mychart-line-2"></div>
+                <div class="info-detail-table">
+                    <div class="t-head">
+                        <div class="col">贷款人</div>
+                        <div class="col">贷款金额</div>
+                        <div class="col">贷款时间</div>
+                        <div class="col">所属地区</div>
+                        <div class="col">网点名称</div>
+                        <div class="col">经办人</div>
+                        <div class="col">审核人</div>
+                        <div class="col">审核时间</div>
+                    </div>
+                    <ul class="t-body">
+                        <li>
+                            <div class="col">张三</div>
+                            <div class="col">210</div>
+                            <div class="col">2016-03-05</div>
+                            <div class="col">湖南赫山区</div>
+                            <div class="col">阿伦不网点</div>
+                            <div class="col">刘德华</div>
+                            <div class="col">张里样</div>
+                            <div class="col">2016-07-01</div>
+                        </li>
+                        <li>
+                            <div class="col">阿昂拉多</div>
+                            <div class="col">210</div>
+                            <div class="col">2016-03-05</div>
+                            <div class="col">湖南赫山区</div>
+                            <div class="col">阿伦不网点</div>
+                            <div class="col">刘德华</div>
+                            <div class="col">张里样</div>
+                            <div class="col">2016-07-01</div>
+                        </li>
+                        <li>
+                            <div class="col">阿波罗</div>
+                            <div class="col">210</div>
+                            <div class="col">2016-03-05</div>
+                            <div class="col">湖南赫山区</div>
+                            <div class="col">阿伦不网点</div>
+                            <div class="col">刘德华</div>
+                            <div class="col">张里样</div>
+                            <div class="col">2016-07-01</div>
+                        </li>
+                        <li>
+                            <div class="col">张三</div>
+                            <div class="col">210</div>
+                            <div class="col">2016-03-05</div>
+                            <div class="col">湖南赫山区</div>
+                            <div class="col">阿伦不网点</div>
+                            <div class="col">刘德华</div>
+                            <div class="col">张里样</div>
+                            <div class="col">2016-07-01</div>
+                        </li>
+                        <li>
+                            <div class="col">阿昂拉多</div>
+                            <div class="col">210</div>
+                            <div class="col">2016-03-05</div>
+                            <div class="col">湖南赫山区</div>
+                            <div class="col">阿伦不网点</div>
+                            <div class="col">刘德华</div>
+                            <div class="col">张里样</div>
+                            <div class="col">2016-07-01</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/echarts.js"></script>
+    <script src="js/cus_data_1.js"></script>
+</body>
+</html>

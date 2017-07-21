@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1">
+    <title>运营产品</title>
+    <link rel="stylesheet" href="css/appweb.css">
+</head>
+<body>
+    <div id="about">
+        <div class="head">关于我们</div>
+        <div id="leftTabBox" class="tabBox">
+            <div class="hd">
+                <ul>
+                    <li><a href="#">公司简介</a></li>
+                    <li><a href="#">企业荣誉</a></li>
+                    <li><a href="#">联系我们</a></li>
+                </ul>
+            </div>
+            <div class="bd">
+                <div class="b1">
+                    <div class="txt-p">壹度综合便民服务中心由北京壹千克网络科技有限公司开创，公司发挥资金、网络和渠道优势，跨界整合资源，致力于三农服务，打造中国首个最全面、最科学、覆盖面最广的综合便民服务中心。</div>
+                    <div class="txt-p">壹度综合便民服务中心目前有<strong>四大业务板块</strong>：<br />便民服务、电商经济、壹度金融、政务代办</div>
+                    <div class="txt-p">基于目前实体网点的不断发展，壹度综合便民服务中心将走向远程化、社区化，使农村和乡镇迅速融入互联网+时代，让中国农民足不出户与世界沟通。随着专属APP的不断研发和线下网点的火速膨胀，未来的壹度综合便民服务中心将成为亚太地区渠道融合最多，覆盖密度最大、交易效率最高的互联网+便民综合服务平台。</div>
+                    <img src="images/pic15.jpg" alt="">
+                </div>
+                <div class="b1">
+                    <div class="list-box">
+                        <div class="left-box">
+                            <strong>04/10</strong>
+                            <div>2016</div>
+                        </div>
+                        <div class="right-box">
+                            <h2>2016年4月获得互联网金融行业创新奖</h2>
+                            <p>获奖时间：2016-04</p>
+                            <p>颁发机构：CDMC Events</p>
+                        </div>
+                    </div>
+                    <div class="list-box">
+                        <div class="left-box">
+                            <strong>01/15</strong>
+                            <div>2016</div>
+                        </div>
+                        <div class="right-box">
+                            <h2>2016年度最具成长价值企业</h2>
+                            <p>获奖时间：2016-01</p>
+                            <p>颁发机构：CCTV证券资讯频道</p>
+                        </div>
+                    </div>
+                    <div class="list-box">
+                        <div class="left-box">
+                            <strong>01/15</strong>
+                            <div>2016</div>
+                        </div>
+                        <div class="right-box">
+                            <h2>2015年度互联网金融责任品牌</h2>
+                            <p>获奖时间：2016-01</p>
+                            <p>颁发机构：第五届中国公益节组委会</p>
+                        </div>
+                    </div>
+                    <div class="list-box">
+                        <div class="left-box">
+                            <strong>12/16</strong>
+                            <div>2015</div>
+                        </div>
+                        <div class="right-box">
+                            <h2>优秀企业奖</h2>
+                            <p>获奖时间：2015-12</p>
+                            <p>颁发机构：新华网、中国社科院经济学部企业社会责任研究中心</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="b1">
+                    <img src="images/pic16.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dh-img"></div>
+    <div class="dh-box hide">
+        <div class="black-bj"></div>
+        <div class="left-box">
+            <div class="logo"></div>
+            <ul class="dh">
+                <li><a href="index.html"><i class="pic pic1"></i>首页</a></li>
+                <li><a href="运营产品.html"><i class="pic pic2"></i>运营产品</a></li>
+                <li><a href="申请加盟.html"><i class="pic pic3"></i>申请加盟</a></li>
+                <li class="active"><a href="关于我们.html"><i class="pic pic4"></i>关于我们</a></li>
+            </ul>
+        </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/TouchSlide.1.1.js"></script>
+    <script>
+        /*滚动插件*/
+        TouchSlide({ slideCell:"#leftTabBox",effect:"leftLoop" });
+
+        /*侧导航*/
+        $('.dh-img').on('click',function(){
+            var $dh_box=$('.dh-box');
+            if($dh_box.hasClass('hide')){
+                $dh_box.removeClass('hide').find('.left-box').animate({
+                    'left': '0'
+                },600);
+            }else{
+                $dh_box.addClass('hide');
+            }
+        });
+        $('.dh-box').on('click','.black-bj',function(){
+            var $dh_box=$('.dh-box');
+            $dh_box.find('.left-box').animate({
+                'left': '-70%'
+            },400,function(){
+                $dh_box.addClass('hide')
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+@import url('weui.min.css');
+body{
+    font-family: Tahoma,Arial,"Droid Sans","Helvetica Neue","Droid Sans Fallback","Heiti SC",sans-self;
+    background-color: #333333;
+    font-size: 62.5%;
+}
+ul,li{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+#select-temple ul{
+    box-sizing: border-box;
+    padding:0 0.5rem 0.5rem 0;
+}
+#select-temple ul li{
+    width: 33%;
+    height: auto;
+    float: left;
+    padding:0.5rem 0 0 0.5rem;
+    box-sizing: border-box;
+}
+#select-temple ul li img{
+    width: 100%;
+    height: 100%;
+}
+/* 2-详情 */
+#select-temple-detail{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+#select-temple-detail img.bj{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display: block;
+    border-bottom: 3rem solid transparent; 
+}
+#select-temple-detail .qrcode{
+    position: absolute;
+    width: 6rem;
+    height: 6rem;
+}
+#select-temple-detail .qrcode img{
+    width: 100%;
+}
+#select-temple-detail .fixed{
+    position: fixed;
+    width: 100%;
+    height: 3rem;
+    background-color: #333333;
+    left: 0;
+    bottom: 0;
+}
+#select-temple-detail .fixed>ul{
+    height: 3rem;
+    width: 100%;
+}
+#select-temple-detail .fixed>ul>li{
+    height: 3rem;
+    float: left;
+    width: 50%;
+}
+#select-temple-detail .fixed>ul>li>a{
+    display: block;
+    text-align: center;
+    line-height: 3rem;
+    font-size: 1rem;
+    color: #ddd;
+}
+#select-temple-detail .fixed>ul>li>a.red{
+    color: #EB0028;
+}
+#select-temple-detail .fixed>ul>li>a .icon{
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    vertical-align: middle;
+    background: url('../images/com02.png') no-repeat center;
+    background-size: 100%;
+    margin-right: 0.5rem;
+}
+/* 3-录音中 */
+#select-temple-recording{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+#select-temple-recording h3.title{
+    text-align: center;
+    margin: 4rem 0 0 0;
+    font-size: 0.9rem;
+    color: #fff;
+}
+#select-temple-recording h2.time{
+    text-align: center;
+    margin: 0.8rem 0 0 0;
+    font-size: 1.6rem;
+    color: #fff;
+}
+#select-temple-recording .control{
+    position: absolute;
+    width: 100%;
+    height: 6rem;
+    left: 0;
+    bottom: 5rem;
+}
+#select-temple-recording .control>div{
+    -webkit-transition: all 1s;
+    display: block;
+}
+#select-temple-recording .control.stop>div{
+    opacity: 1;
+}
+#select-temple-recording .control .play{
+    position: absolute;
+    width: 3rem;
+    height: 3rem;
+    background: url('../images/com03.png') no-repeat;
+    background-size: 100%;
+    left: 2rem;
+    bottom: 1.5rem;
+    border: 2px solid transparent;
+    opacity: 0.3;
+}
+#select-temple-recording .control .play.stop{
+    background: url('../images/com04.png') no-repeat;
+    background-size: 100%;
+}
+#select-temple-recording .control .pause{
+    position: absolute;
+    width: 6rem;
+    height: 6rem;
+    background: url('../images/com05.png') no-repeat center center;
+    background-size: 80%;
+    left: 50%;
+    margin-left: -3rem;
+    bottom: 0;
+    border-radius: 3rem;
+    border: 2px solid #fff;
+}
+#select-temple-recording .control .finish{
+    position: absolute;
+    font-size: 1rem;
+    color: #fff;
+    width: 3rem;
+    height: 3rem;
+    text-align: center;
+    line-height: 3rem;
+    right: 2rem;
+    bottom: 1.5rem;
+    opacity: 0.3;
+}
+#select-temple-recording .control.start .pause,
+#select-temple-recording .control.stop .pause{
+    background: url('../images/com01.png') no-repeat center center;
+    background-size: 80%;
+}
+#select-temple-recording .control.start .play,
+#select-temple-recording .control.start .finish{
+    display: none;
+}
+#select-temple-recording canvas{
+    position: absolute;
+    top: 50%;
+    margin-top: -150px;
+    left: 0;
+}
+/* 4-最终 */
+#select-temple-final{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+#select-temple-final img.bj{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display: block;
+}
+#select-temple-final .qrcode{
+    position: absolute;
+    width: 6rem;
+    height: 6rem;
+}
+#select-temple-final .qrcode img{
+    width: 100%;
+}
+#select-temple-final .fixed{
+    position: fixed;
+    width: 100%;
+    height: 3rem;
+    line-height: 3rem;
+    left: 0;
+    bottom: 1rem;
+    text-align: right;
+    z-index: 2;
+}
+#select-temple-final .fixed span{
+    color: #fff;
+    font-size: 1rem;
+}
+#select-temple-final .fixed .icon{
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    background: url('../images/com03.png') no-repeat center center;
+    background-size: 100%;
+    vertical-align: middle;
+    margin: 0 0.6rem;
+}
+#select-temple-final .black-bj{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 5;
+}
+#select-temple-final .black-bj img{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+}

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>二维码模板</title>
+    <link rel="stylesheet" href="dist/css/cus_1.css">
+</head>
+<body style="background-color: #333333">
+    <section id="select-temple-recording">
+        <h3 class="title">正在录音</h3>
+        <h2 class="time">00:00</h2>
+        <div class="control start">
+            <div class="play"></div>
+            <div class="pause"></div>
+            <div class="finish">完成</div>
+        </div>
+    </section>
+    <script src="dist/lib/zepto.min.js"></script>
+    <script src="dist/js/1.js"></script>
+    <!-- 微信jdk -->
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>
+        wx.config({
+            debug:true,
+            appId:'',
+            timestamp:'',
+            signature:'',
+            jsApiList:[
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage',
+                'onMenuShareQQ',
+                'onMenuShareWeibo',
+                'onMenuShareQZone',
+                'startRecord',
+                'stopRecord',
+                'onVoiceRecordEnd',
+                'playVoice',
+                'pauseVoice',
+                'stopVoice',
+                'onVoicePlayEnd',
+                'uploadVoice',
+                'downloadVoice'
+            ]
+        });
+        //wx.ready(function(){
+            var localId='';
+            $('.control').on('click','.pause',function(){
+                var $record=$('.control');
+                if($record.hasClass('start')){/*开始录音*/
+                    console.log('开始录音');
+                    /*wx.startRecord({
+                        'success':function(){*/
+                            $record.removeClass('start').addClass('play');
+                            recordTime.start();
+                            SW.setNoise(0.18);
+                        /*},
+                        'cancel':function(){
+                            alert('启动录制失败。');
+                        }
+                    });*/
+                }else if($record.hasClass('play')){/*暂停录音*/
+                    console.log('暂停录音');
+                    //if(localId){
+                        $record.removeClass('play').addClass('stop');
+                        recordTime.zero();
+                        SW.setNoise(0);
+                        wx.pauseVoice({
+                            localId: localId
+                        });
+                    //}
+                }else if($record.hasClass('stop')){/*重录音*/
+                    console.log('重录音');
+                    /*wx.startRecord({
+                        'success':function(){*/
+                            $record.removeClass('stop').addClass('play');
+                            recordTime.start();
+                            SW.setNoise(0.18);
+                        /*},
+                        'cancel':function(){
+                            alert('启动录制失败。');
+                        }
+                    });*/
+                }
+            });
+            $('.control').on('click','.play',function(){
+                /*播放录音*/
+                var $this=$(this),
+                    $record=$('.control');  
+                if($record.hasClass('stop')){
+                    console.log('播放录音');
+                    if($this.hasClass('stop')){
+                        $this.removeClass('stop');
+                        recordTime.end();
+                        SW.setNoise(0);
+                        wx.pauseVoice({
+                            localId: localId
+                        });
+                    }else{
+                        $this.addClass('stop');
+                        recordTime.start();
+                        SW.setNoise(0.18);
+                        wx.playVoice({
+                            localId: localId
+                        });
+                        wx.onVoicePlayEnd({
+                            success: function (res) {
+                                $this.removeClass('stop');
+                                recordTime.zero();
+                                SW.setNoise(0);
+                            }
+                        });
+                    }
+                }
+            });
+            $('.control').on('click','.finish',function(){
+                /*完成录音*/
+                var $this=$(this),
+                    $record=$('.control');
+                if($record.hasClass('stop')){
+                    console.log('完成录音');
+                    /*wx.stopRecord({
+                        success: function (res) {*/
+                            recordTime.zero();
+                            //localId = res.localId;
+                            location.href='4-最终.html';
+                        /*}
+                    });*/
+                }
+            });
+            $('.send-button').on('tap',function(){
+                if(localId){
+                    wx.uploadVoice({
+                        localId: localId,
+                        isShowProgressTips: 1, // 默认为1，显示进度提示
+                            success: function (res) {
+                            $.serverId = res.serverId;
+                            $.go('select');
+                        }
+                    });
+                }else{
+                    alert('没有录音过！');
+                }
+            });
+        //});
+    </script>
+</body>
+</html>
