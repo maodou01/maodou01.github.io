@@ -76,6 +76,7 @@ i{
             <p><span>移动设备：</span>识别中</p>
             <p><span>初始窗口：</span>识别中</p>
             <p><span>渲染时间：</span>加载中</p>
+            <p><span>Navigator：</span>加载中</p>
         </div><!-- detecterror_txt end -->
         <div class="detecterror_tip">提示：如果您已启动qq，请按组合键：Ctrl+Alt+A进行截图，然后在聊天窗口中按组合键 Ctrl+V进行粘贴</div>
     </div>
@@ -909,6 +910,7 @@ $(function(){
     $(".detecterror_txt p:eq(7)").html("<span>移动设备：</span>"+browserRedirect());  
     $(".detecterror_txt p:eq(8)").html("<span>初始窗口：</span>宽度 : "+document.body.clientWidth+" px   高度 : "+document.body.clientHeight+" px");  
     $(".detecterror_txt p:eq(9)").html("<span>渲染时间：</span>"+use_time+"ms");  
+    $(".detecterror_txt p:eq(10)").html("<span>Navigator：</span>"+window.navigator.userAgent);  
 });
 
 setInterval("showTime()", 1000);
