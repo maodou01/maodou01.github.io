@@ -85,7 +85,7 @@ i{
     <script src="//pv.sohu.com/cityjson"></script>
     <script>
 (function ($, win, undefined) {
-    var UA = win.navigator.userAgent,
+    var UA = win.navigator.userAgent.toLocaleLowerCase(),
         doc = win.document,
         parseRule = {
             platforms: [
