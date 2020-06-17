@@ -1,0 +1,901 @@
+<section id="manage-business">
+    <div class="wrapper-left">
+        <a href="javascript:;" class="add-link">业务办理</a>
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active" role="presentation"><a href="#mBusiness-title1" aria-controls="mBusiness-title1" role="tab" data-toggle="tab" data-title="申请信息"><i class="icon icon1"></i>贷款申请</a></li>
+            <li role="presentation"><a href="#mBusiness-title2" aria-controls="mBusiness-title2" role="tab" data-toggle="tab" data-title="贷前调查"><i class="icon icon2"></i>贷前调查</a></li>
+            <li role="presentation"><a href="#mBusiness-title3" aria-controls="mBusiness-title3" role="tab" data-toggle="tab" data-title="贷前审批"><i class="icon icon3"></i>贷款审批</a></li>
+            <li role="presentation"><a href="#mBusiness-title4" aria-controls="mBusiness-title4" role="tab" data-toggle="tab" data-title="签约办理"><i class="icon icon4"></i>签约办理</a></li>
+            <li role="presentation"><a href="#mBusiness-title5" aria-controls="mBusiness-title5" role="tab" data-toggle="tab" data-title="放款管理"><i class="icon icon5"></i>放款管理</a></li>
+        </ul>
+    </div>
+    <div class="wrapper-title">
+        <span>申请信息</span>
+        <div class="tool-group">
+            <div class="min" onclick="minWindows('business')"></div>
+            <div class="max" onclick="maxWindows('business')"></div>
+            <div class="closed main-closed" title="关闭" onclick="closeWindows('business')"></div>
+        </div>
+    </div>
+    <div class="wrapper-right">
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="mBusiness-title1">
+                <!-- 贷款申请【start】 -->
+                <div class="process-box">
+                    <div class="process1 active">
+                        <span class="num">1</span>
+                        <span class="txt">申请信息</span>
+                        <div class="line"></div>
+                    </div>
+                    <div class="process1">
+                        <span class="num">2</span>
+                        <span class="txt">贷前调查</span>
+                        <div class="line"></div>
+                    </div>
+                    <div class="process1">
+                        <span class="num">3</span>
+                        <span class="txt">贷款审批</span>
+                        <div class="line"></div>
+                    </div>
+                    <div class="process1">
+                        <span class="num">4</span>
+                        <span class="txt">签约办理</span>
+                    </div>
+                </div>
+                <form class="form-horizontal">
+                <div class="info-box1">
+                    <h2 class="title">申请信息</h2>
+                    <div class="form-box">
+                        <div class="wrapper-left-box text-left">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">客户名称:</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control input-add-select" readonly="readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">业务品种:</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control">
+                                        <option value="个人购车贷款">个人购车贷款</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">计息方式:</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control">
+                                        <option value="等额本息">等额本息</option>
+                                        <option value="先息后本">先息后本</option>
+                                        <option value="一次性还本付息">一次性还本付息</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">申请金额:</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">利率类型:</label>
+                                <div class="col-sm-9">
+                                    <span>年利率</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wrapper-right-box text-right">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">还款方式:</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control">
+                                        <option value="等额本息">等额本息</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">申请期限:</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">申请利率:</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-box1">
+                    <h2 class="title">担保与用途</h2>
+                    <div class="form-box">
+                        <div class="wrapper-left-box text-left">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">担保方式:</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">担保人:</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">用途说明:</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wrapper-right-box text-right">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">申请用途:</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label annex-label text-right">相关附件:</label>
+                            <div class="annex-box">
+                                图片、文档都可上传，2M以下
+
+                                <a class="btn-upload" href="javascript:;">上传</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </form>
+                <div class="text-right">
+                    <a class="btn-save">保存</a>
+                    <a class="btn-cancel">取消</a>
+                </div>
+                <!-- 贷款申请【end】 -->
+            </div>
+            <div role="tabpanel" class="tab-pane" id="mBusiness-title2">
+                <!-- 贷前调查【start】 -->
+                <div class="process-box">
+                    <div class="process1 active">
+                        <span class="num">1</span>
+                        <span class="txt">申请信息</span>
+                        <div class="line"></div>
+                    </div>
+                    <div class="process1 active">
+                        <span class="num">2</span>
+                        <span class="txt">贷前调查</span>
+                        <div class="line"></div>
+                    </div>
+                    <div class="process1">
+                        <span class="num">3</span>
+                        <span class="txt">贷款审批</span>
+                        <div class="line"></div>
+                    </div>
+                    <div class="process1">
+                        <span class="num">4</span>
+                        <span class="txt">签约办理</span>
+                    </div>
+                </div>
+                <div class="info-box1">
+                    <h2 class="title">申请信息</h2>
+                    <div class="form-box">
+                        <div class="wrapper-left-box text-left">
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">客户名称:</label>
+                                <div class="col-sm-9">
+                                    <span>李辰</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">还款方式:</label>
+                                <div class="col-sm-9">
+                                    <span>男性</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">申请期限:</label>
+                                <div class="col-sm-9">
+                                    <span>5月6日</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">利率类型:</label>
+                                <div class="col-sm-9">
+                                    <span>年利率</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">业务主办:</label>
+                                <div class="col-sm-9">
+                                    <span>周迅</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wrapper-right-box">
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">业务品种:</label>
+                                <div class="col-sm-9">
+                                    <span>个人消费</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">计息方式:</label>
+                                <div class="col-sm-9">
+                                    <span>固定利率</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">申请金额:</label>
+                                <div class="col-sm-9">
+                                    <span>50,000.00元</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">申请利率:</label>
+                                <div class="col-sm-9">
+                                    <span>12.0%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-lr-box">
+                    <span>报告信息</span>
+                    <a class="btn-upload" href="javascript:;">上传</a>
+                </div>
+                <table class="table mytable text-center">
+                    <thead>
+                        <tr>
+                            <th class="text-center">序号</th>
+                            <th class="text-center">文档名称</th>
+                            <th class="text-center">登记时间</th>
+                            <th class="text-center">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>002</td>
+                            <td>个人贷前调查报告模板</td>
+                            <td>2016-02-22</td>
+                            <td><a href="">查看</a>
+                            <a href="">下载</a>
+                            <a href="">删除</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- 贷前调查【end】 -->
+            </div>
+            <div role="tabpanel" class="tab-pane" id="mBusiness-title3">
+                <!-- 贷款审批【start】 -->
+                <div class="process-box">
+                    <div class="process1 active">
+                        <span class="num">1</span>
+                        <span class="txt">申请信息</span>
+                        <div class="line"></div>
+                    </div>
+                    <div class="process1 active">
+                        <span class="num">2</span>
+                        <span class="txt">贷前调查</span>
+                        <div class="line"></div>
+                    </div>
+                    <div class="process1 active">
+                        <span class="num">3</span>
+                        <span class="txt">贷款审批</span>
+                        <div class="line"></div>
+                    </div>
+                    <div class="process1">
+                        <span class="num">4</span>
+                        <span class="txt">签约办理</span>
+                    </div>
+                </div>
+                <div class="info-box1">
+                    <h2 class="title">申请信息</h2>
+                    <div class="form-box">
+                        <div class="wrapper-left-box text-left">
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">客户名称:</label>
+                                <div class="col-sm-9">
+                                    <span>李辰</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">还款方式:</label>
+                                <div class="col-sm-9">
+                                    <span>男性</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">申请期限:</label>
+                                <div class="col-sm-9">
+                                    <span>5月6日</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">利率类型:</label>
+                                <div class="col-sm-9">
+                                    <span>年利率</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">业务主办:</label>
+                                <div class="col-sm-9">
+                                    <span>周迅</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">批复期限:</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control w60" /> 月 
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">审批意见:</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control">
+                                        <option value="同意">同意</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">审批说明:</label>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wrapper-right-box">
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">业务品种:</label>
+                                <div class="col-sm-9">
+                                    <span>个人消费</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">计息方式:</label>
+                                <div class="col-sm-9">
+                                    <span>固定利率</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">申请金额:</label>
+                                <div class="col-sm-9">
+                                    <span>50,000.00元</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">申请利率:</label>
+                                <div class="col-sm-9">
+                                    <span>12.0%</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">申请期限:</label>
+                                <div class="col-sm-9">
+                                    <span>5个月</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">复批金额:</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control w60" /> 元
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label annex-label text-right">相关附件:</label>
+                            <div class="annex-box">
+                                图片、文档都可上传，2M以下
+
+                                <a class="btn-upload" href="javascript:;">上传</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-lr-box">
+                    <span>报告信息</span>
+                </div>
+                <table class="table mytable text-center">
+                    <thead>
+                        <tr>
+                            <th class="text-center">序号</th>
+                            <th class="text-center">文档名称</th>
+                            <th class="text-center">登记时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>002</td>
+                            <td>个人贷前调查报告模板</td>
+                            <td>2016-02-22</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-right">
+                    <a class="btn-save">保存</a>
+                    <a class="btn-cancel">取消</a>
+                </div>
+                <!-- 贷款审批【end】 -->
+            </div>
+            <div role="tabpanel" class="tab-pane" id="mBusiness-title4">
+                <!-- 签约办理【start】 -->
+                <div class="process-box">
+                    <div class="process1 active">
+                        <span class="num">1</span>
+                        <span class="txt">申请信息</span>
+                        <div class="line"></div>
+                    </div>
+                    <div class="process1 active">
+                        <span class="num">2</span>
+                        <span class="txt">贷前调查</span>
+                        <div class="line"></div>
+                    </div>
+                    <div class="process1 active">
+                        <span class="num">3</span>
+                        <span class="txt">贷款审批</span>
+                        <div class="line"></div>
+                    </div>
+                    <div class="process1 active">
+                        <span class="num">4</span>
+                        <span class="txt">签约办理</span>
+                    </div>
+                </div>
+                <div class="info-box1">
+                    <h2 class="title">补录信息</h2>
+                    <div class="form-box">
+                        <div class="wrapper-left-box text-left">
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">合同号:</label>
+                                <div class="col-sm-9">
+                                    <span>*******</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">贷款期限:</label>
+                                <div class="col-sm-9">
+                                    <span>5月6天</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">签订日期:</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control input-my-date" />
+                                    <span class="img-date"></span>
+                                    <span class="txt-red-absolute">*</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">备注:</label>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wrapper-right-box">
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">合同金额:</label>
+                                <div class="col-sm-9">
+                                    <span>5,000.00元<span class="txt-red">（伍仟元整）</span></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">合同起止日期:</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control input-my-date" />
+                                    <span class="img-date"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-box1">
+                    <h2 class="title">费用信息</h2>
+                    <div class="form-box">
+                        <div class="wrapper-left-box text-left">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">咨询费:</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" />
+                                </div>
+                                <span class="txt">&nbsp;%</span>
+                                <span class="txt-red-absolute">*</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">管理费用:</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" />
+                                </div>
+                                <span class="txt">&nbsp;元</span>
+                                <span class="txt-red-absolute">*</span>
+                            </div>
+                        </div>
+                        <div class="wrapper-right-box">
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">费用信息:</label>
+                                <div class="col-sm-9">
+                                    <span>默认一次性收取放款金额的0.5%</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">费用信息:</label>
+                                <div class="col-sm-9">
+                                    <span>默认分期收取固定额度200元</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-box1">
+                    <h2 class="title">合同信息</h2>
+                    <div class="form-box">
+                        <div class="wrapper-left-box text-left">
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">客户名称:</label>
+                                <div class="col-sm-9">
+                                    <span>李辰</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">业务品种:</label>
+                                <div class="col-sm-9">
+                                    <span>个人消费贷款</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">还款方式:</label>
+                                <div class="col-sm-9">
+                                    <span>利随本清</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">利率类型:</label>
+                                <div class="col-sm-9">
+                                    <span>年利率</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">合同类型:</label>
+                                <div class="col-sm-9">
+                                    <span>普通</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">贷款用途:</label>
+                                <div class="col-sm-9">
+                                    <span>家庭服务</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">客户经理:</label>
+                                <div class="col-sm-9">
+                                    <span>王敦科</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wrapper-right-box">
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">共同借款人:</label>
+                                <div class="col-sm-9">
+                                    <span>李辰</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">货款币种:</label>
+                                <div class="col-sm-9">
+                                    <span>人民币</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">计算方式:</label>
+                                <div class="col-sm-9">
+                                    <span>固定利率</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">利率:</label>
+                                <div class="col-sm-9">
+                                    <span>12.0%</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">担保类型:</label>
+                                <div class="col-sm-9">
+                                    <span>信用贷款</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">业务主办:</label>
+                                <div class="col-sm-9">
+                                    <span>马晓辉</span>
+                                </div>
+                            </div>
+                            <div class="form-group txt-group">
+                                <label class="col-sm-3 control-label">登记日期:</label>
+                                <div class="col-sm-9">
+                                    <span>2016-08-02</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <a class="btn-save" href="javascript:openApp('collection-user', '信息采集', '信息采集.html', 'fa-cogs', 600, 558, false);">保存</a>
+                    <a class="btn-cancel">取消</a>
+                </div>
+                <!-- 签约办理【end】 -->
+            </div>
+            <div role="tabpanel" class="tab-pane" id="mBusiness-title5">
+                <!-- 放款管理【start】 -->
+                <div class="top-title" role="tablist">
+                    <a href="#fk1" class="check active" aria-controls="fk1" role="tab" data-toggle="tab">全部</a>
+                    <a href="#fk2" class="refuse" aria-controls="fk2" role="tab" data-toggle="tab">待放款</a>
+                    <a href="#fk3" class="complete" aria-controls="fk3" role="tab" data-toggle="tab">审批中</a>
+                    <a href="#fk4" class="complete" aria-controls="fk4" role="tab" data-toggle="tab">已放款</a>
+                    <a href="#fk5" class="complete" aria-controls="fk5" role="tab" data-toggle="tab">已否决</a>
+                </div>
+                <div class="search-box">
+                    <input type="text" />
+                    <a class="btn-query" href="javascript:;">智能查询</a>
+                </div>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="fk1">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">合同号</th>
+                                    <th class="text-center">客户名称</th>
+                                    <th class="text-center">证件号码</th>
+                                    <th class="text-center">合同金额(元)</th>
+                                    <th class="text-center">业务种类</th>
+                                    <th class="text-center">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">DXHMO5823569456</td>
+                                    <td class="text-center">李达 15823569456</td>
+                                    <td class="text-center">4117 2219 7202 1325 13</td>
+                                    <td class="text-center">100,000.00</td>
+                                    <td class="text-center">个人购车贷款</td>
+                                    <td class="text-center"><a href="">详情</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">DXHMO5823569456</td>
+                                    <td class="text-center">李达 15823569456</td>
+                                    <td class="text-center">4117 2219 7202 1325 13</td>
+                                    <td class="text-center">100,000.00</td>
+                                    <td class="text-center">个人购车贷款</td>
+                                    <td class="text-center"><a href="">详情</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">DXHMO5823569456</td>
+                                    <td class="text-center">李达 15823569456</td>
+                                    <td class="text-center">4117 2219 7202 1325 13</td>
+                                    <td class="text-center">100,000.00</td>
+                                    <td class="text-center">个人购车贷款</td>
+                                    <td class="text-center"><a href="">详情</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">DXHMO5823569456</td>
+                                    <td class="text-center">李达 15823569456</td>
+                                    <td class="text-center">4117 2219 7202 1325 13</td>
+                                    <td class="text-center">100,000.00</td>
+                                    <td class="text-center">个人购车贷款</td>
+                                    <td class="text-center"><a href="">详情</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">DXHMO5823569456</td>
+                                    <td class="text-center">李达 15823569456</td>
+                                    <td class="text-center">4117 2219 7202 1325 13</td>
+                                    <td class="text-center">100,000.00</td>
+                                    <td class="text-center">个人购车贷款</td>
+                                    <td class="text-center"><a href="">详情</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="btm-page">
+                            <span>共32条 每页显示
+                                <select>
+                                    <option value="">9</option>
+                                </select>
+                                条记录</span>
+                            <span class="pull-right">首页 
+                                <span class="blue">2</span>/4 尾页 跳转到
+                                <select>
+                                    <option value="">3</option>
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="fk2">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">合同号</th>
+                                    <th class="text-center">客户名称</th>
+                                    <th class="text-center">证件号码</th>
+                                    <th class="text-center">合同金额(元)</th>
+                                    <th class="text-center">业务种类</th>
+                                    <th class="text-center">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">DXHMO5823569456</td>
+                                    <td class="text-center">李达 15823569456</td>
+                                    <td class="text-center">4117 2219 7202 1325 13</td>
+                                    <td class="text-center">100,000.00</td>
+                                    <td class="text-center">个人购车贷款</td>
+                                    <td class="text-center"><a href="">详情</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="btm-page">
+                            <span>共32条 每页显示
+                                <select>
+                                    <option value="">9</option>
+                                </select>
+                                条记录</span>
+                            <span class="pull-right">首页 
+                                <span class="blue">2</span>/4 尾页 跳转到
+                                <select>
+                                    <option value="">3</option>
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="fk3">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">合同号</th>
+                                    <th class="text-center">客户名称</th>
+                                    <th class="text-center">证件号码</th>
+                                    <th class="text-center">合同金额(元)</th>
+                                    <th class="text-center">业务种类</th>
+                                    <th class="text-center">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">DXHMO5823569456</td>
+                                    <td class="text-center">李达 15823569456</td>
+                                    <td class="text-center">4117 2219 7202 1325 13</td>
+                                    <td class="text-center">100,000.00</td>
+                                    <td class="text-center">个人购车贷款</td>
+                                    <td class="text-center"><a href="">详情</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="btm-page">
+                            <span>共32条 每页显示
+                                <select>
+                                    <option value="">9</option>
+                                </select>
+                                条记录</span>
+                            <span class="pull-right">首页 
+                                <span class="blue">2</span>/4 尾页 跳转到
+                                <select>
+                                    <option value="">3</option>
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="fk4">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">合同号</th>
+                                    <th class="text-center">客户名称</th>
+                                    <th class="text-center">证件号码</th>
+                                    <th class="text-center">合同金额(元)</th>
+                                    <th class="text-center">业务种类</th>
+                                    <th class="text-center">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">DXHMO5823569456</td>
+                                    <td class="text-center">李达 15823569456</td>
+                                    <td class="text-center">4117 2219 7202 1325 13</td>
+                                    <td class="text-center">100,000.00</td>
+                                    <td class="text-center">个人购车贷款</td>
+                                    <td class="text-center"><a href="">详情</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="btm-page">
+                            <span>共32条 每页显示
+                                <select>
+                                    <option value="">9</option>
+                                </select>
+                                条记录</span>
+                            <span class="pull-right">首页 
+                                <span class="blue">2</span>/4 尾页 跳转到
+                                <select>
+                                    <option value="">3</option>
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="fk5">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">合同号</th>
+                                    <th class="text-center">客户名称</th>
+                                    <th class="text-center">证件号码</th>
+                                    <th class="text-center">合同金额(元)</th>
+                                    <th class="text-center">业务种类</th>
+                                    <th class="text-center">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">DXHMO5823569456</td>
+                                    <td class="text-center">李达 15823569456</td>
+                                    <td class="text-center">4117 2219 7202 1325 13</td>
+                                    <td class="text-center">100,000.00</td>
+                                    <td class="text-center">个人购车贷款</td>
+                                    <td class="text-center"><a href="">详情</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="btm-page">
+                            <span>共32条 每页显示
+                                <select>
+                                    <option value="">9</option>
+                                </select>
+                                条记录</span>
+                            <span class="pull-right">首页 
+                                <span class="blue">2</span>/4 尾页 跳转到
+                                <select>
+                                    <option value="">3</option>
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 放款管理【end】 -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="js/datepicker.js"></script>
+<script>
+    /*业务办理标签页*/
+    $('#manage-business .wrapper-left').on('click','.nav>li>a',function (e) {
+        var $this=$(this),
+            $title=$('#manage-business .wrapper-title').find('span');
+        $title.html($this.attr('data-title'));
+    });
+
+    /*放款管理标签页*/
+    $('#manage-business .wrapper-right').on('click','.top-title>a',function (e) {
+        var $this=$(this);
+        if(!$this.hasClass('pull-right')){
+            $this.addClass('active').siblings().removeClass('active');
+        } 
+    });
+
+    /*单击选择客户input*/
+    $('#manage-business .input-add-select').on('click',function(e){
+        e.stopPropagation();
+        openApp('select-business', '选择客户', '选择客户.html', 'fa-users', 680, 500, true);
+    });
+
+    /*初始日期选择插件*/
+    $('#manage-business .input-my-date').datepicker({
+        language: 'chs'
+    }).data('datepicker');
+
+    $('#manage-business .input-range-date').datepicker({
+        language: 'chs',
+        range: true,
+        multipleDatesSeparator: '-',
+        dateFormat: 'yyyy/mm/dd'
+    }).data('datepicker');
+</script>

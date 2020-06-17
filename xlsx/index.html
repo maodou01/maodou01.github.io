@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="css/handsontable.full.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body{
+          font-size: 14px;
+          font-family: 'Microsoft YaHei';
+        }
+        a{
+            text-decoration: none;
+            font-size: 16px;
+            color: #555555;
+            -webkit-transition: all 0.4s;
+        }
+        a:hover{
+            text-decoration: underline;
+            color: #0000FF;
+        }
+		#btn{
+			padding: 0 25px;
+		}
+		#filecontent{
+			margin: 25px;
+		}
+    </style>
+</head>
+<body>
+    <form style="padding: 15px 25px;">
+      <div class="form-group">
+        <label>本地查看：</label>
+        <input type="file" id="file" onchange="handleFiles(this.files)"/>
+      </div>
+      <div class="form-group">
+        <label>外链查看：</label>
+        <input class="form-control" type="text" name="" onblur="ajaxData(this.value)">
+      </div>
+    </form>
+    <div id="format-table"></div> 
+    <div id="btn"></div> 
+    <div id="filecontent"></div> 
+    <script src="//cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/xlsx.full.min.js"></script>
+    <script src="js/handsontable.full.js"></script>
+    <script>
+		var p_obj_data={},p_hot;
+        function  handleFiles(files){  
+            if(files.length)  
+            {  
+               var file = files[0];  
+               var reader = new FileReader();  
+               reader.onload = function(e){
+                   var data= e.target.result;
+                   var obj=XLSX.read(data, {type: 'binary'});
+                   console.log(obj);
+				   p_obj_data=obj;
+                   loadBtn();
+                   //toHTML(obj);
+               };   
+               reader.readAsBinaryString(file); 
+            }  
+        }
+
+        
+        function ajaxData(url){
+			if(!url) return false;
+			$('#file').val('');
+			var url=location.protocol+'//ning668.wicp.net'+(location.protocol=='http:'?':85':'')+'/curl/?how=body&url='+escape(url);
+			var oReq = new XMLHttpRequest();
+			oReq.open("GET", url, true);
+			oReq.responseType = "arraybuffer";
+
+			oReq.onload = function(e) {
+				var arraybuffer = oReq.response;
+
+				/* convert data to binary string */
+				var data = new Uint8Array(arraybuffer);
+				var arr = new Array();
+				for(var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+				var bstr = arr.join("");
+
+				/* Call XLSX */
+				var workbook = XLSX.read(bstr, {type:"binary"});
+				console.log(workbook);
+				p_obj_data=workbook;
+				loadBtn();
+				//toHTML(workbook);
+
+			}
+
+			oReq.send();
+        }
+
+		function loadBtn(){
+            var arr_name=p_obj_data.SheetNames,
+                str_html='';
+            $.each(arr_name,function(i,v){
+                if(i===0) outTable(v);
+                str_html+='<a class="btn btn-primary" href="javascript:;" onclick="outTable(\''+v+'\')">'+v+'</a>&nbsp;&nbsp;'
+            });
+            $('#btn').html(str_html);
+        }
+        function outTable(name){
+			var json=XLSX.utils.sheet_to_json(p_obj_data.Sheets[name], {header:1});
+			p_hot = new Handsontable($("#filecontent")[0], {
+				data: json,
+				rowHeaders: true,
+                colHeaders: true,
+				width: $(window).width()-50,
+				height: $(window).height()-$('form').height()-100
+			});
+        }
+
+        function toHTML(obj){
+            var obj_sheets=obj.Sheets;
+            $('#format-table').html('');
+            $.map(obj_sheets,function(o,n){
+              var str_html='';
+
+              if(o['!ref']){
+                var arr=o['!ref'].split(':'),
+                    arr_letter=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'],
+                    arr1_eng=arr[0].match(/[A-Z]+/)[0],
+                    arr1_num=arr[0].match(/[0-9]+/)[0],
+                    arr2_eng=arr[1].match(/[A-Z]+/)[0],
+                    arr2_num=arr[1].match(/[0-9]+/)[0],
+                    str_html='';
+                var by_arr_letter=arr_letter;
+                arr_letter.map(function(l){
+                  for(var i=0; i<26; i++){
+                    by_arr_letter.push(l+arr_letter[i]);
+                  }
+                });
+                //console.log(by_arr_letter);
+                arr_letter=by_arr_letter;
+                for(var i=arr1_num-1; i<=arr2_num; i++){
+                  str_html+='<tr>'
+                  if(i==arr1_num-1) str_html+='<td></td>';
+                  for(var j=$.inArray(arr1_eng,arr_letter)-1; j<=$.inArray(arr2_eng,arr_letter); j++){
+                    if(i==arr1_num-1 && j!=$.inArray(arr2_eng,arr_letter)){
+                      str_html+='<td>'+arr_letter[j+1]+'</td>';
+                    }
+                    if(j==$.inArray(arr1_eng,arr_letter)-1 && i!=arr1_num-1){
+                      str_html+='<td>'+(i)+'</td>';
+                    }
+                    if(i!=arr1_num-1 && j!=$.inArray(arr1_eng,arr_letter)-1){
+                        if(o[arr_letter[j]+(i)]){
+                            str_html+='<td data-pos="'+arr_letter[j]+(i)+'" title="类型：'+toType(o[arr_letter[j]+(i)].t)+'&#10;公式：'+(o[arr_letter[j]+(i)].f?o[arr_letter[j]+(i)].f:'')+'">'+(o[arr_letter[j]+(i)].w)+'</td>';
+                        }else{
+                            str_html+='<td data-pos="'+arr_letter[j]+(i)+'"></td>';
+                        }
+                    }
+                  }
+                  str_html+='</tr>'
+                }
+                var wrapper_html='<h3 class="text-center">'+n+'</h3><table class="table table-bordered text-center table-hover">'+str_html+'</table>';
+                $('#format-table').append(wrapper_html); 
+              }
+            });   
+
+        }
+
+        function toType(t){
+          switch(t){
+            case 'b':
+              return '逻辑';
+              break;
+            case 'n':
+              return '数字';
+              break;
+            case 'e':
+              return '类型错误';
+              break;
+            case 's':
+              return '字符串';
+              break;
+            case 'd':
+              return '日期';
+              break;
+            case undefined:
+              return '';
+              break;  
+            default:
+              return t;
+              break;    
+          }
+        }
+    </script>
+</body>
+</html>

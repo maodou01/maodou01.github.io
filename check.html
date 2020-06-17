@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>浏览器检查</title>
+    <style>
+body{
+    font-family: "微软雅黑";
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    color: #9a9a9a;
+    background-color: #f7f7f7;
+    line-height: 22px;
+    -webkit-font-smoothing: antialiased;
+}
+h4,p{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border: 0;
+}  
+i{
+    font-style: normal;
+}
+.detecterror_page {
+    background: url('images/detect_bg.png') no-repeat;
+    width: 710px;
+    height: 674px;
+    margin: 30px auto 0px auto;
+    padding-top: 25px;
+    font-size: 16px;
+    color: #4e4e4e;
+}
+.detecterror_title {
+    font-weight: normal;
+    font-size: 22px;
+    color: #fff;
+    padding-left: 14px;
+}
+.detecterror_txt {
+    width: 600px;
+    margin: auto;
+    padding-top: 40px;
+}
+.detecterror_txt p {
+    line-height: 26px;
+    width: 100%;
+}
+.detecterror_txt p span {
+    color: #e9565c;
+    width: 190px;
+    text-align: right;
+    padding-right: 20px;
+    display: block;
+    float: left;
+}
+.detecterror_tip {
+    width: 278px;
+    color: #e9565c;
+    padding: 25px 0px 0px 166px;
+}
+    </style>
+</head>
+<body>
+    <div class="detecterror_page">
+        <h4 class="detecterror_title">页面检测-以下请截屏</h4>
+        <div class="detecterror_txt clearfix">
+            <p><span>浏览器：</span><i>识别中</i></p>
+            <p><span>操作系统：</span>识别中</p>
+            <p><span>语言：</span>识别中</p>
+            <p style="padding-top:15px;"><span>服务器时间：</span>加载中</p>
+            <p><span>本地时间：</span>加载中</p>
+            <p><span>本地时区格林威治GMT：</span>加载中</p>
+            <p style="padding:15px 0px;"><span>ip地址：</span>加载中</p>
+            <p><span>移动设备：</span>识别中</p>
+            <p><span>初始窗口：</span>识别中</p>
+            <p><span>渲染时间：</span>加载中</p>
+        </div><!-- detecterror_txt end -->
+        <div class="detecterror_tip">提示：如果您已启动qq，请按组合键：Ctrl+Alt+A进行截图，然后在聊天窗口中按组合键 Ctrl+V进行粘贴</div>
+    </div>
+
+    <script src="//cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="//pv.sohu.com/cityjson"></script>
+    <script>
+(function ($, win, undefined) {
+    var UA = win.navigator.userAgent,
+        doc = win.document,
+        parseRule = {
+            platforms: [
+                // windows phone
+                {
+                    name: 'windows phone',
+                    versionSearch: 'windows phone os ',
+                    versionNames: [ // windows phone must be tested before win
+                        {
+                            number: '7.5',
+                            name: 'mango'
+                        }
+                    ]
+                },
+                // windows
+                {
+                    name: 'win',
+                    slugName: 'windows',
+                    versionSearch: 'windows(?: nt)? ',
+                    versionNames: [{
+                        number: '6.2',
+                        name: 'windows 8'
+                    }, {
+                        number: '6.1',
+                        name: 'windows 7'
+                    }, {
+                        number: '6.0',
+                        name: 'windows vista'
+                    }, {
+                        number: '5.2',
+                        name: 'windows xp'
+                    }, {
+                        number: '5.1',
+                        name: 'windows xp'
+                    }, {
+                        number: '5.0',
+                        name: 'windows 2000'
+                    }]
+                },
+                // ipad
+                {
+                    name: 'ipad',
+                    versionSearch: 'cpu os ',
+                    flags: ['ios']
+                },
+                // ipad and ipod must be tested before iphone
+                {
+                    name: 'ipod',
+                    versionSearch: 'iphone os ',
+                    flags: ['ios']
+                },
+                // iphone
+                {
+                    name: 'iphone',
+                    versionSearch: 'iphone os ',
+                    flags: ['ios']
+                },
+                // iphone must be tested before mac
+                {
+                    name: 'mac',
+                    versionSearch: 'os x ',
+                    versionNames: [{
+                        number: '10.8',
+                        name: 'mountainlion'
+                    }, {
+                        number: '10.7',
+                        name: 'lion'
+                    }, {
+                        number: '10.6',
+                        name: 'snowleopard'
+                    }, {
+                        number: '10.5',
+                        name: 'leopard'
+                    }, {
+                        number: '10.4',
+                        name: 'tiger'
+                    }, {
+                        number: '10.3',
+                        name: 'panther'
+                    }, {
+                        number: '10.2',
+                        name: 'jaguar'
+                    }, {
+                        number: '10.1',
+                        name: 'puma'
+                    }, {
+                        number: '10.0',
+                        name: 'cheetah'
+                    }]
+                },
+                // android
+                {
+                    name: 'android',
+                    versionSearch: 'android ',
+                    versionNames: [
+                        // android must be tested before linux
+                        {
+                            number: '4.1',
+                            name: 'jellybean'
+                        }, {
+                            number: '4.0',
+                            name: 'icecream sandwich'
+                        }, {
+                            number: '3.',
+                            name: 'honey comb'
+                        }, {
+                            number: '2.3',
+                            name: 'ginger bread'
+                        }, {
+                            number: '2.2',
+                            name: 'froyo'
+                        }, {
+                            number: '2.',
+                            name: 'eclair'
+                        }, {
+                            number: '1.6',
+                            name: 'donut'
+                        }, {
+                            number: '1.5',
+                            name: 'cupcake'
+                        }
+                    ]
+                },
+                // blackberry
+                {
+                    name: 'blackberry',
+                    versionSearch: '(?:blackberry\\d{4}[a-z]?|version)/'
+                },
+                // blackberry
+                {
+                    name: 'bb',
+                    slugName: 'blackberry',
+                    versionSearch: '(?:version)/'
+                },
+                // blackberry
+                {
+                    name: 'playbook',
+                    slugName: 'blackberry',
+                    versionSearch: '(?:version)/'
+                },
+                // linux
+                {
+                    name: 'linux'
+                },
+                // nokia
+                {
+                    name: 'nokia'
+                }
+            ],
+            browsers: [{
+                    name: 'iemobile',
+                    versionSearch: 'iemobile/'
+                }, // iemobile must be tested before msie
+                {
+                    name: 'msie',
+                    slugName: 'ie',
+                    versionSearch: 'msie '
+                }, {
+                    name: 'firefox',
+                    versionSearch: 'firefox/'
+                }, {
+                    name: 'chrome',
+                    versionSearch: 'chrome/'
+                }, // chrome must be tested before safari
+                {
+                    name: 'safari',
+                    versionSearch: '(?:browser|version)/'
+                }, {
+                    name: 'opera',
+                    versionSearch: 'version/'
+                }
+            ],
+            engines: [{
+                    name: 'trident',
+                    versionSearch: 'trident/'
+                }, {
+                    name: 'webkit',
+                    versionSearch: 'webkit/'
+                }, // webkit must be tested before gecko
+                {
+                    name: 'gecko',
+                    versionSearch: 'rv:'
+                }, {
+                    name: 'presto',
+                    versionSearch: 'presto/'
+                }
+            ]
+        },
+        // [10,)版本就无法判断
+        ieVer = (function () {
+            var v = 3,
+                p = doc.createElement('p'),
+                all = p.getElementsByTagName('i');
+            while (
+                p.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->',
+                all[0]);
+            return v > 4 ? v : 0;
+        }()),
+        ieAX = win.ActiveXObject,
+        ieMode = doc.documentMode,
+        isIe = ieAX || ieMode,
+        isIe6 = (ieAX && ieVer == 6) || (ieMode == 6),
+        isIe7 = (ieAX && ieVer == 7) || (ieMode == 7),
+        isIe8 = (ieAX && ieVer == 8) || (ieMode == 8),
+        isIe9 = (ieAX && ieVer == 9) || (ieMode == 9),
+        isIe10 = ieMode === 10,
+        isIe11 = ieMode === 11,
+        isChrome = !isIe && _mime("type", "application/vnd.chromium.remoting-viewer"),
+        isLiebao = !isIe && !! win.external && !! win.external.LiebaoAutoFill_CopyToClipboard,
+        is360ee = !isIe && !isChrome && !isLiebao && _plugins("filename", "pepflashplayer.dll"),
+        is360se = !isIe && !is360ee && _mime("suffixes", "dll", "description", /fancy/), 
+        isSougou = !isIe && _plugins("filename", "NPComBrg310.dll"),
+        isFirefox = win.scrollMaxX !== undefined;
+    if (isIe6) {
+        ieVer = 6;
+    } else if (isIe7) {
+        ieVer = 7;
+    } else if (isIe8) {
+        ieVer = 8;
+    } else if (isIe9) {
+        ieVer = 9;
+    } else if (isIe10) {
+        ieVer = 10;
+    } else if (isIe11) {
+        ieVer = 11;
+    }
+    $.extend({
+        ua: function () {
+            var args = arguments,
+                argL = args.length,
+                ua = (argL == 1 && $.type(args[0]) == "string" ? args[0] : UA).toLowerCase(),
+                objPlatform = _parse(parseRule.platforms, ua),
+                objBrowser = _parse(parseRule.browsers, ua, true),
+                objEngine = _parse(parseRule.engines, ua);
+            return {
+                // 返回ua字符串
+                ua: ua,
+                // 操作平台
+                platform: $.extend({}, objPlatform, {
+                    os: win.navigator.platform.toLowerCase(),
+                    plugins: win.navigator.plugins
+                }),
+                // 浏览器内核
+                engine: objEngine,
+                // 浏览器外壳
+                browser: objBrowser,
+                // ie
+                isIe: !! ieVer,
+                isIe6: isIe6,
+                isIe7: isIe7,
+                isIe8: isIe8,
+                isIe9: isIe9,
+                isIe10: isIe10,
+                isIe11: isIe11,
+                ie: ieVer,
+                // 内核
+                isWebkit: !! objEngine.isWebkit,
+                isGecko: !! objEngine.isGecko,
+                isTrident: !! objEngine.isTrident,
+                // 外壳[优先特征判断]
+                isChrome: isChrome,
+                is360ee: is360ee,
+                is360se: is360se,
+                isSougou: isSougou,
+                isLiebao: isLiebao,
+                isFirefox: isFirefox,
+                // 类型
+                isMobile: objPlatform.isMobile,
+                isTablet: objPlatform.isTablet,
+                isDesktop: objPlatform.isDesktop
+            };
+        }
+    });
+    /**
+     * 解析
+     * 参考：https://github.com/terkel/jquery-ua
+     * @param  {Array} 需要解析的数据
+     * @param  {String} 需要解析的ua字符串
+     * @param  {Boolean} 是否为解析浏览器数据
+     * @return {Object} 解析后的对象
+     * @version 1.0
+     * 2013年9月27日13:36:47
+     */
+    function _parse(rule, ua, isBrowser) {
+        var item = {},
+            name,
+            versionSearch,
+            flags,
+            versionNames,
+            i,
+            is,
+            ic,
+            j,
+            js,
+            jc;
+        if (isBrowser && ieVer) {
+            return {
+                name: "ie",
+                ie: true,
+                version: ieVer,
+                isIe: true
+            }
+        }
+        for (i = 0, is = rule.length; i < is; i++) {
+            ic = rule[i];
+            name = ic.name;
+            versionSearch = ic.versionSearch;
+            flags = ic.flags;
+            versionNames = ic.versionNames;
+            if (ua.indexOf(name) !== -1) {
+                item.name = name.replace(/\s/g, '');
+                if (ic.slugName) {
+                    item.name = ic.slugName;
+                }
+                item["is" + _upperCase1st(item.name)] = true;
+                item.version = ('' + (new RegExp(versionSearch + '(\\d+((\\.|_)\\d+)*)').exec(ua) || [, 0])[1]).replace(/_/g, '.');
+                if (flags) {
+                    for (j = 0, js = flags.length; j < js; j++) {
+                        item["is" + _upperCase1st(flags[j])] = true;
+                    }
+                }
+                if (versionNames) {
+                    for (j = 0, js = versionNames.length; j < js; j++) {
+                        jc = versionNames[j];
+                        if (item.version.indexOf(jc.number) === 0) {
+                            item.fullname = jc.name;
+                            item["is" + _upperCase1st(item.fullname)] = true;
+                            break;
+                        }
+                    }
+                }
+                if (rule === parseRule.platforms) {
+                    item.isMobile = /mobile|phone/.test(ua) || item.isBlackberry;
+                    item.isMobile = item.isMobile === undefined ? false : true;
+                    item.isTablet = /tablet/.test(ua) || item.isIpad || (item.isAndroid && !/mobile/.test(ua));
+                    item.isTablet = item.isTablet === undefined ? false : true;
+                    if (item.isTablet) item.isMobile = false;
+                    item.isDesktop = !item.isMobile && !item.isTablet ? true : false;
+                    if (item.ios) {
+                        item.fullname = 'ios' + parseInt(item.version, 10);
+                        item["is" + _upperCase1st(item.fullname)] = true;
+                    }
+                }
+                break;
+            }
+        }
+        if (!item.name) {
+            item['isUnknown'] = true;
+            item.name = '';
+            item.version = '';
+        }
+        return item;
+    }
+    // 大写第一个字母
+    function _upperCase1st(string) {
+        return string.replace(/^(\w)/, function (w) {
+            return w.toUpperCase()
+        });
+    }
+    // 测试mime
+    function _mime(where, value, name, nameReg) {
+        var mimeTypes = win.navigator.mimeTypes,
+            i;
+        for (i in mimeTypes) {
+            if (mimeTypes[i][where] == value) {
+                if (name !== undefined && nameReg.test(mimeTypes[i][name])) return true;
+                else if (name === undefined) return true;
+            }
+        }
+        return false;
+    }
+    // 测试plugins
+    function _plugins(where, value) {
+        var plugins = win.navigator.plugins,
+            i;
+        for (i in plugins) {
+            if (plugins[i][where] == value) return true;
+        }
+        return false;
+    }
+})(jQuery, this);
+    </script>
+    <script>
+/*
+
+jQuery Browser Plugin
+    * Version 2.3
+    * 2008-09-17 19:27:05
+    * URL: http://jquery.thewikies.com/browser
+    * Description: jQuery Browser Plugin extends browser detection capabilities and can assign browser selectors to CSS classes.
+    * Author: Nate Cavanaugh, Minhchau Dang, & Jonathan Neal
+    * Copyright: Copyright (c) 2008 Jonathan Neal under dual MIT/GPL license.
+    * JSLint: This javascript file passes JSLint verification.
+*//*jslint
+        bitwise: true,
+        browser: true,
+        eqeqeq: true,
+        forin: true,
+        nomen: true,
+        plusplus: true,
+        undef: true,
+        white: true
+*//*global
+        jQuery
+*/
+
+(function ($) {
+    $.browserTest = function (a, z) {
+        var u = 'unknown', x = 'X', m = function (r, h) {
+            for (var i = 0; i < h.length; i = i + 1) {
+                r = r.replace(h[i][0], h[i][1]);
+            }
+
+            return r;
+        }, c = function (i, a, b, c) {
+            var r = {
+                name: m((a.exec(i) || [u, u])[1], b)
+            };
+
+            r[r.name] = true;
+
+            r.version = (c.exec(i) || [x, x, x, x])[3];
+
+            if (r.name.match(/safari/) && r.version > 400) {
+                r.version = '2.0';
+            }
+
+            if (r.name === 'presto') {
+                r.version = ($.browser.version > 9.27) ? 'futhark' : 'linear_b';
+            }
+            r.versionNumber = parseFloat(r.version, 10) || 0;
+            r.versionX = (r.version !== x) ? (r.version + '').substr(0, 1) : x;
+            r.className = r.name + r.versionX;
+
+            return r;
+        };
+
+        a = (a.match(/Opera|Navigator|Minefield|KHTML|Chrome/) ? m(a, [
+            [/(Firefox|MSIE|KHTML,\slike\sGecko|Konqueror)/, ''],
+            ['Chrome Safari', 'Chrome'],
+            ['KHTML', 'Konqueror'],
+            ['Minefield', 'Firefox'],
+            ['Navigator', 'Netscape']
+        ]) : a).toLowerCase();
+
+        $.browser = $.extend((!z) ? $.browser : {}, c(a, /(camino|chrome|firefox|netscape|konqueror|lynx|msie|opera|safari)/, [], /(camino|chrome|firefox|netscape|netscape6|opera|version|konqueror|lynx|msie|safari)(\/|\s)([a-z0-9\.\+]*?)(\;|dev|rel|\s|$)/));
+
+        $.layout = c(a, /(gecko|konqueror|msie|opera|webkit)/, [
+            ['konqueror', 'khtml'],
+            ['msie', 'trident'],
+            ['opera', 'presto']
+        ], /(applewebkit|rv|konqueror|msie)(\:|\/|\s)([a-z0-9\.]*?)(\;|\)|\s)/);
+
+        $.os = {
+            name: (/(win|mac|linux|sunos|solaris|iphone)/.exec(navigator.platform.toLowerCase()) || [u])[0].replace('sunos', 'solaris')
+        };
+
+        if (!z) {
+            $('html').addClass([$.os.name, $.browser.name, $.browser.className, $.layout.name, $.layout.className].join(' '));
+        }
+    };
+
+    $.browserTest(navigator.userAgent);
+})(jQuery);
+    </script>
+    <script>
+        /*获取服务器时间*/
+        var server_time = new Date().getTime();
+        console.log(server_time);
+    </script>
+    <script>
+var start_time = new Date();
+var end_time =0 ;
+var use_time=0; 
+var server_time=parseInt(server_time);
+var t = setInterval(function(){
+    if(document.readyState=="complete"){domTime();}
+},1);
+
+function domTime(){
+    end_time = new Date();
+    use_time=end_time.getTime() -  start_time.getTime();
+    clearInterval(t);
+    $(".detecterror_txt p:eq(9)").html("<span>渲染时间：</span>"+use_time+"ms");  
+}
+
+Date.prototype.Format = function (fmt) { //author: meizz 
+ var o = {
+     "M+": this.getMonth() + 1, //月份 
+     "d+": this.getDate(), //日 
+     "h+": this.getHours(), //小时 
+     "m+": this.getMinutes(), //分 
+     "s+": this.getSeconds(), //秒 
+     "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+     "S": this.getMilliseconds() //毫秒 
+ };
+ if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+ for (var k in o)
+ if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+ return fmt;
+}
+function browserCheck() {
+    var userAgent = navigator.userAgent, rMsie = /(msie\s|trident.*rv:)([\w.]+)/, rFirefox = /(firefox)\/([\w.]+)/, rOpera = /(opera).+version\/([\w.]+)/, rChrome = /(chrome)\/([\w.]+)/, rSafari = /version\/([\w.]+).*(safari)/;
+    var browser;
+    var version;
+    var ua = userAgent.toLowerCase();
+    function uaMatch(ua) {
+        var match = rMsie.exec(ua);
+        if (match != null) {
+            return {
+                browser : "IE",
+                version : match[2] || "0"
+            };
+        }
+        var match = rFirefox.exec(ua);
+        if (match != null) {
+            return {
+                browser : match[1] || "",
+                version : match[2] || "0"
+            };
+        }
+        var match = rOpera.exec(ua);
+        if (match != null) {
+            return {
+                browser : match[1] || "",
+                version : match[2] || "0"
+            };
+        }
+        var match = rChrome.exec(ua);
+        if (match != null) {
+            return {
+                browser : match[1] || "",
+                version : match[2] || "0"
+            };
+        }
+        var match = rSafari.exec(ua);
+        if (match != null) {
+            return {
+                browser : match[1] || "",
+                version : match[2] || "0"
+            };
+        }
+        if (match != null) {
+            return {
+                browser : "",
+                version : "0"
+            };
+        }
+    }
+    var browserMatch = uaMatch(userAgent.toLowerCase());
+    if (browserMatch.browser) {
+        browser = browserMatch.browser;
+        version = browserMatch.version;
+    }
+    var i = 0;
+    var s = $.ua().is360se;
+    if (s == true) {
+        return "360安全浏览器Chrome内核,版本："+ version;
+        i = 1;
+    }
+    
+    var s = $.ua().isChrome;
+    if (s == true) {
+        return "谷歌浏览器（原版）,版本：" + version;
+        i = 1;
+    }
+    
+    var s = $.ua().is360ee;
+    if (s == true) {
+        return "Chrome浏览器,版本："+ version;
+        i = 1;
+    }
+
+    var s = $.ua().isLiebao;
+    if (s == true) {
+        return "猎豹浏览器chrome内核,版本："+version;
+        i = 1;
+    }
+    var s = $.ua().isLiebao;
+    if (s == true) {
+        return "猎豹浏览器chrome内核,版本："+ version;
+        i = 1;
+    }
+    var s = $.ua().isSougou;
+    if (s == true) {
+        return "搜狗浏览器chrome内核,版本："+ version;
+        i = 1;
+    }
+    var s1 = $.ua().isIe;
+    if (s1 == true) {
+        var s2 = $.ua().ie;
+        return "IE浏览器，版本：" + version;
+        if (s2 < 8) {
+            return "IE浏览器 8.0以下，为了您获得良好的上网体验，强烈建议您升级您的IE，或者使用360安全浏览器！";
+        }
+        i = 1;
+    }
+    var s = $.ua().isFirefox;
+    ;
+    if (s == true) {
+        return "firefox浏览器，版本：" + version;
+        i = 1;
+    }
+    var s = $.ua().isMobile;
+    if (s == true) {
+        return "手机版浏览器";
+        i = 1;
+    }
+    var s = $.ua().isTablet;
+    if (s == true) {
+        return "平板浏览器";
+        i = 1;
+    }
+    if (i == 0) {
+        return browser + "浏览器"+ "版本：" + version;
+    }
+    return "未知浏览器";
+}
+
+function detectOS() {
+    var sUserAgent = navigator.userAgent;
+    var isWin = (navigator.platform == "Win32") || (navigator.platform == "Windows");
+    var isMac = (navigator.platform == "Mac68K") || (navigator.platform == "MacPPC") || (navigator.platform == "Macintosh") || (navigator.platform == "MacIntel");
+    if (isMac) return "Mac";
+    var isUnix = (navigator.platform == "X11") && !isWin && !isMac;
+    if (isUnix) return "Unix";
+    var isLinux = (String(navigator.platform).indexOf("Linux") > -1);
+    if (isLinux) return "Linux";
+    if (isWin) {
+        var isWin2K = sUserAgent.indexOf("Windows NT 5.0") > -1 || sUserAgent.indexOf("Windows 2000") > -1;
+        if (isWin2K) return "Win2000";
+        var isWinXP = sUserAgent.indexOf("Windows NT 5.1") > -1 || sUserAgent.indexOf("Windows XP") > -1;
+        if (isWinXP) return "WinXP";
+        var isWin2003 = sUserAgent.indexOf("Windows NT 5.2") > -1 || sUserAgent.indexOf("Windows 2003") > -1;
+        if (isWin2003) return "Win2003";
+        var isWinVista= sUserAgent.indexOf("Windows NT 6.0") > -1 || sUserAgent.indexOf("Windows Vista") > -1;
+        if (isWinVista) return "WinVista";
+        var isWin7 = sUserAgent.indexOf("Windows NT 6.1") > -1 || sUserAgent.indexOf("Windows 7") > -1;
+        if (isWin7) return "Win7";
+    }
+    return "other";
+}
+
+function getCPU() {
+    var agent = navigator.userAgent.toLowerCase();
+    if (agent.indexOf("win64") >= 0 || agent.indexOf("wow64") >= 0)
+        return "x64";
+    if(navigator.cpuClass!=undefined){
+        return navigator.cpuClass;
+    }else{
+        return "";
+    }
+}
+function getLanguage() {
+    if (navigator.appName == 'Netscape')
+        return navigator.language;
+    else
+        return navigator.browserLanguage
+}
+
+function getGMT(){
+    var d = new Date();
+    time_zone = -d.getTimezoneOffset()/60;
+    if( time_zone > 0 ){
+        time_zone = "+" + time_zone;
+    }
+    return time_zone;
+}
+
+function browserRedirect() {
+    var sUserAgent = navigator.userAgent.toLowerCase();
+    var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+    var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+    var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+    var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+    var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+    var bIsAndroid = sUserAgent.match(/android/i) == "android";
+    var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+    var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+    if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+        return ("是");
+    } else {
+        return ("否");
+    }
+}
+
+/**
+ * 和PHP一样的时间戳格式化函数
+ * @param  {string} format    格式
+ * @param  {int}    timestamp 要格式化的时间 默认为当前时间
+ * @return {string}           格式化的时间字符串
+ */
+function date(format, timestamp){  
+    var a, jsdate=((timestamp) ? new Date(timestamp) : new Date());
+    var pad = function(n, c){
+        if((n = n + "").length < c){
+            return new Array(++c - n.length).join("0") + n;
+        } else {
+            return n;
+        }
+    };
+    var txt_weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    var txt_ordin = {1:"st", 2:"nd", 3:"rd", 21:"st", 22:"nd", 23:"rd", 31:"st"};
+    var txt_months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; 
+    var f = {
+        // Day
+        d: function(){return pad(f.j(), 2)},
+        D: function(){return f.l().substr(0,3)},
+        j: function(){return jsdate.getDate()},
+        l: function(){return txt_weekdays[f.w()]},
+        N: function(){return f.w() + 1},
+        S: function(){return txt_ordin[f.j()] ? txt_ordin[f.j()] : 'th'},
+        w: function(){return jsdate.getDay()},
+        z: function(){return (jsdate - new Date(jsdate.getFullYear() + "/1/1")) / 864e5 >> 0},
+       
+        // Week
+        W: function(){
+            var a = f.z(), b = 364 + f.L() - a;
+            var nd2, nd = (new Date(jsdate.getFullYear() + "/1/1").getDay() || 7) - 1;
+            if(b <= 2 && ((jsdate.getDay() || 7) - 1) <= 2 - b){
+                return 1;
+            } else{
+                if(a <= 2 && nd >= 4 && a >= (6 - nd)){
+                    nd2 = new Date(jsdate.getFullYear() - 1 + "/12/31");
+                    return date("W", Math.round(nd2.getTime()/1000));
+                } else{
+                    return (1 + (nd <= 3 ? ((a + nd) / 7) : (a - (7 - nd)) / 7) >> 0);
+                }
+            }
+        },
+       
+        // Month
+        F: function(){return txt_months[f.n()]},
+        m: function(){return pad(f.n(), 2)},
+        M: function(){return f.F().substr(0,3)},
+        n: function(){return jsdate.getMonth() + 1},
+        t: function(){
+            var n;
+            if( (n = jsdate.getMonth() + 1) == 2 ){
+                return 28 + f.L();
+            } else{
+                if( n & 1 && n < 8 || !(n & 1) && n > 7 ){
+                    return 31;
+                } else{
+                    return 30;
+                }
+            }
+        },
+       
+        // Year
+        L: function(){var y = f.Y();return (!(y & 3) && (y % 1e2 || !(y % 4e2))) ? 1 : 0}, 
+        //o not supported yet
+        Y: function(){return jsdate.getFullYear()},
+        y: function(){return (jsdate.getFullYear() + "").slice(2)},
+       
+        // Time
+        a: function(){return jsdate.getHours() > 11 ? "pm" : "am"},
+        A: function(){return f.a().toUpperCase()},
+        B: function(){
+            // peter paul koch:
+            var off = (jsdate.getTimezoneOffset() + 60)*60;
+            var theSeconds = (jsdate.getHours() * 3600) + (jsdate.getMinutes() * 60) + jsdate.getSeconds() + off;
+            var beat = Math.floor(theSeconds/86.4);
+            if (beat > 1000) beat -= 1000;
+            if (beat < 0) beat += 1000;
+            if ((String(beat)).length == 1) beat = "00"+beat;
+            if ((String(beat)).length == 2) beat = "0"+beat;
+            return beat;
+        },
+        g: function(){return jsdate.getHours() % 12 || 12},
+        G: function(){return jsdate.getHours()},
+        h: function(){return pad(f.g(), 2)},
+        H: function(){return pad(jsdate.getHours(), 2)},
+        i: function(){return pad(jsdate.getMinutes(), 2)},
+        s: function(){return pad(jsdate.getSeconds(), 2)},
+        //u not supported yet
+       
+        // Timezone
+        //e not supported yet
+        //I not supported yet
+        O: function(){
+            var t = pad(Math.abs(jsdate.getTimezoneOffset()/60*100), 4);
+            if (jsdate.getTimezoneOffset() > 0) t = "-" + t; else t = "+" + t;
+            return t;
+        },
+        P: function(){var O = f.O();return (O.substr(0, 3) + ":" + O.substr(3, 2))},
+        //T not supported yet
+        //Z not supported yet
+       
+        // Full Date/Time
+        c: function(){return f.Y() + "-" + f.m() + "-" + f.d() + "T" + f.h() + ":" + f.i() + ":" + f.s() + f.P()},
+        //r not supported yet
+        U: function(){return Math.round(jsdate.getTime()/1000)}
+    };
+       
+    return format.replace(/[\\]?([a-zA-Z])/g, function(t, s){
+        if( t!=s ){
+            // escaped
+            ret = s;
+        } else if( f[s] ){
+            // a date function exists
+            ret = f[s]();
+        } else{
+            // nothing special
+            ret = s;
+        }
+        return ret;
+    });
+}
+
+// JavaScript Document
+$(function(){
+    $(".detecterror_txt p:eq(0)").html("<span>浏览器：</span><i>"+browserCheck()+"</i>"); 
+    $(".detecterror_txt p:eq(1)").html("<span>操作系统：</span>"+detectOS()+" "+getCPU()); 
+    $(".detecterror_txt p:eq(2)").html("<span>语言：</span>"+getLanguage()); 
+    $(".detecterror_txt p:eq(3)").html("<span>服务器时间：</span>"+date('Y年m月d日 H:i:s',server_time));  
+    $(".detecterror_txt p:eq(4)").html("<span>本地时间：</span>"+new Date().Format("yyyy年MM月dd日 hh:mm:ss"));   
+    $(".detecterror_txt p:eq(5)").html("<span>本地时区格林威治GMT：</span>本地"+getGMT());
+    var str_ip='加载失败';
+    if(!!returnCitySN) str_ip=returnCitySN.cip+'（'+returnCitySN.cname+'）';
+    $(".detecterror_txt p:eq(6)").html("<span>ip地址：</span>"+str_ip);  
+    $(".detecterror_txt p:eq(7)").html("<span>移动设备：</span>"+browserRedirect());  
+    $(".detecterror_txt p:eq(8)").html("<span>初始窗口：</span>宽度 : "+document.body.clientWidth+" px   高度 : "+document.body.clientHeight+" px");  
+    $(".detecterror_txt p:eq(9)").html("<span>渲染时间：</span>"+use_time+"ms");  
+});
+
+setInterval("showTime()", 1000);
+function showTime()
+{
+    //server_time=server_time+1000;
+    $(".detecterror_txt p:eq(4)").html("<span>本地时间：</span>"+new Date().Format("yyyy年MM月dd日 hh:mm:ss"));   
+    server_time+=1000;
+    $(".detecterror_txt p:eq(3)").html("<span>服务器时间：</span>"+date('Y年m月d日 H:i:s',server_time));  
+}
+    </script>
+</body>
+</html>

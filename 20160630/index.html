@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta content="user-scalable=no;" name="viewport" />
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<title>壹度小贷管理系统</title>
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link href="css/jquery-ui.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/default.css">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<!-- Avivo CSS --> 
+	<link rel="stylesheet" href="assets/css/theme.css" />
+    <link rel="stylesheet" href="assets/css/avivo.css" />
+    <link rel="stylesheet" id="theme" href="assets/css/themes/start.css" />
+    
+	<!--[if IE]>
+		<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
+	<![endif]-->
+
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+	<div class="nav-bar">
+		<div class="start">
+			<a href="#" class="start-menu" id="full"><i class="fa fa-bars"></i></a>
+		</div>
+		<div class="nav-apps">
+			<div class="qucik-app" onclick="javascript:openApp('add-user', '添加客户', '添加贷款.html', 'fa-cogs', 600, 558, false);"><i class="fa fa-users"></i></div>
+
+		</div>
+		<div class="clock nselect">
+			<ul>
+			  <li id="hours"></li>
+			  <li id="point">:</li>
+			  <li id="min"></li>
+			  <li id="point">:</li>
+			  <li id="sec"></li>
+			</ul>
+			<div id="Date"></div>
+		</div>
+	</div>
+	<div class="menu">
+		<div class="submenu">
+			<ul>
+				<li><a href="#" onclick="openApp('settings', 'Settings', 'settings.html', 'fa-cogs')"><i class="fa fa-cogs"></i></a></li>
+				<li><a href="#" onclick="openApp('users', 'users', 'users.html', 'fa-users')"><i class="fa fa-users"></i></a></li>
+				<li><a href="#" onclick="openApp('time', 'Time preferences', 'time.html', 'fa-clock-o')"><i class="fa fa-clock-o"></i></a></li>
+				<li><a href="#"><i class="fa fa-file-image-o"></i></a></li>
+				<li><a href="#"><i class="fa fa-sign-out"></i></a></li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="content">
+		<div class="col-desktop nselect">
+
+		<!-- 	<div class="app-icon">
+				<a href="#" ondblclick="openApp('users', '客户列表', '客户管理.html', 'fa-users', 880, 550, true)">
+					<i class="ico"><img src="assets/img/dashboard.png" alt=""></i>
+					<span>控制面板</span>
+				</a>
+			</div>
+			<div class="app-icon">
+				<a href="#" ondblclick="openApp('users', '客户列表', '客户管理.html', 'fa-users', 880, 550, true)">
+					<i class="ico"><img src="assets/img/computer.png" alt=""></i>
+					<span>我的电脑</span>
+				</a>
+			</div> -->
+			<div class="app-icon">
+				<a href="#" ondblclick="openApp('users', '客户列表', '客户管理.html', 'fa-users', 1100, 650, true)">
+					<i class="ico"><img src="assets/img/user.png" alt=""></i>
+					<span>客户管理</span>
+				</a>
+			</div>
+			<div class="app-icon">
+				<a href="#" ondblclick="openApp('business', '业务办理', '业务办理.html', 'fa-users', 1100, 650, true)">
+					<i class="ico"><img src="assets/img/business.png" alt=""></i>
+					<span>业务办理</span>
+				</a>
+			</div>
+			<div class="app-icon">
+				<a href="#" ondblclick="openApp('loan', '贷后管理', '贷后管理.html', 'fa-users', 880, 550, true)">
+					<i class="ico"><img src="assets/img/loan.png" alt=""></i>
+					<span>贷后管理</span>
+				</a>
+			</div>
+
+			<!-- <div class="app-icon">
+				<a href="#" ondblclick="openApp('users', '客户列表', '客户管理.html', 'fa-users', 880, 550, true)">
+					<i class="ico"><img src="assets/img/finance.png" alt=""></i>
+					<span>财务管理</span>
+				</a>
+			</div>
+			<div class="app-icon">
+				<a href="#" ondblclick="openApp('users', '客户列表', '客户管理.html', 'fa-users', 880, 550, true)">
+					<i class="ico"><img src="assets/img/data.png" alt=""></i>
+					<span>统计报表</span>
+				</a>
+			</div> -->
+
+		</div>
+	</div>
+
+	<!-- Latest compiled and minified JavaScript -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="assets/js/jquery.cookie.js"></script>
+	<script src="assets/js/jquery.fullscreen.js"></script>
+	<script src="assets/js/clock.js"></script>
+    <script src="assets/js/desktop.js"></script>
+
+    <script>
+	    /*关闭窗口判断-start*/
+	    // window.onbeforeunload=function(){
+	    // 	return '刷新会丢失未保存数据！';
+	    // };
+	    /*关闭窗口判断-end*/
+
+    </script>
+</body>
+</html>

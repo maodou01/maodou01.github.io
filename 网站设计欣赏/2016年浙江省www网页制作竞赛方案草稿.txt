@@ -1,0 +1,42 @@
+评分标准：
+
+50分 = 网站完整 + 栏目内容条理清晰、排版整齐有致 + 主题明确
+
+15分 = web服务器架设 + LOGO + banner + 按钮 + 计数器 + 添加收藏 + 设为主页 + 栏目
+
+15分 = css + asp + php + javascript + vbscript
+
+5分 = 数据库access2010 + mysql5.6
+
+10分 = 明快简洁 + 特色鲜明 + 创意
+
+5分 = 无障碍获得信息 
+
+首选css、javascript、php+mysql5.6
+xampp：
+Apache（httpd.conf）：DocumentRoot：修改路径 -- <Directory "修改路径">
+PHP（php.ini）：
+mysql:【解决乱码】链接代码后加mysql_query("SET NAMES 'utf8'");
+建立字段用utf8_general_ci编码
+设置时区加代码：date_default_timezone_set('PRC');
+
+计数器：$_SESSION('count')++;echo $_SESSION('count');
+添加收藏：window.external.addFavorite(window.location, title);
+设为主页：document.body.style.behavior='url(#default#homepage)';document.body.setHomePage(window.location);
+banner轮播：
+  var i=1;
+  banner();
+  function banner(){
+	  var _banner=document.getElementById('banner');
+	  switch(i){
+		  case 1:
+		  _banner.style.backgroundImage='url(images/banner.jpg)';
+		  i++;
+		  break;
+		  case 2:
+		  _banner.style.backgroundImage='url(images/banner1.jpg)';
+		  i=1;
+		  break;
+	  }
+	  setTimeout(banner,3000);
+  }

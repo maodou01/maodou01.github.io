@@ -1,0 +1,72 @@
+<section id="video-user" class="video-user">
+    <div class="wrapper-title">
+        <span>采集视频照</span>
+        <div class="tool-group">
+            <div class="closed" onclick="closeWindows('video-user')"></div>
+        </div>
+    </div>
+    <div class="video-pic">
+        <!-- <img src="images/video.jpg" alt=""> -->
+        <video class="c-video" autoplay></video>
+        <canvas class="c-canvas" width="510" height="416"></canvas>
+        <p class="c-tip">抱歉，摄像头未安装，无法正常启动并采集。</p>
+    </div>
+    <div class="col-sm-12 col-xs-12 btn-group">
+        <a href="javascript:;" class="btn-cus btn-add btn-collect">采集</a>
+        <a href="javascript:;" class="btn-cus btn-add btn-sure">确定</a>
+    </div>
+</section>
+<script>
+    var initVideo=function(){
+        /*摄像头初始化*/
+        var video = $('#video-user .c-video')[0],
+            videoObj = { "video": true },
+            errBack = function(error) {
+                console.log("Video capture error: ", error.code);
+                 $('#video-user .c-tip').show(0);
+            };
+
+        // Put video listeners into place
+        if(navigator.getUserMedia) { // Standard
+            navigator.getUserMedia(videoObj, function(stream) {
+                video.src = stream;
+                video.play();
+            }, errBack);
+        } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+            navigator.webkitGetUserMedia(videoObj, function(stream){
+                video.src = window.webkitURL.createObjectURL(stream);
+                video.play();
+            }, errBack);
+        }
+        else if(navigator.mozGetUserMedia) { // Firefox-prefixed
+            navigator.mozGetUserMedia(videoObj, function(stream){
+                video.src = window.URL.createObjectURL(stream);
+                video.play();
+            }, errBack);
+        }
+    };
+    initVideo();/*启动摄像头*/
+    $('#video-user').on('click','.btn-collect',function(){
+        /*采集*/
+        var $this=$(this),
+            canvas = $('#video-user .c-canvas')[0],
+            context = canvas.getContext("2d"),
+            video = $('#video-user .c-video')[0];
+        if($this.html()=='采集'){
+            context.drawImage(video, 0, 0, 480, 380);
+            $('#video-user .c-canvas').show(0);
+            $this.html('重新采集');
+        }else{
+            $('#video-user .c-canvas').hide(0);
+            $this.html('采集');
+        }
+    });
+    $('#video-user').on('click','.btn-sure',function(){
+        /*确定*/
+        /*var canvas = $('#video-user .c-canvas')[0],
+            head_pic=$('#collect-info .c-img-headpic')[0];
+        head_pic.src=canvas.toDataURL('image/png');
+        $('#collect-info .c-img-headpic').show(0);*/
+        closeWindows('video-user');
+    });
+</script>

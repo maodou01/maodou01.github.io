@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据公示</title>
+    <link rel="stylesheet" href="css/zui.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <!--[if lte IE 8]><link rel="stylesheet" href="css/ie_hack.css"><![endif]-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/countUp.min.js"></script>
+    <script src="js/echarts.common.min.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="topbar">
+            <div class="container">
+                <div class="pull-left">            
+                    <span>客服热线：400-6668-888</span>
+                    <a class="dropdown-toggle app" href="javascript:;">手机APP</a>
+                    <a class="dropdown-toggle wx" href="javascript:;">微信端</a>
+                    <div class="dropdown-menu wx" style="text-align: center;">
+                        <img src="images/qrcode_wx.png" alt="微信二维码"/>
+                    </div>
+                    <div class="dropdown-menu app" style="text-align: center;">
+                        <img src="images/qrcode_app.png" alt="app二维码"/>
+                        <a href="" class="download android">Android版下载</a>
+                        <a href="" class="download apple">IOS版下载</a>
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <ul class="nav nav-topbar">
+                        <li><a href="">邀请返利</a></li>
+                        <li><a href="">新手指引</a></li>
+                        <li><a href="">平台活动</a></li>
+                        <li><a href="help.html">帮助</a></li>
+                        <li><a href="register.html" title="我要注册">免费注册</a></li>
+                        <li><a href="login.html" title="我要登录">立即登录</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--工具条-->
+        <div class="navbar">
+            <div class="container animated flipInX">
+                <div class="logo pull-left">
+                    <img src="images/logo.jpg" onclick="location.href='/'" alt="" height="100%" />
+                </div>
+                <div class="nav pull-right">
+                    <ul class="nav nav-pills">
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="list.html">我要投资</a></li>
+                        <li><a href="">安全保障</a></li>
+                        <li><a href="finanz.html">数据公示</a></li>
+                        <li><a href="">关于我们</a></li>
+                        <li><a href="">我的帐户</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--导航-->
+    </div>
+    <!--头部导航-->
+    
+    <div class="page">
+        <div class="main-pic">
+            <div class="txt">截至2016-08-17日平台总投资额</div>
+        </div>
+        <div style="background-color: #ffffff;">
+        <div class="container">
+            <div class="finanz-monitor">
+                <div class="pic pic1">
+                    <a href=""></a>
+                    <p class="title">平台风险备付金(元)</p>
+                    <p class="num-curr" data-box-count="151616.15" data-decimal="2">加载中</p>
+                    <p class="tip">点击查看备付金</p>
+                </div>
+                <div class="pic pic2">
+                    <a href=""></a>
+                    <p class="title">车辆车库监控(辆)</p>
+                    <p class="num-curr" data-box-count="151">加载中</p>
+                    <p class="tip">点击查看监控</p>
+                </div>
+                <div class="pic pic3">
+                    <a href=""></a>
+                    <p class="title">GPS实时监控(辆)</p>
+                    <p class="num-curr" data-box-count="15">加载中</p>
+                    <p class="tip">点击查看监控</p>
+                </div>
+            </div>
+            <script>
+                var bool_monitor_box=true,
+                    scroll_monitor_box=function(){
+                    var view_area=$(window).scrollTop()+$(window).height(),
+                        data_top=$('.page .finanz-monitor').offset().top;
+                    if(view_area>data_top && bool_monitor_box){
+                        bool_monitor_box=false;
+                        $('.page .finanz-monitor [data-box-count]').each(function(i,that){
+                            var decimal=parseInt($(that).attr('data-decimal'));
+                            new CountUp(that, 0, Number($(that).attr('data-box-count')), decimal, 4, {
+                                useEasing : true, 
+                                useGrouping : true, 
+                                separator : ',', 
+                                decimal : '.', 
+                                prefix : '', 
+                                suffix : '' 
+                            }).start();
+                        });
+                    }
+                };
+                scroll_monitor_box();
+                $(window).on('scroll',scroll_monitor_box);
+            </script>
+            <div class="finanz-title" style="background-image: url('images/finanz_txt1.png');"></div>
+            <div class="finanz-data">
+                <div class="box">
+                    <div class="pic pic1"></div>
+                    <p class="tip">平台注册人数(人)</p>
+                    <p class="num-curr" data-box-count="151616">加载中</p>
+                </div>
+                <div class="box">
+                    <div class="pic pic2"></div>
+                    <p class="tip">累计成交笔数(笔)</p>
+                    <p class="num-curr" data-box-count="151616">加载中</p>
+                </div>
+                <div class="box">
+                    <div class="pic pic3"></div>
+                    <p class="tip">投资人累计收益(元)</p>
+                    <p class="num-curr" data-box-count="151616" data-decimal="2">加载中</p>
+                </div>
+                <div class="box">
+                    <div class="pic pic4"></div>
+                    <p class="tip">累计待收本金(元)</p>
+                    <p class="num-curr" data-box-count="151616" data-decimal="2">加载中</p>
+                </div>
+            </div>
+            <script>
+                var bool_data_box=true,
+                    scroll_data_box=function(){
+                    var view_area=$(window).scrollTop()+$(window).height(),
+                        data_top=$('.page .finanz-data').offset().top;
+                    if(view_area>data_top && bool_data_box){
+                        bool_data_box=false;
+                        $('.page .finanz-data [data-box-count]').each(function(i,that){
+                            var decimal=parseInt($(that).attr('data-decimal'));
+                            new CountUp(that, 0, Number($(that).attr('data-box-count')), decimal, 4, {
+                                useEasing : true, 
+                                useGrouping : true, 
+                                separator : ',', 
+                                decimal : '.', 
+                                prefix : '', 
+                                suffix : '' 
+                            }).start();
+                        });
+                    }
+                };
+                scroll_data_box();
+                $(window).on('scroll',scroll_data_box);
+            </script>
+            <div class="finanz-title" style="background-image: url('images/finanz_txt2.png');"></div>
+            <div class="finanz-barchart">
+                <!-- 柱型图 -->
+            </div>
+            <script>
+                var myChart = echarts.init($('.finanz-barchart')[0]);
+                option = {
+                    tooltip : {
+                        trigger: 'axis',
+                        axisPointer : {
+                            type : 'shadow'
+                        }
+                    },
+                    legend: {
+                        data:['月交易额','一月标','三月标','六月标','十二月标']
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    xAxis : [
+                        {
+                            type : 'category',
+                            data : ['一月','二月','三月','四月','五月','六月','七月'],
+                            axisLabel:{
+                                textStyle: {
+                                    color: '#888888'
+                                }
+                            },
+                            axisTick: {
+                                show: false  
+                            },
+                            axisLine: {
+                                show: false
+                            }
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value',
+                            axisLine: {
+                                show: false
+                            },
+                            axisTick: {
+                                show: false  
+                            },
+                            axisLabel: {
+                                textStyle: {
+                                    color: '#888888'
+                                },
+                                formatter: function(v){
+                                    if(v>9999){
+                                        v=parseInt(v/10000) + '万元';
+                                    }else{
+                                        v=v + '元';
+                                    }
+                                    return v;
+                                }
+                            }
+                        }
+                    ],
+                    series : [
+                        {
+                            name:'月交易额',
+                            type:'bar',
+                            data:[232000, 330200, 200100, 303040, 403900, 153300, 280020],
+                            itemStyle:{
+                                normal:{
+                                    color: '#fa7777',
+                                    barBorderRadius: [4,4,0,0]
+                                }
+                            },
+                            barWidth: 22
+                        },
+                        {
+                            name:'一月标',
+                            type:'bar',
+                            stack: '月交易额',
+                            data:[51120, 55532, 43601, 76834, 91200, 13130, 11210],
+                            itemStyle:{
+                                normal:{
+                                    color: '#de8822'
+                                }
+                            },
+                            barWidth: 10
+                        },
+                        {
+                            name:'三月标',
+                            type:'bar',
+                            stack: '月交易额',
+                            data:[21820, 42982, 41191, 15534, 86690, 33330, 38310],
+                            itemStyle:{
+                                normal:{
+                                    color: '#f7a748'
+                                }
+                            },
+                            barWidth: 10
+                        },
+                        {
+                            name:'六月标',
+                            type:'bar',
+                            stack: '月交易额',
+                            data:[21050, 34832, 53901, 32554, 44490, 66830, 86710],
+                            itemStyle:{
+                                normal:{
+                                    color: '#f8d6ad'
+                                }
+                            },
+                            barWidth: 10
+                        },
+                        {
+                            name:'十二月标',
+                            type:'bar',
+                            stack: '月交易额',
+                            data:[21150, 43432, 23601, 58954, 79750, 63340, 99810],
+                            itemStyle:{
+                                normal:{
+                                    color: '#83a0a9',
+                                    barBorderRadius: [4,4,0,0]
+                                }
+                            },
+                            barWidth: 10
+                        }
+                    ]
+                };
+                var bool_barchart_box=true,
+                    scroll_barchart_box=function(){
+                    var view_area=$(window).scrollTop()+$(window).height(),
+                        data_top=$('.page .finanz-barchart').offset().top;
+                    if(view_area>data_top && bool_barchart_box){
+                        bool_data_box=false;
+                        myChart.setOption(option);
+                    }
+                };
+                scroll_barchart_box();
+                $(window).on('scroll',scroll_barchart_box);
+            </script>
+        </div>
+        </div>
+        <div class="container">    
+            <div class="finanz-title" style="background-image: url('images/finanz_txt3.png');"></div>
+            <div class="finanz-ranking">
+                <div class="box">
+                    <div class="title"><i class="icon"></i>周排行榜</div>
+                    <ul>
+                        <li>
+                            <div class="num first">1</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                        <li>
+                            <div class="num second">2</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                        <li>
+                            <div class="num third">3</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                        <li>
+                            <div class="num">4</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                        <li>
+                            <div class="num">5</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                        <li>
+                            <div class="num">6</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                        <li>
+                            <div class="num">7</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                        <li>
+                            <div class="num">8</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                        <li>
+                            <div class="num">9</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                        <li>
+                            <div class="num">10</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="box main">
+                    <div class="title"><i class="icon"></i>金融桥总排行榜</div>
+                    <ul>
+                        <li>
+                            <div class="num first">1</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                        <li>
+                            <div class="num second">2</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                        <li>
+                            <div class="num third">3</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                        <li>
+                            <div class="num">4</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                        <li>
+                            <div class="num">5</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                        <li>
+                            <div class="num">6</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                        <li>
+                            <div class="num">7</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                        <li>
+                            <div class="num">8</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                        <li>
+                            <div class="num">9</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                        <li>
+                            <div class="num">10</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <div class="title"><i class="icon"></i>月排行榜</div>
+                    <ul>
+                        <li>
+                            <div class="num first">1</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                        <li>
+                            <div class="num second">2</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                        <li>
+                            <div class="num third">3</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                        <li>
+                            <div class="num">4</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                        <li>
+                            <div class="num">5</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                        <li>
+                            <div class="num">6</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                        <li>
+                            <div class="num">7</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                        <li>
+                            <div class="num">8</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                        <li>
+                            <div class="num">9</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                        <li>
+                            <div class="num">10</div>
+                            <div class="pic"><img src="http://www.jrq.com/Style/header/images/noavatar_middle.gif" alt=""></div>
+                            <div class="phone">135****0808</div>
+                            <div class="price">616.00</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div style="background-color: #ffffff;">
+        <div class="container">
+            <div class="finanz-title" style="background-image: url('images/finanz_txt4.png');"></div>
+            <div class="finanz-tab">
+                <ul class="nav">
+                    <li class="active"><a href="#week" data-toggle="tab">一周内应回收借款列表</a></li>
+                    <li><a href="#norepay" data-toggle="tab">逾期未归还借款列表</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="week" class="tab-pane fade active in">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>借款标号</th>
+                                    <th>用户名</th>
+                                    <th>借款标题</th>
+                                    <th>借款金额</th>
+                                    <th>还款时间</th>
+                                    <th>还款状态</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span>2018</span></td>
+                                    <td>wang****dai</td>
+                                    <td>李先生东风桥车质押标</td>
+                                    <td>￥<span>4,200.00</span>元</td>
+                                    <td><span>2018-08-08</span></td>
+                                    <td>待还款</td>
+                                </tr>
+                                <tr>
+                                    <td><span>2018</span></td>
+                                    <td>wang****dai</td>
+                                    <td>李先生东风桥车质押标</td>
+                                    <td>￥<span>4,200.00</span>元</td>
+                                    <td><span>2018-08-08</span></td>
+                                    <td>待还款</td>
+                                </tr>
+                                <tr>
+                                    <td><span>2018</span></td>
+                                    <td>wang****dai</td>
+                                    <td>李先生东风桥车质押标</td>
+                                    <td>￥<span>4,200.00</span>元</td>
+                                    <td><span>2018-08-08</span></td>
+                                    <td>待还款</td>
+                                </tr>
+                                <tr>
+                                    <td><span>2018</span></td>
+                                    <td>wang****dai</td>
+                                    <td>李先生东风桥车质押标</td>
+                                    <td>￥<span>4,200.00</span>元</td>
+                                    <td><span>2018-08-08</span></td>
+                                    <td>待还款</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="norepay" class="tab-pane fade">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>借款标号</th>
+                                    <th>用户名</th>
+                                    <th>借款标题</th>
+                                    <th>借款金额</th>
+                                    <th>还款时间</th>
+                                    <th>还款状态</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span>2018</span></td>
+                                    <td>wang****dai</td>
+                                    <td>李先生东风桥车质押标</td>
+                                    <td>￥<span>4,200.00</span>元</td>
+                                    <td><span>2018-08-08</span></td>
+                                    <td>待还款</td>
+                                </tr>
+                                <tr>
+                                    <td><span>2018</span></td>
+                                    <td>wang****dai</td>
+                                    <td>李先生东风桥车质押标</td>
+                                    <td>￥<span>4,200.00</span>元</td>
+                                    <td><span>2018-08-08</span></td>
+                                    <td>待还款</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container about">
+            <div class="pull-left part1" style="background:url('http://www.3dai.com/statics/images/xszn.png') 35px 15px no-repeat;">
+                <p>新手指南</p>
+                <ul>
+                    <li><a href="/guide/index/">新人理财</a></li>
+                    <li><a href="javascript:void(0)">网站地图</a></li>
+                    <li><a href="/help/index.html">帮助中心</a></li>
+                    <li><a href="javascript:window.open('http:\/\/crm2.qq.com\/page\/portalpage\/wpa.php?uin=4008558266&aty=0&a=0&curl=&ty=1')">在线客服</a></li>
+                </ul>
+            </div>
+            <div class="pull-left part2" style="background:url('http://www.3dai.com/statics/images/ptfw.png') 35px 15px no-repeat;">
+                <p>平台服务</p>
+                <ul>
+                    <li><a href="/tinvest/index.html">在线理财</a></li>
+                    <li><a href="/tinvest/index.html?type=search&&cid=jz">债权市场</a></li>
+                    <li><a href="/tool/finanz.html">平台数据</a></li>
+                    <li><a href="/safe/index/">安全保障</a></li>
+                </ul>
+            </div>
+            <div class="pull-left part3" style="background:url('http://www.3dai.com/statics/images/gywm.png') 35px 15px no-repeat;">
+                <p>关于我们</p>
+                <ul>
+                    <li><a href="/about/index/">关于我们</a></li>
+                    <li><a href="/about/index/">公司介绍</a></li>
+                    <li><a href="javascript:void(0)">友情链接</a></li>
+                    <li><a href="/about/contact.html">联系我们</a></li>
+                </ul>
+            </div>
+            <div class="pull-left part4 text-center">
+                <h3>400-6848-555</h3>
+                <div class="works">
+                    工作时间&nbsp;(周末全体休息)<br />
+                    08:30-11:30 13:00-17:30
+                </div>
+                <div class="sns">
+                    <a href="javascript:window.open('http:\/\/weibo.com\/3fendai')"><img src="http://www.3dai.com/statics/images/wb.png" alt="关注新浪微博"></a>
+                    <a href="javascript:void(0)"><img src="http://www.3dai.com/statics/images/wx.png" alt="关注微信"></a>
+                    <a href="javascript:window.open('http:\/\/crm2.qq.com\/page\/portalpage\/wpa.php?uin=4008558266&aty=0&a=0&curl=&ty=1')" title="有问题请联系Q"><img src="http://www.3dai.com/statics/images/qq.png" alt="联系QQ"></a>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="container">
+            <div class="links">
+                <a href="" target="_blank">网贷天地</a><a href="" target="_blank">盈钻网贷</a><a href="" target="_blank">网贷之家</a><a href="" target="_blank">网贷联盟</a><a href="" target="_blank">网贷天眼</a><a href="" target="_blank">网贷帝国</a><a href="" target="_blank">网贷中心</a>
+            </div>
+            <div class="address text-center">
+                <p>公司地址：湖南省长沙市湘江中路万达广场C2栋2605</p>
+                <p>湘ICP备16006377号-1 湖南建信互联网科技股份有限公司 Copyright © 2014-2016 3dai.com, All Rights Reserved</p>
+                <p class="hidden tongji"></p>
+            </div>
+            <div class="aq text-center">
+                <a href="javascript:window.open('http:\/\/si.trustutn.org\/info?sn=187160509000427155309')" title="行业认证"><img src="http://www.3dai.com/dist/images/6.jpg" alt="行业认证"></a>
+                <a href="https://credit.szfw.org/CX20160506015065360130.html" target='_blank' title="诚信网站"><img src='http://www.3dai.com/dist/images/3.jpg' alt="诚信网站" /></a>
+                <a href="javascript:window.open('http:\/\/www.anquan.org\/authenticate\/cert\/?site=www.3dai.com&at=business')" title="品牌认证"><img src="http://www.3dai.com/dist/images/4.jpg" alt="品牌认证"></a>
+                <a href="javascript:window.open('http:\/\/webscan.360.cn\/index\/checkwebsite?url=www.3dai.com')" title="360安全认证"><img src="http://www.3dai.com/dist/images/5.jpg" alt="360安全认证"></a>
+            </div>
+        </div>
+    </div>
+    <!--网站尾部-->
+
+    <script src="js/zui.min.js"></script>
+    <script src="js/layer.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

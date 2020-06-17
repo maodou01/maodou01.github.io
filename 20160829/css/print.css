@@ -1,0 +1,21 @@
+/* 打印专用css */
+.no-print{
+    display: none;
+}
+.no-print-hidden{
+    visibility: hidden;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+.yes-print-block{
+    display: block;
+}
+.yes-print-inlineblock{
+    display: inline-block;
+}
+a{
+    color: inherit;
+}
+a[href]:after {
+    content: none !important;
+}

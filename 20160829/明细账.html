@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>明细账</title>
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/print.css"rel="stylesheet" media="print">
+</head>
+<body>
+    <div class="fixed-tool no-print">
+        <div class="wrap-box">
+            <form>
+              <div class="form-group">
+                <label>查询日期</label>
+                <div class="input-group">
+                    <select class="form-control select-year" name="">
+                        <option value="">读取中</option>
+                    </select>
+                    <span class="input-group-addon">年</span>
+                    <select class="form-control select-month1" name="">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                    <span class="input-group-addon">至</span>
+                    <select class="form-control select-month2" name="">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                    <span class="input-group-addon">月</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>科目编码</label>
+                <input type="text" class="form-control input-code" id="" placeholder="科目编码">
+              </div>
+              <div class="form-group">
+                <label>摘要名称(模糊)</label>
+                <input type="text" class="form-control input-zhaiyao" id="" placeholder="摘要名称">
+              </div>
+              <div class="form-group">
+                  <label>账簿格式</label>
+                  <div class="input-group">
+                  <label class="radio-inline">
+                    <input type="radio" name="tableformat" value="table_amount" checked="checked"> 金额式
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="tableformat" value="table_quantity_amount"> 数量金额式
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="tableformat" value="table_foreign_amount"> 外币金额式
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="tableformat" value="table_quantity_foreign"> 数量外币式
+                  </label>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label>数据筛选</label>
+                  <div class="input-group">
+                    <label class="checkbox-inline">
+                      <input type="checkbox" class="has-nojz" checked="checked"> 包含未记账
+                    </label>
+                  </div>
+              </div>
+            </form>
+        </div>
+        <a href="javascript:;" class="btn-print">打印</a>
+        <a href="javascript:;" class="btn-xlsx">导出XLSX</a>
+        <a href="javascript:;" class="btn-query">查询</a>
+        <a class="btn-back" href="javascript:window.close();">返回</a>
+        <div class="toggle-arrow" onclick="$('.fixed-tool').toggleClass('show');"></div>
+    </div>
+    <h2 class="table-title text-center">明细账</h2>
+    <div class="yeb-table-wrap">
+        <div class="row">
+            <div class="col-33">核算单位：<span class="txt-company">读取中</span></div>
+            <div class="col-33 text-center">查询日期：<span class="txt-query-time" onclick="$('.fixed-tool').toggleClass('show');">请选择查询日期</span></div>
+            <div class="col-33 text-right">本币单位：人民币</div>
+        </div>
+        <div class="row">
+            <div class="col-100">科目：<span class="txt-code">请选择科目</span><span class="pull-right txt-danwei">数量单位：无，外币名称：无</span></div>
+        </div>
+        <table class="table table_amount">
+            <thead>
+                <tr>
+                    <th colspan="2">选择年份</th>
+                    <th rowspan="2">凭证号</th>
+                    <th rowspan="2">摘要</th>
+                    <th rowspan="2">借方金额</th>
+                    <th rowspan="2">贷方金额</th>
+                    <th rowspan="2">方向</th>
+                    <th rowspan="2">余额</th>
+                </tr>
+                <tr>
+                    <th>月</th>
+                    <th>日</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">1</td>
+                    <td class="text-center">31</td>
+                    <td>记-1</td>
+                    <td>提取现金</td>
+                    <td class="price">12,345.56</td>
+                    <td class="price"></td>
+                    <td class="text-center">借</td>
+                    <td class="price">41,542.12</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table_quantity_amount">
+            <thead>
+                <tr>
+                    <th colspan="2">选择年份</th>
+                    <th rowspan="2">凭证号</th>
+                    <th rowspan="2">摘要</th>
+                    <th rowspan="2">单价</th>
+                    <th colspan="2">借方</th>
+                    <th colspan="2">贷方</th>
+                    <th rowspan="2">方向</th>
+                    <th colspan="3">余额</th>
+                </tr>
+                <tr>
+                    <th>月</th>
+                    <th>日</th>
+                    <th>数量</th>
+                    <th>余额</th>
+                    <th>数量</th>
+                    <th>余额</th>
+                    <th>数量</th>
+                    <th>单价</th>
+                    <th>余额</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">1</td>
+                    <td class="text-center">31</td>
+                    <td>记-1</td>
+                    <td>提取现金</td>
+                    <td class="text-center">1.11</td>
+                    <td class="text-center">1234</td>
+                    <td class="price">12,345.56</td>
+                    <td class="text-center">1234</td>
+                    <td class="price">12,345.56</td>
+                    <td class="text-center">借</td>
+                    <td class="text-center">1234</td>
+                    <td class="text-center">1.11</td>
+                    <td class="price">41,542.12</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table_foreign_amount">
+            <thead>
+                <tr>
+                    <th colspan="2">选择年份</th>
+                    <th rowspan="2">凭证号</th>
+                    <th rowspan="2">摘要</th>
+                    <th rowspan="2">汇率</th>
+                    <th colspan="2">借方</th>
+                    <th colspan="2">贷方</th>
+                    <th rowspan="2">方向</th>
+                    <th colspan="3">余额</th>
+                </tr>
+                <tr>
+                    <th>月</th>
+                    <th>日</th>
+                    <th>外币</th>
+                    <th>余额</th>
+                    <th>外币</th>
+                    <th>余额</th>
+                    <th>外币</th>
+                    <th>汇率</th>
+                    <th>余额</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">1</td>
+                    <td class="text-center">31</td>
+                    <td>记-1</td>
+                    <td>提取现金</td>
+                    <td class="text-center">0</td>
+                    <td class="price">1234.00</td>
+                    <td class="price">12,345.56</td>
+                    <td class="price">1234.00</td>
+                    <td class="price">12,345.56</td>
+                    <td class="text-center">借</td>
+                    <td class="price">0</td>
+                    <td class="text-center">1.11</td>
+                    <td class="price">41,542.12</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table_quantity_foreign">
+            <thead>
+                <tr>
+                    <th colspan="2">选择年份</th>
+                    <th rowspan="2">凭证号</th>
+                    <th rowspan="2">摘要</th>
+                    <th rowspan="2">单价</th>
+                    <th rowspan="2">汇率</th>
+                    <th colspan="3">借方</th>
+                    <th colspan="3">贷方</th>
+                    <th rowspan="2">方向</th>
+                    <th colspan="5">余额</th>
+                </tr>
+                <tr>
+                    <th>月</th>
+                    <th>日</th>
+                    <th>数量</th>
+                    <th>外币</th>
+                    <th>余额</th>
+                    <th>数量</th>
+                    <th>外币</th>
+                    <th>余额</th>
+                    <th>数量</th>
+                    <th>单价</th>
+                    <th>外币</th>
+                    <th>汇率</th>
+                    <th>余额</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">1</td>
+                    <td class="text-center">31</td>
+                    <td>记-1</td>
+                    <td>提取现金</td>
+                    <td class="text-center">1.111</td>
+                    <td class="text-center">0</td>
+                    <td class="text-center">1234</td>
+                    <td class="price">1234.00</td>
+                    <td class="price">12,345.56</td>
+                    <td class="text-center">1234</td>
+                    <td class="price">1234.00</td>
+                    <td class="price">12,345.56</td>
+                    <td class="text-center">借</td>
+                    <td class="text-center">1234</td>
+                    <td class="text-center">1.111</td>
+                    <td class="price">0</td>
+                    <td class="text-center">1.11</td>
+                    <td class="price">41,542.12</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-50">填制日期：<span class="txt-filldate">未查询</span></div>
+            <div class="col-50 text-right">填制人：宁宁</div>
+        </div>
+    </div>
+    <script src="lib/sea.js"></script>
+    <script src="lib/jquery.min.js"></script>
+    <script>
+        seajs.config({
+            alias: {
+                'dialog': '../lib/dialog-min.js',
+                'nprogress': '../lib/nprogress.js',
+                'excelExporter': '../lib/excelExporter.js',
+                'common': '../js/common.js',
+                'zb_yeb': './js/zb-mxz.js'
+            }
+        });
+        seajs.use(['zb_yeb'],function(mxz){
+            $('.fixed-tool').css('top',(($('.fixed-tool').height()+55)*-1)+'px');
+            mxz.init();
+        });
+    </script>
+</body>
+</html>

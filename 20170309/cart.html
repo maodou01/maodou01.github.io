@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="address=no">
+    <title>我的购物车 - 五芳斋</title>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div class="footer weui-flex">
+        <a href="index.html" class="weui-flex__item">
+            <i class="icon fa fa-home"></i>
+            <span>首页</span>
+        </a>
+        <a href="commodity.html" class="weui-flex__item">
+            <i class="icon fa fa-shopping-basket"></i>
+            <span>商品</span>
+        </a>
+        <a href="cart.html" class="weui-flex__item active">
+            <i class="icon fa fa-shopping-cart"></i>
+            <span>购物车</span>
+        </a>
+        <a href="user.html" class="weui-flex__item">
+            <i class="icon fa fa-user-o"></i>
+            <span>个人中心</span>
+        </a>
+    </div>
+    <section class="contain" id="cart">
+        <div class="cart-box">
+            <div class="weui-flex commodity">
+                <div class="isselect">
+                    <input type="checkbox" name="" id="" />
+                </div>
+                <div class="pic">
+                    <img src="images/commodity-pic01.jpg" alt="">
+                </div>
+                <div class="title">
+                    <p>五芳斋 早餐(细沙饭团)单个</p>
+                    <p class="gray">(自提)默认/细沙甜饭团</p>
+                </div>
+                <div class="num-price">
+                    <div class="price">￥4.00</div>
+                    <div class="num">x 1</div>
+                </div>
+                <div class="btn-group">
+                    <a class="exit" href="javascript:;">编辑</a>
+                    <a class="del" href="javascript:;">删除</a>
+                </div>
+            </div>
+            <div class="weui-flex commodity">
+                <div class="isselect">
+                    <input type="checkbox" name="" id="" />
+                </div>
+                <div class="pic">
+                    <img src="images/commodity-pic01.jpg" alt="">
+                </div>
+                <div class="title">
+                    <p>五芳斋 早餐(细沙饭团)单个</p>
+                    <p class="gray">(自提)默认/细沙甜饭团</p>
+                </div>
+                <div class="num-price">
+                    <div class="price">￥4.00</div>
+                    <div class="num">x 1</div>
+                </div>
+                <div class="btn-group">
+                    <a class="exit" href="javascript:;">编辑</a>
+                    <a class="del" href="javascript:;">删除</a>
+                </div>
+            </div>
+            <div class="no-cart">
+                <div class="pic"><i class="fa fa-search"></i></div>
+                <p>购物车为空哦</p>
+                <a href="" class="btn-add">立即去添加</a>
+            </div>
+        </div>
+        <div class="total-box weui-flex">
+            <div class="total">合计(不包含运费)：共<span class="price">0</span>元</div>
+            <div class="btn-currency">立即结算</div>
+        </div>
+    </section>
+    <script src="lib/zepto.min.js"></script>
+    <script src="lib/weui.min.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+        var arr_touch=[0,0];
+        $('.cart-box').on({
+            'touchstart' : function(e){
+                var int_X=e.touches[0].clientX;
+                arr_touch[0]=int_X;
+                arr_touch[1]=int_X;
+            },
+            'touchmove': function(e){
+                arr_touch[1]=e.touches[0].clientX;
+                if(arr_touch[1]-arr_touch[0]-20<0)
+                $(this).css({
+                    'transform': 'translate('+(arr_touch[1]-arr_touch[0])+'px,0)'
+                });
+            },
+            'touchend': function(){
+                $btn_group=$(this).find('.btn-group');
+                if((arr_touch[0]-arr_touch[1])/2>$btn_group.width()/2){
+                    $(this).addClass('open').css({
+                        'transform': 'translate(-3rem,0)'
+                    });
+                }else{
+                    $(this).removeClass('open').removeAttr('style');
+                    arr_touch=[0,0];
+                }
+            }
+        },'.commodity');
+        $('.cart-box').on('click','.commodity .btn-group .del',function(){
+            var $list=$(this).parents('.commodity');
+            weui.confirm('确认永久删除商品？',function(){
+                $list.remove();
+            });
+        });
+        $('.cart-box').on('click','.commodity .isselect input',function(){
+            var $btn=$('.total-box .btn-currency');
+            if($(this).prop('checked') && !$btn.hasClass('active')){
+                $btn.addClass('active');
+            }else{
+                var ischecked=true;
+                $('.commodity .isselect input').each(function(){
+                    if($(this).prop('checked')) ischecked=false;
+                });
+                if(ischecked)
+                    $btn.removeClass('active');
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #E5E8ED;
+    font-size: 0.28rem;
+    overflow: hidden;
+}
+#app{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+img{
+    display: block;
+    width: 100%;
+}
+ul,li{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.mint-toast-icon{
+    font-size: 0.6rem !important;
+}
+.fade-enter-active{
+    transition: opacity .5s ease;
+}
+.fade-leave-active{
+    transition: opacity .3s ease;
+}
+.fade-enter, .fade-leave-active {
+    opacity: 0
+}
+.child-view {
+    position: absolute;
+    transition: all .5s cubic-bezier(.55,0,.1,1);
+}
+.slide-left-enter, .slide-right-leave-active {
+    opacity: 0;
+    -webkit-transform: translate(30px, 0);
+    transform: translate(30px, 0);
+}
+.slide-left-leave-active, .slide-right-enter {
+    opacity: 0;
+    -webkit-transform: translate(-30px, 0);
+    transform: translate(-30px, 0);
+}
+.footer{
+    transition: transform .5s cubic-bezier(.55,0,.1,1);
+    transform: translate(0, 100%);
+}
+.footer.show{
+    transform: translate(0, 0);
+}
+.footer.mint-tabbar .icon{
+    background-size: contain;
+}
+.footer.mint-tabbar .icon.icon1{
+    background-image: url('../images/toolbar_mall.png');
+}
+.footer.mint-tabbar .icon.icon2{
+    background-image: url('../images/toolbar_cat.png');
+}
+.footer.mint-tabbar .icon.icon3{
+    background-image: url('../images/toolbar_shop.png');
+}
+.footer.mint-tabbar .icon.icon4{
+    background-image: url('../images/toolbar_see.png');
+}
+.footer.mint-tabbar .icon.icon5{
+    background-image: url('../images/toolbar_user.png');
+}
+.footer.mint-tabbar .mint-tab-item-label{
+    color: #aaa;
+}
+.footer.mint-tabbar > .mint-tab-item.is-selected{
+    background-color: transparent;
+}
+.footer.mint-tabbar .is-selected .icon.icon1{
+    background-image: url('../images/toolbar_mall_selected.png');
+}
+.footer.mint-tabbar .is-selected .icon.icon2{
+    background-image: url('../images/toolbar_cat_selected.png');
+}
+.footer.mint-tabbar .is-selected .icon.icon3{
+    background-image: url('../images/toolbar_shop_selected.png');
+}
+.footer.mint-tabbar .is-selected .icon.icon4{
+    background-image: url('../images/toolbar_see_selected.png');
+}
+.footer.mint-tabbar .is-selected .icon.icon5{
+    background-image: url('../images/toolbar_user_selected.png');
+}
+.footer.mint-tabbar .is-selected .mint-tab-item-label{
+    color: #26a2ff;
+}
+.wrap-view{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background-color: #E5E8ED;
+    transition: all .3s ease;
+}

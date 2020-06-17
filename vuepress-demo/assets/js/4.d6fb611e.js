@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{350:function(t,n,c){"use strict";c.r(n);var e={data:function(){return{}},methods:{clickButton:function(){window.alert("测试成功")}}},i=c(42),o=Object(i.a)(e,(function(){var t=this.$createElement;return(this._self._c||t)("button",{on:{click:this.clickButton}},[this._v("测试一个按钮")])}),[],!1,null,null,null);n.default=o.exports}}]);

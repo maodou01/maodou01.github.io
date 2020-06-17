@@ -1,0 +1,126 @@
+<section id="info-cus">
+    <div class="wrapper-coor" title="调整大小"></div>
+    <div class="wrapper-left">
+        <div class="text-center">
+            <img src="images/touxiang1.jpg" alt="" class="img-circle" />
+            <strong data-exit>覃业军</strong>
+            <p class="tel" data-exit>135 2563 6875</p>
+        </div>
+        <p class="title"><i class="icon-blue"></i>联系地址</p>
+        <p class="value" data-exit>湖南省常德市石门县美丽的地方</p>
+        <p class="title"><i class="icon-orange"></i>添加时间</p>
+        <p class="value">2016-06-06 09:06:16</p>
+    </div>
+    <div class="wrapper-title">
+        <span>覃业军的个人信息</span>
+        <div class="tool-group">
+            <div class="closed" onclick="closeWindows('info-user')"></div>
+        </div>
+    </div>
+    <div class="wrapper-right">
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="info-tab1">
+                <div class="content1">
+                    <div class="box">
+                        <div class="col-md-6 col-xs-6 no-padding">
+                            <p class="title">客户名称：<span data-exit>李辰</span></p>
+                            <p class="title">客户性别：<span data-exit>男性</span></p>
+                            <p class="title">证件类型：<span data-exit>身份证</span></p>
+                            <p class="title">证件号码：<span data-exit>411722197202132413</span></p>
+                        </div>
+                        <div class="col-md-6 col-xs-6 no-padding">
+                            <p class="title">出生日期：<span data-exit>1972-02-13</span></p>
+                            <p class="title">居住状况：<span data-exit>自置</span></p>
+                            <p class="title">婚姻状况：<span data-exit>已婚有子女</span></p>
+                            <p class="title">健康状况：<span data-exit>良好</span></p>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <p class="title">授权额度：<span data-exit>-</span></p>
+                        <p class="title">信息来源：<span data-exit>客户推荐</span></p>
+                        <p class="title">所属地区：<span data-exit>北京市市辖区海淀区</span></p>
+                        <p class="title">通讯地址：<span data-exit>北京市市辖区海淀区</span></p>
+                        <p class="title">资金用途：<span data-exit>信贷&担保</span></p>
+                        <p class="title remarks">个人备注：<span data-exit>咖喱空间啊受到法律框架啊是的立法框架阿斯利康打飞机阿斯利康低价房拉开时间地方</span></p>
+                    </div>
+                    <ul class="pic-list">
+                        <li>
+                            <div class="pic"></div>
+                            <p>指纹信息</p>
+                        </li>
+                        <li>
+                            <div class="pic"></div>
+                            <p>身份证扫描件</p>
+                        </li>
+                        <li>
+                            <div class="pic"></div>
+                            <p>人像信息</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="info-tab2">
+                <div class="content1">
+                    <div class="box" style="min-height: 200px;">
+                        <p class="title">个人月收入：<span data-exit></span></p>
+                        <p class="title">家庭月收入：<span data-exit></span></p>
+                        <p class="title">家庭人口数：<span data-exit></span></p>
+                        <p class="title">主要供养人口：<span data-exit></span></p>
+                        <p class="title">主要经济来源：<span data-exit>种子阿隆索东风科技了</span></p>
+                        <p class="title">其他经济来源：<span data-exit>暂无</span></p>
+                    </div>
+                    <p class="list-title">收入证明：</p>
+                    <ul class="pic-list">
+                        <li>
+                            <div class="pic"></div>
+                            <p>材料1</p>
+                        </li>
+                        <li>
+                            <div class="pic"></div>
+                            <p>材料1</p>
+                        </li>
+                        <li>
+                            <div class="pic"></div>                           
+                            <p>材料1</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="info-tab3">
+                <div class="content1">
+                    <p>没有贷款记录</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper-bottom">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active" role="presentation"><a href="#info-tab1" aria-controls="info-tab1" role="tab" data-toggle="tab">基本信息</a></li>
+            <li role="presentation"><a href="#info-tab2" aria-controls="info-tab2" role="tab" data-toggle="tab">资产情况</a></li>
+            <li role="presentation"><a href="#info-tab3" aria-controls="info-tab3" role="tab" data-toggle="tab">贷款记录</a></li>
+        </ul>
+    </div>
+</section>
+<script>
+    /*双击编辑*/
+    $('#info-cus').on('dblclick','[data-exit]',function(){
+        var $this=$(this),
+            input_text='<input type="text" value="'+$this.text()+'" />';
+        $this.find('input').remove();
+        $this.append(input_text).find('input').select().focus();    
+    });
+
+    /*编辑失去焦点后保存*/
+    $('#info-cus').on('blur','[data-exit] input',function(){
+        var $this=$(this),
+            $txt=$this.parent(),
+            new_data=$this.val();
+        //console.log(new_data);    
+        if(new_data){
+            /*ajax放这里*/
+            $txt.html(new_data);
+        }else{
+            $this.remove();
+        }
+    });
+</script>

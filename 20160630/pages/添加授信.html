@@ -1,0 +1,66 @@
+<section id="add-cus">
+    <div class="wrapper-title">
+        <span>添加授信</span>
+        <div class="tool-group">
+            <div class="closed" onclick="closeWindows('credit-user')"></div>
+        </div>
+    </div>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-2 col-xs-2 control-label">选择用户</label>
+            <div class="col-sm-10 col-xs-10">
+                <input type="text" class="form-control" placeholder="" readonly="readonly"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 col-xs-2 control-label">客户类型</label>
+            <div class="col-sm-10 col-xs-10">
+                <input type="text" class="form-control" placeholder="" value="企业客户" readonly="readonly" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 col-xs-2 control-label">授信额度</label>
+            <div class="col-sm-10 col-xs-10">
+                <input type="text" class="form-control" placeholder="" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 col-xs-2 control-label">开始日期</label>
+            <div class="col-sm-10 col-xs-10">
+                <input type="text" class="form-control input-my-date" placeholder="" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 col-xs-2 control-label">截止日期</label>
+            <div class="col-sm-10 col-xs-10">
+                <input type="text" class="form-control input-my-date" placeholder="" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 col-xs-2 control-label">备注</label>
+            <div class="col-sm-10 col-xs-10">
+                <textarea class="form-control" rows="4" placeholder=""></textarea>
+            </div>
+        </div>
+        <div class="form-group btn-group">
+            <div class="col-sm-2 col-xs-2"></div>
+            <div class="col-sm-10 col-xs-10">
+                <a href="javascript:;" class="btn-cus btn-add">提交审核</a>
+                <input type="reset" class="btn-cus btn-reset" value="重新填写" />
+            </div>
+        </div>
+    </form>
+</section>
+<script>
+    /*初始日期选择插件*/
+    $('.input-my-date').datepicker({
+        language: 'chs'
+    }).data('datepicker');
+
+    $('.input-range-date').datepicker({
+        language: 'chs',
+        range: true,
+        multipleDatesSeparator: '-',
+        dateFormat: 'yyyy/mm/dd'
+    }).data('datepicker');
+</script>
